@@ -1,0 +1,27 @@
+shell /bin/zsh
+startup_message off
+history 10000
+
+# utf8
+defutf8 on
+# scrollback lines
+defscrollback 1000
+
+hardstatus on
+hardstatus alwayslastline
+hardstatus string "%{.bW}%-w%{.rW}%n %t%{-}%+w %=%{..G} %H %{..Y} %D %y/%m/%d %c "
+
+####################
+### Key Bindings ###
+####################
+# add a binding to get an irb session
+#bind i screen irb
+
+#######################
+### Default Windows ###
+#######################
+# screen -t shell 0 zsh
+# screen -t test 1 zsh
+# screen -t server 2 zsh
+# select 0
+ 
