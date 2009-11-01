@@ -3,52 +3,52 @@
 # If running interactively, then:
 if [ "$PS1" ]; then
 
-    FINK="/sw/bin:/sw/sbin"
-    MACPORTS="/opt/local/bin:/opt/local/sbin"
-    X11="/usr/X11R6/bin"
-		DEVTOOLS="/Developer/Tools:/Developer/usr/bin:/Developer/usr/sbin"
-  	POSTGRES83_MACPORT="/opt/local/lib/postgresql83/bin"
+	FINK="/sw/bin:/sw/sbin"
+	MACPORTS="/opt/local/bin:/opt/local/sbin"
+	X11="/usr/X11R6/bin"
+	DEVTOOLS="/Developer/Tools:/Developer/usr/bin:/Developer/usr/sbin"
+	POSTGRES83_MACPORT="/opt/local/lib/postgresql83/bin"
 
-    MAN_FINK="/sw/share/man:/sw/lib/gcc4/man:/sw/share/doc/mutt/man"
-    MAN_MACPORTS="/opt/local/man"
-    MAN_X11="/usr/X11R6/man"
-    
-    PATH="$MACPORTS:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/sbin:$FINK:$X11:$HOME/usr/bin:$DEVTOOLS:$POSTGRES83_MACPORT"
-    MANPATH="$MAN_MACPORTS:/usr/share/man:/usr/local/man:$MAN_FINK:$MAN_X11:$HOME/usr/share/man"
+	MAN_FINK="/sw/share/man:/sw/lib/gcc4/man:/sw/share/doc/mutt/man"
+	MAN_MACPORTS="/opt/local/man"
+	MAN_X11="/usr/X11R6/man"
+	
+	PATH="$MACPORTS:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/sbin:$FINK:$X11:$HOME/usr/bin:$DEVTOOLS:$POSTGRES83_MACPORT"
+	MANPATH="$MAN_MACPORTS:/usr/share/man:/usr/local/man:$MAN_FINK:$MAN_X11:$HOME/usr/share/man"
 
-		if [ ! $DISPLAY ]; then
-			export DISPLAY=:0.0
-		fi
+	if [ ! $DISPLAY ]; then
+		export DISPLAY=:0.0
+	fi
 
-  	alias man="man -M $MANPATH"
-		alias mate='open -a TextMate '
-    alias ls='ls -FGe'
-    alias la='ls -a'
-    alias ll='ls -lh'
-    alias l='ls -lah'
-    alias topp='top -s2 -o cpu -r'
-    alias psg='ps aux |grep -v grep | grep'
-    alias psu='ps aux |grep -v grep | grep -v "^root " | grep -v "^nobody " | grep -v "^postfix " | grep -v "^windowse " |sort'
-    alias grep='grep --color'
-    alias kickstart='/System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart'
-		alias portclean="port	installed |grep -v active | gawk -F ' ' '{print$1$2}' | xargs sudo port -f uninstall"
-		alias airport="/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport"
+	alias man="man -M $MANPATH"
+	alias mate='open -a TextMate '
+	alias ls='ls -FGe'
+	alias la='ls -a'
+	alias ll='ls -lh'
+	alias l='ls -lah'
+	alias topp='top -s2 -o cpu -r'
+	alias psg='ps aux |grep -v grep | grep'
+	alias psu='ps aux |grep -v grep | grep -v "^root " | grep -v "^nobody " | grep -v "^postfix " | grep -v "^windowse " |sort'
+	alias grep='grep --color'
+	alias kickstart='/System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart'
+	alias portclean="port	installed |grep -v active | gawk -F ' ' '{print$1$2}' | xargs sudo port -f uninstall"
+	alias airport="/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport"
 
-		# building c extensions
-		export ARCHFLAGS='-arch i386'
+	# building c extensions
+	export ARCHFLAGS='-arch i386'
 
-		# JAVA
-		JAVA_HOME='/System/Library/Frameworks/JavaVM.framework/Home'
-		JAVA_OPTS='-Xms256m -Xmx1g'
-		#CLASSPATH="$HOME/usr/lib/ruby:$HOME/usr/lib/junit.jar:$HOME/usr/lib/jruby.jar:$HOME/usr/lib/jline-0.9.91.jar:$HOME/usr/lib/jarjar-0.7.jar:$HOME/usr/lib/emma_ant.jar:$HOME/usr/lib/emma.jar:$HOME/usr/lib/bsf.jar:$HOME/usr/lib/backport-util-concurrent.jar:$HOME/usr/lib/asm-commons-2.2.3.jar:$HOME/usr/lib/asm-2.2.3.jar"
-		#ECLIPSE_HOME="/Applications/eclipse"
-		ECLIPSE_HOME="$HOME/Applications/eclipse-3.4_plugindev"
+	# JAVA
+	JAVA_HOME='/System/Library/Frameworks/JavaVM.framework/Home'
+	JAVA_OPTS='-Xms256m -Xmx1g'
+	#CLASSPATH="$HOME/usr/lib/ruby:$HOME/usr/lib/junit.jar:$HOME/usr/lib/jruby.jar:$HOME/usr/lib/jline-0.9.91.jar:$HOME/usr/lib/jarjar-0.7.jar:$HOME/usr/lib/emma_ant.jar:$HOME/usr/lib/emma.jar:$HOME/usr/lib/bsf.jar:$HOME/usr/lib/backport-util-concurrent.jar:$HOME/usr/lib/asm-commons-2.2.3.jar:$HOME/usr/lib/asm-2.2.3.jar"
+	#ECLIPSE_HOME="/Applications/eclipse"
+	ECLIPSE_HOME="$HOME/Applications/eclipse-3.4_plugindev"
 
-		# java1.6
-		alias java1.6='/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Home/bin/java'
-		alias javac1.6='/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Home/bin/javac'
+	# java1.6
+	alias java1.6='/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Home/bin/java'
+	alias javac1.6='/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Home/bin/javac'
 
-		# lang S implementation GNU R
-		alias r='/sw/bin/r'
+	# lang S implementation GNU R
+	alias r='/sw/bin/r'
 
 fi
