@@ -6,6 +6,8 @@
 ### usage remote: $ upgrade $HOST
 ##############################
 upgrade () {
+	UMASK_RESTORE=`umask`
+	umask 022
 	if [ ! $1 ] ; then
 		print "local upgrade"
 		if [ `uname` = "Darwin" ]; then
@@ -24,6 +26,7 @@ upgrade () {
 		for each in $argv
 			upgrade_remote $each
 	fi
+	umask $UMASK_RESTORE
 }
 upgrade_remote () {
 	print "remote upgrade"
@@ -49,7 +52,8 @@ update_osx () {
 		print "=== update Mac systems ==="
 		sudo softwareupdate -i -a
 		if [ -x /usr/bin/gem ] ; then
-			sudo /usr/bin/gem update
+			#sudo /usr/bin/gem update
+			sudo env JAVA_HOME=$JAVA_HOME /usr/bin/gem update
 		fi
 	fi
 }
@@ -66,7 +70,8 @@ update_fink () {
 		sudo fink update-all
 		sudo fink cleanup
 		if [ -x /sw/bin/gem ] ; then # FIXME: path dependent
-			sudo /sw/bin/gem update
+			#sudo /sw/bin/gem update
+			sudo env JAVA_HOME=$JAVA_HOME /sw/bin/gem update
 		fi
 	fi
 }
@@ -84,7 +89,8 @@ update_macports () {
 		sudo port upgrade outdated
 		#sudo port clean installed
 		if [ -x /opt/local/bin/gem ] ; then # FIXME: path dependent
-			sudo /opt/local/bin/gem update
+			#sudo /opt/local/bin/gem update
+			sudo env JAVA_HOME=$JAVA_HOME /opt/local/bin/gem update
 		fi
 	fi
 }
