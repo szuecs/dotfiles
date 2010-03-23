@@ -1,6 +1,25 @@
 require 'rubygems'
 require 'irb/completion'
 
+require 'looksee/shortcuts' 
+# print short help
+# irb> Looksee.help
+# print methods from class
+# irb> lp []
+# print methods from instance
+# irb> lpi []
+# print private as well
+# irb> lp Module, :private
+#
+# Looksee color config
+Looksee::styles[:module]     = "\e[0;36m%s\e[0m" # cyan
+Looksee::styles[:public]     = "\e[0;32m%s\e[0m" # green
+Looksee::styles[:protected]  = "\e[0;33m%s\e[0m" # yellow
+Looksee::styles[:private]    = "\e[0;31m%s\e[0m" # red
+Looksee::styles[:undefined]  = "\e[0;34m%s\e[0m" # blue
+Looksee::styles[:overridden] = "\e[0;30m%s\e[0m" # black
+
+
 # show_regexp - stolen from the pickaxe
 def show_regexp(a, re)
    if a =~ re
@@ -94,6 +113,12 @@ class Module
   end
 end
 
+# print the last n commands from history
+def last_cmds(n=1)
+  puts Readline::HISTORY.entries[-(n+1)..-2].join("\n")
+end
+
+
 ####   less { yp IRB.conf }
 def less
   require 'stringio'
@@ -110,4 +135,15 @@ end
 def yp(*data)
   require 'yaml'
   puts YAML::dump(*data)
+end
+
+# got from bkudria@github.com
+# local_methods shows methods that are only available for a given object.
+class Object
+    # Return a list of methods defined locally for a particular object. Useful
+    # for seeing what it does whilst losing all the guff that's implemented
+    # by its parents (eg Object).
+    def local_methods(obj = self)
+        obj.methods(false).sort
+    end
 end
