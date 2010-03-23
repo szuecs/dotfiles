@@ -8,8 +8,8 @@
 ##############################
 
 #INF="szuecs@xian.mi.fu-berlin.de"
-INF="szuecs@wuhan.mi.fu-berlin.de"
-MATH="szuecs@jordan.mi.fu-berlin.de"
+INF="szuecs@wuhan.imp.fu-berlin.de"
+MATH="szuecs@jordan.imp.fu-berlin.de"
 
 typeset -A QUEUE_LIST HOST_LIST
 QUEUE_LIST=(
