@@ -63,7 +63,7 @@ if [ "$PS1" ]; then
 	alias -s zip="zipinfo"
 	alias -s txt "less"
 	# quick edit
-	alias z="$EDITOR ~/.zshrc"
+	alias z="$EDITOR ~/.zsh"
 
 #
 # completion tweaking
