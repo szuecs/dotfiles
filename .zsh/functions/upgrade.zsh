@@ -8,17 +8,12 @@
 upgrade () {
 	UMASK_RESTORE=`umask`
 	umask 022
+	if [ ! $ARCHFLAGS ]; then
+		export ARCHFLAGS='-arch i386'
+	fi
 	if [ ! $1 ] ; then
 		print "local upgrade"
-		if [ `uname` = "Darwin" ]; then
-			print "osx_upgrade_local"
-			osx_upgrade_local
-		elif [ `uname -o` = "GNU/Linux" ]; then
-			print "debian_upgrade_local"
-			debian_upgrade_local
-		else
-			print "I don't know what can I do for this type of machine"
-		fi
+		dispatch
   	elif [[ $1 = "help" || $1 = "--help" || $1 = "-h" ]] ; then
 		print "local usage for upgrading Mac OS X or debian systems including fink and macports: upgrade and clean"
 		print 'remote usage: upgrade $debian_server'
@@ -28,18 +23,46 @@ upgrade () {
 	fi
 	umask $UMASK_RESTORE
 }
+dispatch () {
+	case `uname` in 
+	"Darwin") 
+		print "Mac OS X local upgrade"
+		osx_upgrade_local ;; 
+	"Linux")  
+		case `uname -o` in
+		"GNU/Linux")
+			print "Debian local upgrade"
+			debian_upgrade_local ;;
+		*)
+			print "unknown Linux system, please send me a patch" ;; 
+		esac
+	;;
+	"FreeBSD")
+		print "FreeBSD local upgrade"
+		freebsd_upgrade_local ;;
+	*) 
+		print "unknown system, please send me a patch" ;;
+	esac 
+}
+
 upgrade_remote () {
 	print "remote upgrade"
-	if [[ `ssh $each uname -o 2&>/dev/null` = "GNU/Linux" ]] ; then
-		print "debian_upgrade_remote"
-		debian_upgrade_remote $1
-	elif [[ `ssh $each uname 2&>/dev/null` = "Darwin" ]] ; then
+	
+	case `ssh $each uname 2&>/dev/null` in 
+	"Darwin") 
 		print "osx_upgrade_remote"
-		osx_upgrade_remote $1
-	else
-		print "$1 is not a debian nor an osx machine"
-		print "please implement an upgrade function for this kind of machine!"
-	fi
+		osx_upgrade_remote $1 ;;
+	"Linux")  
+		case `ssh $each uname -o 2&>/dev/null` in
+		"GNU/Linux")
+			print "debian_upgrade_remote"
+			debian_upgrade_remote $1 ;;
+		*)
+			print "unknown Linux system, please send me a patch" ;; 
+		esac ;;
+	*) 
+		print "unknown system, please send me a patch" ;;
+	esac
 }
 # update osx
 update_osx () {
@@ -84,14 +107,16 @@ update_macports () {
 	done;
 	if [[ $MACPORTS_UP == "y" ]] ; then
 		print "=== macports ==="
-		#sudo port sync
 		sudo port selfupdate
 		sudo port upgrade outdated
-		#sudo port clean installed
 		if [ -x /opt/local/bin/gem ] ; then # FIXME: path dependent
-			#sudo /opt/local/bin/gem update
+			# FIXME: fox, fxruby, pg does not compile
 			sudo env JAVA_HOME=$JAVA_HOME /opt/local/bin/gem update
 		fi
+		if [ -x /opt/local/bin/jgem ] ; then # FIXME: path dependent
+			sudo env JAVA_HOME=$JAVA_HOME /opt/local/bin/jgem update
+		fi
+		
 	fi
 }
 # update textmate bundles
@@ -151,14 +176,34 @@ osx_upgrade_local () {
 	fi
 }
 # local debian upgrade
-debian_upgrade_local (){
+debian_upgrade_local () {
 	print "Upgrading Debian"
 	sudo apt-get update && sudo apt-get -u upgrade
 	print "Cleaning up"
 	sudo apt-get clean
 }
+
+freebsd_upgrade_local () {
+	print "Upgrading FreeBSD"
+	freebsd_update
+	freebsd_update_ports
+}
+
+freebsd_update () {
+	# as crontab daily task
+	# freebsd-update fetch 
+	freebsd-update install
+}
+
+freebsd_update_ports () {
+	portsnap fetch
+	portsnap extract
+	portsnap update
+}
+
+
 # remote osx upgrade
-osx_upgrade_remote (){
+osx_upgrade_remote () {
 	if [ ! $1 ]; then
 		print "usage: osx_upgrade_remote $osx_server"
 		print "Perhaps you want osx_upgrade_local ?"
