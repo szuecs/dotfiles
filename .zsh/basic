@@ -4,94 +4,132 @@
 
 # If running interactively, then:
 if [ "$PS1" ]; then
-	# clean all aliases
-	unhash -am '*'
-	
-	# nice prompt
-	export PS1='[%n@%m:%~]$ '
-	# nice ri
-	export RI="--no-pager -f ansi"
+  # clean all aliases
+  unhash -am '*'
+  
+  # nice prompt
+  export PS1='[%n@%m:%~]$ '
+  # nice ri
+  export RI="--no-pager -f ansi"
+  
+  # alias section
+  alias la='ls -a'
+  alias ll='ls -lh'
+  alias l='ls -lah'
+  # with mmv u can rename multiple files. mmv *.text *.txt
+  alias mmv='noglob zmv -W'
+  autoload -U zmv
+  
+  # set different colors on STDERR
+  autoload -U colors
+  colors
+  #exec 2>>(while read line; do
+  #	print "$fg[blue]${(q)line}" > /dev/tty; done & )
+  #print "$bg[black]$fg[red]${(q)line}" > /dev/tty; done &)
+  
+  # complist section
+  zmodload -i zsh/complist 
+  
+  setopt autocd                  # change to dirs without cd
+  setopt extendedglob            # weird & wacky pattern matching - yay zsh!
+  setopt completeinword          # not just at the end
+  setopt alwaystoend             # when complete from middle, move cursor
+  setopt nopromptcr              # don't add \n which overwrites cmds with no \n
+  setopt interactivecomments     # escape commands so i can use them later
+  setopt printexitvalue          # alert me if something's failed
+  setopt noshwordsplit           # use zsh style word splitting
+  
+  # history related stuff.
+  export HISTSIZE=5000
+  export SAVEHIST=5000
+  export HISTFILE=~/.zsh_history
+  setopt hist_ignore_dups        # ignore same commands run twice+
+  setopt appendhistory           # don't overwrite history 
+  setopt histignorespace         # remove command lines from the history list when
+  setopt histverify              # when using ! cmds, confirm first
+  
+  # use ssh for rysnc
+  export RSYNC_RSH=ssh
+  
+  export VISUAL=vim
+  export EDITOR=$VISUAL
+  export PAGER=less
 
-	
-	# alias section
-	alias la='ls -a'
-	alias ll='ls -lh'
-	alias l='ls -lah'
-	# with mmv u can rename multiple files. mmv *.text *.txt
-	alias mmv='noglob zmv -W'
-	autoload -U zmv
-	
-	# set different colors on STDERR
-	autoload -U colors
-	colors
-	#exec 2>>(while read line; do
-	#	print "$fg[blue]${(q)line}" > /dev/tty; done & )
-	#print "$bg[black]$fg[red]${(q)line}" > /dev/tty; done &)
+  # support colors in less
+  export LESS_TERMCAP_mb=$'\E[01;31m'
+  export LESS_TERMCAP_md=$'\E[01;31m'
+  export LESS_TERMCAP_me=$'\E[0m'
+  export LESS_TERMCAP_se=$'\E[0m'
+  export LESS_TERMCAP_so=$'\E[01;44;33m'
+  export LESS_TERMCAP_ue=$'\E[0m'
+  export LESS_TERMCAP_us=$'\E[01;32m'
+  
+  # nifty aliases
+  alias -g L='2>&1 | less'
+  alias -g G='| grep'
+  alias -g S='|sort'
+  alias -g W='|wc -l'
+  # file extension aliases (open with)
+  alias -s zip="zipinfo"
+  alias -s txt="less"
+  alias -s rb="mate"
+  alias -s pp="mate"
+  alias -s tex="mate"
+  alias -s c="mate"
+  # quick edit
+  alias z="$EDITOR ~/.zsh"
 
-	# complist section
-	zmodload -i zsh/complist 
-	
-	setopt autocd                  # change to dirs without cd
-	setopt extendedglob            # weird & wacky pattern matching - yay zsh!
-	setopt completeinword          # not just at the end
-	setopt alwaystoend             # when complete from middle, move cursor
-	setopt nopromptcr              # don't add \n which overwrites cmds with no \n
-	setopt histverify              # when using ! cmds, confirm first
-	setopt interactivecomments     # escape commands so i can use them later
-	setopt printexitvalue          # alert me if something's failed
-	
-	# history related stuff.
-	export HISTSIZE=5000
-	export SAVEHIST=5000
-	export HISTFILE=~/.zsh_history
-	setopt hist_ignore_dups        # ignore same commands run twice+
-	setopt appendhistory           # don't overwrite history 
+  #
+  # completion tweaking
+  #
+  autoload -U compinit; compinit
+  zstyle ':completion:*' use-cache on
+  zstyle ':completion:*' users resolve
+  # activate menu selection if >=5 possibilities 
+  zstyle ':completion:*' menu select=5
+  # use dircolours in completion listings
+  zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+  # format all messages not formatted in bold prefixed with ----
+  zstyle ':completion:*' format '%B---- %d%b'
+  # format descriptions (notice the vt100 escapes)
+  zstyle ':completion:*:descriptions'    format $'%{\e[0;31m%}completing %B%d%b%{\e[0m%}'
+  # bold and underline normal messages
+  zstyle ':completion:*:messages' format '%B%U---- %d%u%b'
+  # format in bold red error messages
+  zstyle ':completion:*:warnings' format "%B$fg[red]%}---- no match for: $fg[white]%d%b"
+  # let's use the tag name as group name
+  zstyle ':completion:*' group-name ''
+  # activate approximate completion, but only after regular completion (_complete) 
+  # and matching (_match)
+  zstyle ':completion:*' completer _complete _match _approximate
+  # limit to 2 errors
+  zstyle ':completion:*:approximate:*' max-errors 2
+  # let's complete known hosts and hosts from ssh's known_hosts file
+  #basehost="host1.example.com host2.example.com"
+  hosts=($((
+  ( [ -r .ssh/known_hosts ] && awk '{print $1}' .ssh/known_hosts | tr , '\n');\
+  echo $basehost; ) | sort -u | grep -v \|1\| | grep -v 160\.45\. ) )
+  zstyle ':completion:*' hosts $hosts
 
-	# use ssh for rysnc
-	export RSYNC_RSH=ssh
 
-	export VISUAL=vim
-	export EDITOR=$VISUAL
-	export PAGER=less
-
-	# nifty aliases
-	alias -g L='2>&1 | less'
-	alias -g G='| grep'
-	alias -g W='|wc -l'
-	alias -g S='|sort'
-	# file extension aliases
-	alias -s zip="zipinfo"
-	alias -s txt "less"
-	# quick edit
-	alias z="$EDITOR ~/.zsh"
-
-#
-# completion tweaking
-#
-
-# complete hostnames out of ssh's ~/.ssh/known_hosts
-	autoload -U compinit; compinit
-	zstyle ':completion:*' use-cache on
-	zstyle ':completion:*' users resolve
-#     hosts=(${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:#[0-9]*}%%\ *}%%,*})
-#     zstyle ':completion:*:hosts' hosts $hosts
-
-# use dircolours in completion listings
-	zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 fi
 
 # more completion options, see zsh manpage
-#     zstyle ':completion:*' menu select=15 #show menu if >=15 possibilities 
-#     zstyle ':completion:*' completer _complete _match _approximate
 #     zstyle ':completion:*:match:*' original only
 #     zstyle ':completion:*:approximate:*' max-errors 1 numeric
-#     zstyle ':completion:*' auto-description 'Specify: %d'
 #     zstyle ':completion:*' format 'Completing %d'
 #     zstyle ':completion:*' verbose true
 #     zstyle ':completion:*:functions' ignored-patterns '_*'
 #     zstyle ':completion:*:*:(^rm):*:*files' ignored-patterns \
 #        '*?.(o|c~|zwc)' '*?~'
 
+# tested but not nice
+  # complete hostnames out of ssh's ~/.ssh/known_hosts
+  #hosts=(${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:#[0-9]*}%%\ *}%%,*})
+  #zstyle ':completion:*:hosts' hosts $hosts
+  #zstyle ':completion:*' auto-description 'Specify: %d'
+  # print message if nothing to complete
+  #zstyle ':completion:*:warnings' format 'Too bad there is nothing'
 
 # functions
 
