@@ -1,4 +1,4 @@
-shell /bin/zsh
+shell /opt/local/bin/zsh
 startup_message off
 history 10000
 
