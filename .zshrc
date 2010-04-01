@@ -18,3 +18,7 @@ if [ -d ~/.zsh ]; then
 			fi
 	fi
 fi
+
+# rvm - needs zsh >= 4.3.5, but there is 4.3.4 installed on osx 10.5
+# use zsh-devel from macports
+if [[ -s /usr/local/rvm/scripts/rvm ]] ; then source /usr/local/rvm/scripts/rvm ; fi
