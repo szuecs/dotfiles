@@ -19,6 +19,17 @@ Looksee::styles[:private]    = "\e[0;31m%s\e[0m" # red
 Looksee::styles[:undefined]  = "\e[0;34m%s\e[0m" # blue
 Looksee::styles[:overridden] = "\e[0;30m%s\e[0m" # black
 
+# got from http://ruby-doc.org/docs/ProgrammingRuby/html/ospace.html
+def hierarchy klass
+  if klass.instance_of? Class
+    begin
+      print klass
+      klass = klass.superclass
+      print " < " if klass
+    end while klass
+    puts
+  end
+end
 
 # show_regexp - stolen from the pickaxe
 def show_regexp(a, re)
