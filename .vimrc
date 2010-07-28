@@ -1,15 +1,18 @@
-" We're running Vim, not Vi!
+" We're running Vim, not Vi! This must be first, because of side effects
 set nocompatible
+
 " Display line numbers on the left
 set number
 
 set ruler
-set incsearch
+set incsearch     " incremenatal search
 set ai
 set autoread
 set paste
+set history=50    " keep 50 lines of command line history
+set showcmd       " display incomplete commands
 "set cursorline
-set shell=/bin/zsh
+"set shell=/opt/local/bin/zsh
 
 syntax on           " syntax
 filetype on         " Enable filetype detection
@@ -47,12 +50,6 @@ set nostartofline
 " Always display the status line, even if only one window is displayed
 set laststatus=2
 
-" Use visual bell instead of beeping when doing something wrong
-set visualbell
-
-" Enable use of the mouse for all modes
-set mouse=a
-
 " Set the command window height to 2 lines, to avoid many cases of having to
 " "press <Enter> to continue"
 set cmdheight=2
@@ -60,10 +57,63 @@ set cmdheight=2
 " Quickly time out on keycodes, but never time out on mappings
 set notimeout ttimeout ttimeoutlen=200
 
+" Enable compiler support for ruby
+compiler ruby
 
-compiler ruby 		" Enable compiler support for ruby
+"------------------------------------------------------------
+"
+" autocommands
+"
+" use vim within irb
+if has("autocmd")
+  " Enable filetype detection
+  filetype plugin indent on
 
-"encodings: 
+  " Restore cursor position
+  autocmd BufReadPost *
+    \ if line("'\"") > 1 && line("'\"") <= line("$") |
+    \   exe "normal! g`\"" |
+    \ endif
+endif
+
+"------------------------------------------------------------
+
+" Mappings {{{1
+"
+" Useful mappings
+
+" Map Y to act like D and C, i.e. to yank until EOL, rather than act as yy,
+" which is the default
+map Y y$
+
+" Map <C-L> (redraw screen) to also turn off search highlighting until the
+" next search
+nnoremap <C-L> :nohl<CR><C-L>
+
+" faster scrolling (5 times instead of 1 time) 
+nnoremap <C-E> <C-E><C-E><C-E><C-E><C-E>
+nnoremap <C-Y> <C-Y><C-Y><C-Y><C-Y><C-Y>
+
+" edit mappings from http://vimcasts.org/episodes/the-edit-command/
+" auto complete the path to your currently open file
+" ,ew -> edit mode
+" ,es -> split mode
+" ,ev -> vertical split mode
+" ,et -> tab
+let mapleader=','
+map <leader>ew :e <C-R>=expand("%:p:h") . "/" <CR>
+map <leader>es :sp <C-R>=expand("%:p:h") . "/" <CR>
+map <leader>ev :vsp <C-R>=expand("%:p:h") . "/" <CR>
+map <leader>et :tabe <C-R>=expand("%:p:h") . "/" <CR>
+
+"" cursor movement within long wrapped lines with CTRL-j and CTRL-k
+vmap <C-j> gj
+vmap <C-k> gk
+nmap <C-j> gj
+nmap <C-k> gk
+
+"------------------------------------------------------------
+" encodings: 
 " latin1 Unicode utf-8
 "set fileencodings=utf-8,big5,gbk,sjis,euc-jp,euc-kr,utf-bom,iso8859-1
 "set fencs=utf-8,big5,euc-jp,utf-bom,iso8859-1,utf-16le
@@ -71,6 +121,8 @@ set enc=utf-8
 set fenc=utf-8
 set tenc=utf-8
 
+"------------------------------------------------------------
+" highlight colors for white bg 
 highlight Comment       ctermfg=DarkGreen
 highlight Constant      ctermfg=DarkMagenta
 highlight Character     ctermfg=DarkRed
@@ -83,14 +135,38 @@ highlight Number        ctermfg=DarkRed
 highlight Delimiter     ctermfg=Red
 highlight Error         ctermfg=Black
 highlight Todo          ctermfg=Red ctermbg=Black
-"highlight FIXME		ctermfg=Red ctermbg=Black
-highlight WarningMsg    term=NONE           ctermfg=DarkBlue ctermbg=NONE   
-highlight ErrorMsg      term=NONE           ctermfg=DarkRed ctermbg=NONE 
+highlight FIXME	        ctermfg=Red ctermbg=Black
+highlight WarningMsg    term=NONE   ctermfg=DarkBlue ctermbg=NONE   
+highlight ErrorMsg      term=NONE   ctermfg=DarkRed  ctermbg=NONE 
 
-" misc 
+" invisible character colors
+highlight NonText ctermfg=gray
+highlight SpecialKey ctermfg=gray
+
+" ruby colors
+highlight link rubyClass Keyword
+highlight link rubyDefine Keyword
+highlight link rubyConstant Type
+highlight link rubySymbol Character
+highlight link rubyStringDelimiter rubyString
+highlight link rubyInclude Keyword
+highlight link rubyAttribute Keyword
+highlight link rubyInstanceVariable Keyword
+"highlight rubyInstanceVariable ctermfg=Black
+"highlight rubyAttribute ctermfg=DarkGray
+
+"------------------------------------------------------------
+" MISC
 set tw=72
-"set tw=80
-"set tw=180
+" Use visual bell instead of beeping when doing something wrong
+set visualbell
+" Enable use of the mouse for all modes
+set mouse=a
+" Use the same symbols as TextMate for tabstops and EOLs
+set listchars=tab:▸\ ,eol:¬
+" list invisible chars
+set list
+
 
 "------------------------------------------------------------
 " Indentation options {{{1
@@ -109,43 +185,6 @@ set expandtab
 "set tabstop=2
 
 "------------------------------------------------------------
+"" adds a :Wrap command to set the 3 options at once
+command! -nargs=* Wrap set wrap linebreak nolist
 
-" Mappings {{{1
-"
-" Useful mappings
-
-" Map Y to act like D and C, i.e. to yank until EOL, rather than act as yy,
-" which is the default
-map Y y$
-
-" Map <C-L> (redraw screen) to also turn off search highlighting until the
-" next search
-nnoremap <C-L> :nohl<CR><C-L>
-
-" faster scrolling (4 times instead of 1 time)
-nnoremap <C-E> <C-E><C-E><C-E><C-E>
-nnoremap <C-Y> <C-Y><C-Y><C-Y><C-Y>
-
-"------------------------------------------------------------
-" spellchecker
-"
-" enable spellchecker
-":setlocal spell spelllang=en_us
-" 
-" vimspell plugin - must be installed 
-"noremap <F7> :syntax clear SpellErrors<CR>
-"noremap <F8> :so `vimspell.sh %`<CR><CR>
-
-"------------------------------------------------------------
-
-
-"set lisp
-"set showmatch
-"set autoindent
-"set smartindent
-"autocmd BufRead *.tex set tw=72
-
-" aliasses
-"map ,dt :r!date <CR>
-"map ,ide :w<CR>:!ispell %<CR>:e<CR>
-"map ,ien :w<CR>:!ispell -d american %<CR>:e<CR>
