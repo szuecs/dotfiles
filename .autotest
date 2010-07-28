@@ -1,0 +1,35 @@
+# menu bei ctrl-C
+#require 'autotest/menu'
+
+# fseventd change listener
+# Bug sys-uname crashes in rvm installation
+require 'autotest/fsevent'
+
+# growl + growlnotify needed
+require 'autotest/growl'
+
+# shell output is green/red 
+require 'redgreen'
+
+# print timestamps
+require 'autotest/timestamp'
+
+# rubycocoa needed
+#require 'autotest/pretty'
+
+# html report 
+# generates ~/Sites/autotest.html
+# needs a directory: ~/Sites  
+#require 'autotest/html_report'
+
+#require 'autotest_notification'
+#SPEAKING = false
+#DOOM_EDITION = false
+#BUUF = false
+#PENDING = false
+#STICKY = false
+#SUCCESS_SOUND = ''
+#FAILURE_SOUND = ''
+Autotest.add_hook :initialize do |at|
+    %w{.svn .hg .git vendor rerun.txt}.each {|exception| at.add_exception(exception)}
+    end
