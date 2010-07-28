@@ -21,7 +21,6 @@ if [ "$PS1" ]; then
   fi
   
   alias man="man -M $MANPATH"
-  alias matea='open -a TextMate '
   alias ls='ls -FGe'
   alias la='ls -a'
   alias ll='ls -lh'
