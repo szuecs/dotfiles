@@ -10,7 +10,8 @@ if [ "$PS1" ]; then
   # nice prompt
   export PS1='[%n@%m:%~]$ '
   # nice ri
-  export RI="--no-pager -f ansi"
+  export RI="-f ansi"
+  #export RI="--no-pager -f ansi"
   
   # alias section
   alias la='ls -a'
