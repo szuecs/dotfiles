@@ -1,6 +1,7 @@
-shell /opt/local/bin/zsh
+#shell /opt/local/bin/zsh
+shell /bin/zsh
 startup_message off
-history 10000
+history 100000
 
 # utf8
 defutf8 on
