@@ -9,7 +9,7 @@ upgrade () {
 	UMASK_RESTORE=`umask`
 	umask 022
 	if [ ! $ARCHFLAGS ]; then
-		export ARCHFLAGS='-arch i386'
+		export ARCHFLAGS='-arch x86_64'
 	fi
 	if [ ! $1 ] ; then
 		print "local upgrade"
