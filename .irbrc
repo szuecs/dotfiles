@@ -44,7 +44,7 @@ if require 'looksee/shortcuts'
   Looksee::styles[:private]    = "\e[0;31m%s\e[0m" # red
   Looksee::styles[:undefined]  = "\e[0;34m%s\e[0m" # blue
   Looksee::styles[:overridden] = "\e[0;30m%s\e[0m" # black
-end 
+end unless RUBY_VERSION.match(/jruby/) or defined? Rubinius
 
 #------------------------------------------------------------ 
 # 
