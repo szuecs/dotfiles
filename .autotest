@@ -9,7 +9,7 @@ require 'autotest/fsevent'
 require 'autotest/growl'
 
 # shell output is green/red 
-require 'redgreen'
+#require 'redgreen'
 
 # print timestamps
 require 'autotest/timestamp'
