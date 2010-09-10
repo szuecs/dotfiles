@@ -158,20 +158,20 @@ update_gpgkeys () {
 }
 # osx local upgrade 
 osx_upgrade_local () {
-	if test -x `which softwareupdate`; then
+	if `which softwareupdate`; then
 		update_osx
 	fi
-	if test -x `which fink`; then
+	if `which fink`; then
 		update_fink
 	fi
-	if test -x `which port`; then
+	if `which port`; then
 		update_macports
 	fi
 	# mate is an alias, so `which mate` is not an executable
 	if test -x /usr/local/bin/mate; then
 		update_textmate
 	fi
-	if test -x `which gpg`; then
+	if `which gpg`; then
 		update_gpgkeys
 	fi
 }
