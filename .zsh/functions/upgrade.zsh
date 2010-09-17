@@ -148,8 +148,7 @@ update_textmate () {
       then
       pushd ~/Library/Application\ Support/TextMate/Pristine\ Copy/Bundles
       for each in *.tmbundle; do
-        echo "update $each"
-        #svn_or_git_update $each
+        svn_or_git_update $each
       done
       popd
     fi
