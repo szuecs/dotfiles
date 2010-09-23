@@ -112,6 +112,9 @@ if [ "$PS1" ]; then
   echo $basehost; ) | sort -u | grep -v \|1\| | grep -v 160\.45\. ) )
   zstyle ':completion:*' hosts $hosts
 
+  # Quote pasted URLs
+  autoload url-quote-magic
+  zle -N self-insert url-quote-magic
 
 fi
 
