@@ -197,7 +197,7 @@ osx_upgrade_local () {
   if test -x /usr/local/bin/mate; then
     update_textmate
   fi
-  if [ test -e /usr/local/bin/gpg || test -e /opt/local/bin/gpg ]; then
+  if [[ -e /usr/local/bin/gpg || -e /opt/local/bin/gpg ]]; then
     update_gpgkeys
   fi
 }
