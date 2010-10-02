@@ -14,7 +14,7 @@ if [ "$PS1" ]; then
   MAN_X11="/usr/X11R6/man"
   
   PATH="$MACPORTS:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/sbin:$FINK:$X11:$DEVTOOLS:$POSTGRES83_MACPORT"
-  MANPATH="$MAN_MACPORTS:/usr/share/man:/usr/local/man:$MAN_FINK:$MAN_X11:$HOME/usr/share/man"
+  MANPATH="$MAN_MACPORTS:/usr/share/man:/usr/local/man:$MAN_FINK:$MAN_X11:$HOME/usr/share/man:/usr/local/share/man"
   
   if [ ! $DISPLAY ]; then
   	export DISPLAY=:0.0
