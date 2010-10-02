@@ -44,7 +44,7 @@ if require 'looksee/shortcuts'
   Looksee::styles[:private]    = "\e[0;31m%s\e[0m" # red
   Looksee::styles[:undefined]  = "\e[0;34m%s\e[0m" # blue
   Looksee::styles[:overridden] = "\e[0;30m%s\e[0m" # black
-end unless RUBY_VERSION.match(/jruby/) or defined? Rubinius
+end unless defined?(Rubinius) || defined?(JRuby)
 
 #------------------------------------------------------------ 
 # 
@@ -213,3 +213,15 @@ begin
   end
 end
 
+# print an array like a tree
+#   [1,2,[11,22,[111,222,333,444],33],3,4].recursive_print
+class Object
+ def recursive_print indent = ""
+    puts indent.gsub(/\s+$/,"--") + to_s
+  end
+end
+module Enumerable
+  def recursive_print indent = ""
+    map { |child| child.recursive_print indent+"|  " }
+  end
+end
