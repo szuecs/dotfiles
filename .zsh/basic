@@ -80,6 +80,9 @@ if [ "$PS1" ]; then
   # quick edit
   alias z="$EDITOR ~/.zsh"
 
+  # history cmd expansion using space, example: !-3␣
+  bindkey ' ' magic-space
+  
   #
   # completion tweaking
   #
