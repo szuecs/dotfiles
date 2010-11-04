@@ -60,6 +60,9 @@ set notimeout ttimeout ttimeoutlen=200
 " Enable compiler support for ruby
 compiler ruby
 
+" toggle paste
+set pastetoggle=<F2>
+
 "------------------------------------------------------------
 "
 " autocommands
@@ -111,6 +114,16 @@ vmap <C-j> gj
 vmap <C-k> gk
 nmap <C-j> gj
 nmap <C-k> gk
+
+" :CommandT search plugin (like TextMate command-t)
+" shift-t unless macvim GUI is used
+if has("gui_macvim")
+  macmenu &File.New\ Tab key=<nop>
+  map <D-t> :CommandT<CR>
+else
+  map <S-t> :CommandT<CR>
+endif
+
 
 "------------------------------------------------------------
 " encodings: 
