@@ -17,7 +17,7 @@ if [ "$PS1" ]; then
   MANPATH="$MAN_MACPORTS:/usr/share/man:/usr/local/man:$MAN_FINK:$MAN_X11:$HOME/usr/share/man:/usr/local/share/man"
   
   if [ ! $DISPLAY ]; then
-  	export DISPLAY=:0.0
+    export DISPLAY=:0.0
   fi
   
   alias man="man -M $MANPATH"
