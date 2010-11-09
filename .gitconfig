@@ -19,3 +19,5 @@
   untracked = cyan
 [git-tmbundle "log"]
   context-lines = 5
+[sendemail]
+	smtpencryption = tls
