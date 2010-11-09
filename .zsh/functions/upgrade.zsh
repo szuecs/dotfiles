@@ -1,5 +1,5 @@
 ##############################
-### by sandor szuecs Dec 2006
+### by sandor szuecs since Dec 2006
 ### 
 ### upgrades local or remote: osx, debian or ubuntu systems
 ### usage local: $ upgrade 
@@ -75,7 +75,6 @@ update_osx () {
     print "=== update Mac systems ==="
     sudo softwareupdate -i -a
     if [ -x /usr/bin/gem ] ; then
-      #sudo /usr/bin/gem update
       sudo env JAVA_HOME=$JAVA_HOME /usr/bin/gem update
     fi
   fi
@@ -89,11 +88,10 @@ update_fink () {
   done;
     if [[ $FINK_UP == "y" ]] ; then
     print "=== fink upgrade ==="
-    sudo fink selfupdate
-    sudo fink update-all
-    sudo fink cleanup
-    if [ -x /sw/bin/gem ] ; then # FIXME: path dependent
-      #sudo /sw/bin/gem update
+    sudo /sw/bin/fink selfupdate
+    sudo /sw/bin/fink update-all
+    sudo /sw/bin/fink cleanup
+    if [ -x /sw/bin/gem ] ; then
       sudo env JAVA_HOME=$JAVA_HOME /sw/bin/gem update
     fi
   fi
@@ -107,8 +105,8 @@ update_macports () {
   done;
   if [[ $MACPORTS_UP == "y" ]] ; then
     print "=== macports ==="
-    sudo port selfupdate
-    sudo port upgrade outdated
+    sudo /opt/local/bin/port selfupdate
+    sudo /opt/local/bin/port upgrade outdated
     if [ -x /opt/local/bin/gem ] ; then # FIXME: path dependent
       # FIXME: fox, fxruby, pg does not compile
       sudo env JAVA_HOME=$JAVA_HOME /opt/local/bin/gem update
@@ -182,24 +180,37 @@ update_gpgkeys () {
     gpg --refresh-keys  
   fi
 }
-# osx local upgrade 
+
+update_rvm () {
+  local RVM_UP
+  until [[ $RVM_UP == 'y' || $RVM_UP == 'n' ]]; do
+    print -n "Process RVM update (y/n)?"
+    read -q RVM_UP
+  done;
+  if [[ $RVM_UP == "y" ]] ; then
+    print "=== rvm update ==="
+    bash -c '$HOME/.rvm/bin/rvm update'
+  fi
+}
+
 osx_upgrade_local () {
-  if test -e /usr/sbin/softwareupdate; then
+  if test -x /usr/sbin/softwareupdate; then
     update_osx
   fi
-  if test -e /sw/bin/fink; then
+  if test -x /sw/bin/fink; then
     update_fink
   fi
-  if test -e /opt/local/bin/port; then
+  if test -x /opt/local/bin/port; then
     update_macports
   fi
   # mate is an alias, so `which mate` is not an executable
   if test -x /usr/local/bin/mate; then
     update_textmate
   fi
-  if [[ -e /usr/local/bin/gpg || -e /opt/local/bin/gpg ]]; then
+  if test -x `which gpg`; then
     update_gpgkeys
   fi
+  update_rvm
 }
 # local debian upgrade
 debian_upgrade_local () {
