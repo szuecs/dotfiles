@@ -79,6 +79,18 @@ update_osx () {
     fi
   fi
 }
+# update homebrew packages
+update_hombrew () {
+  local HOMEBREW_UP
+  until [[ $HOMEBREW_UP == 'y' || $HOMEBREW_UP == 'n' ]]; do
+    print -n "Process homebrew update (y/n)?"
+    read -q HOMEBREW_UP
+  done;
+  if [[ $HOMEBREW_UP == "y" ]] ; then
+    print "=== homebrew ==="
+    sudo /usr/local/bin/brew update
+  fi
+}
 # update fink packages
 update_fink () {
   local FINK_UP
@@ -196,6 +208,9 @@ update_rvm () {
 osx_upgrade_local () {
   if test -x /usr/sbin/softwareupdate; then
     update_osx
+  fi
+  if test -x /usr/local/bin/brew; then
+    update_hombrew
   fi
   if test -x /sw/bin/fink; then
     update_fink
