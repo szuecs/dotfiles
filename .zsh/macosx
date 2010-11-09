@@ -3,18 +3,13 @@
 # If running interactively, then:
 if [ "$PS1" ]; then
 
-  FINK="/sw/bin:/sw/sbin"
-  MACPORTS="/opt/local/bin:/opt/local/sbin"
   X11="/usr/X11R6/bin"
   DEVTOOLS="/Developer/Tools:/Developer/usr/bin:/Developer/usr/sbin"
-  POSTGRES83_MACPORT="/opt/local/lib/postgresql83/bin"
   
-  MAN_FINK="/sw/share/man:/sw/lib/gcc4/man:/sw/share/doc/mutt/man"
-  MAN_MACPORTS="/opt/local/man"
   MAN_X11="/usr/X11R6/man"
   
-  PATH="$MACPORTS:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/sbin:$FINK:$X11:$DEVTOOLS:$POSTGRES83_MACPORT"
-  MANPATH="$MAN_MACPORTS:/usr/share/man:/usr/local/man:$MAN_FINK:$MAN_X11:$HOME/usr/share/man:/usr/local/share/man"
+  PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$X11:$DEVTOOLS"
+  MANPATH="/usr/share/man:/usr/local/man:$MAN_X11:$HOME/usr/share/man:/usr/local/share/man"
   
   if [ ! $DISPLAY ]; then
     export DISPLAY=:0.0
@@ -42,7 +37,4 @@ if [ "$PS1" ]; then
   alias java1.6='/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Home/bin/java'
   alias javac1.6='/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Home/bin/javac'
   
-  # lang S implementation GNU R
-  alias r='/sw/bin/r'
-
 fi
