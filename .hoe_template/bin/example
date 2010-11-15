@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby -wKU
+
+require 'example'
+
+exit(NameSpace::MainClass.main( NameSpace::MainClass.parse_options, *ARGV))
+
