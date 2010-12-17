@@ -1,15 +1,36 @@
 shell /usr/local/bin/zsh
 startup_message off
-history 100000
-
-# utf8
-defutf8 on
+history 100
+autodetach on
+defutf8 on # utf8
 # scrollback lines
-defscrollback 1000
+defscrollback 4096
+nonblock on
+
+vbell on
+vbell_msg ""
 
 hardstatus on
 hardstatus alwayslastline
 hardstatus string "%{.bW}%-w%{.rW}%n %t%{-}%+w %=%{..G} %H %{..Y} %D %y/%m/%d %c "
+
+# copy and paste
+# copy mode: C-a C-[ oder C-a <ESC>
+# markieren funktioniert über Marken setzen mit <space>  w=word,y=lineend,Y=line
+# paste: C-a C-]  or here C-a P
+bind P paste . 
+
+# toggle focus in split screen mode like C-a <TAB> 
+bind o focus 
+# jump to other focus in split screen mode
+bind j focus down
+bind k focus up
+bind t focus top
+bind b focus bottom
+
+# testen
+altscreen on
+defflow off
 
 ####################
 ### Key Bindings ###
