@@ -73,7 +73,7 @@ if [ "$PS1" ]; then
   # file extension aliases (open with)
   alias -s zip="zipinfo"
   alias -s txt="less"
-  alias -s rb="mate"
+  #alias -s rb="mate"
   alias -s pp="mate"
   alias -s tex="mate"
   alias -s c="mate"
