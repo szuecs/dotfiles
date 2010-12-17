@@ -6,14 +6,15 @@ require 'irb/completion'
 #   > mate 
 #   # edit.. , save, quit
 #   > # use your written class, whatever within irb
-require 'interactive_editor'
+require 'interactive_editor' unless defined?(RUBY_ENGINE) 
 #------------------------------------------------------------
 # http://sketches.rubyforge.org/
 # save/reload an editor sketch from irb
 #   > sketch :foo
-require 'sketches'
-Sketches.config :editor => 'mate'
-
+unless defined?(RUBY_ENGINE) 
+  require 'sketches'
+  Sketches.config :editor => 'mate'
+end
 #------------------------------------------------------------
 # hirb - rails nice ascii table formatter
 # sucks terminal colors 
@@ -27,7 +28,8 @@ Sketches.config :editor => 'mate'
 
 #------------------------------------------------------------
 # 
-if require 'looksee/shortcuts' 
+begin
+  require 'looksee/shortcuts' 
   # print short help
   # irb> Looksee.help
   # print methods from class
@@ -44,7 +46,10 @@ if require 'looksee/shortcuts'
   Looksee::styles[:private]    = "\e[0;31m%s\e[0m" # red
   Looksee::styles[:undefined]  = "\e[0;34m%s\e[0m" # blue
   Looksee::styles[:overridden] = "\e[0;30m%s\e[0m" # black
-end unless defined?(Rubinius) || defined?(JRuby)
+#end unless defined?(Rubinius) || defined?(JRuby)
+rescue Exception 
+  puts "no looksee available"
+end
 
 #------------------------------------------------------------ 
 # 
@@ -168,18 +173,19 @@ end
 # irb config
 IRB.conf[:USE_READLINE] = true
 IRB.conf[:AUTO_INDENT]  = true
-IRB.conf[:PROMPT][:CUSTOM] = {
-  :PROMPT_N => "%N:%i> ",
-  :PROMPT_S => "%N:%i%l ",
-  :PROMPT_C => "%N:%i* ",
-  :RETURN   =>  "=> %s\n",
-  :PROMPT_I => "%N:%i> "
-}
-IRB.conf[:PROMPT_MODE] = :CUSTOM # set default
-
+unless defined?(RUBY_ENGINE) 
+  IRB.conf[:PROMPT][:CUSTOM] = {
+    :PROMPT_N => "%N:%i> ",
+    :PROMPT_S => "%N:%i%l ",
+    :PROMPT_C => "%N:%i* ",
+    :RETURN   =>  "=> %s\n",
+    :PROMPT_I => "%N:%i> "
+  } 
+  IRB.conf[:PROMPT_MODE] = :CUSTOM # set default
+end
 #------------------------------------------------------------
 # history
-require 'irb/ext/save-history'
+require 'irb/ext/save-history' unless defined?(RUBY_ENGINE) 
 IRB.conf[:SAVE_HISTORY] = 1000
 IRB.conf[:EVAL_HISTORY] = 100
 
