@@ -1,0 +1,562 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head profile="http://gmpg.org/xfn/11">
+
+	<title>
+								  gdb &raquo; ClearChain													</title>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="description" content="-= Daily Happenings =-" />
+
+	<link rel="stylesheet" href="http://www.clearchain.com/blog/wp-content/themes/clearchain/style.css" type="text/css" media="screen" />
+    <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://www.clearchain.com/blog/feed" />
+	<link rel="alternate" type="application/rss+xml" href="http://www.clearchain.com/blog/comments/feed" title="ClearChain Comments RSS feed" />
+    
+    <link rel="pingback" href="http://www.clearchain.com/blog/xmlrpc.php" />
+	
+		<link rel='archives' title='December 2010' href='http://www.clearchain.com/blog/posts/2010/12' />
+	<link rel='archives' title='October 2010' href='http://www.clearchain.com/blog/posts/2010/10' />
+	<link rel='archives' title='August 2010' href='http://www.clearchain.com/blog/posts/2010/08' />
+	<link rel='archives' title='July 2010' href='http://www.clearchain.com/blog/posts/2010/07' />
+	<link rel='archives' title='April 2010' href='http://www.clearchain.com/blog/posts/2010/04' />
+	<link rel='archives' title='January 2010' href='http://www.clearchain.com/blog/posts/2010/01' />
+	<link rel='archives' title='December 2009' href='http://www.clearchain.com/blog/posts/2009/12' />
+	<link rel='archives' title='November 2009' href='http://www.clearchain.com/blog/posts/2009/11' />
+	<link rel='archives' title='October 2009' href='http://www.clearchain.com/blog/posts/2009/10' />
+	<link rel='archives' title='September 2009' href='http://www.clearchain.com/blog/posts/2009/09' />
+	<link rel='archives' title='August 2009' href='http://www.clearchain.com/blog/posts/2009/08' />
+	<link rel='archives' title='July 2009' href='http://www.clearchain.com/blog/posts/2009/07' />
+	<link rel='archives' title='June 2009' href='http://www.clearchain.com/blog/posts/2009/06' />
+	<link rel='archives' title='May 2009' href='http://www.clearchain.com/blog/posts/2009/05' />
+	<link rel='archives' title='April 2009' href='http://www.clearchain.com/blog/posts/2009/04' />
+	<link rel='archives' title='March 2009' href='http://www.clearchain.com/blog/posts/2009/03' />
+	<link rel='archives' title='February 2009' href='http://www.clearchain.com/blog/posts/2009/02' />
+	<link rel='archives' title='January 2009' href='http://www.clearchain.com/blog/posts/2009/01' />
+	<link rel='archives' title='December 2008' href='http://www.clearchain.com/blog/posts/2008/12' />
+	<link rel='archives' title='November 2008' href='http://www.clearchain.com/blog/posts/2008/11' />
+	<link rel='archives' title='October 2008' href='http://www.clearchain.com/blog/posts/2008/10' />
+	<link rel='archives' title='September 2008' href='http://www.clearchain.com/blog/posts/2008/09' />
+	<link rel="alternate" type="application/rss+xml" title="ClearChain &raquo; gdb Comments Feed" href="http://www.clearchain.com/blog/posts/gdb/feed" />
+<script type='text/javascript' src='http://www.clearchain.com/blog/wp-includes/js/jquery/jquery.js?ver=1.4.2'></script>
+<script type='text/javascript' src='http://www.clearchain.com/blog/wp-content/plugins/google-analyticator/external-tracking.min.js?ver=6.1.1'></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.clearchain.com/blog/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.clearchain.com/blog/wp-includes/wlwmanifest.xml" /> 
+<link rel='index' title='ClearChain' href='http://www.clearchain.com/blog' />
+<link rel='start' title='My First WordPress Blog Entry' href='http://www.clearchain.com/blog/posts/my-first-wordpress-blog-entry' />
+<link rel='prev' title='Frox &amp; PF' href='http://www.clearchain.com/blog/posts/frox-pf' />
+<link rel='next' title='Setting up SSH Public/Private Keys' href='http://www.clearchain.com/blog/posts/setting-up-ssh-publicprivate-keys' />
+<meta name="generator" content="WordPress 3.0.1" />
+<link rel='canonical' href='http://www.clearchain.com/blog/posts/gdb' />
+<link rel='shortlink' href='http://www.clearchain.com/blog/?p=64' />
+				<script type="text/javascript">
+					var alinks_link;
+					var trackImage = new Image();
+					function alinks_click(link) {
+						var keyphrase = link.innerHTML;
+						trackImage.src = 'http://www.clearchain.com/blog/wp-content/plugins/alinks/classes/aLinksAjax.php?log=' + keyphrase;
+												pause(1000);
+						return true;
+					}
+						
+					function pause(numberMillis) {
+					    var now = new Date();
+					    var exitTime = now.getTime() + numberMillis;
+					    while (true) {
+							now = new Date();
+							if (now.getTime() > exitTime) return;
+						}
+					}
+				</script>
+				<link rel="stylesheet" type="text/css" media="screen" href="http://www.clearchain.com/blog/wp-content/plugins/social-bookmarking-reloaded/social_bookmarking_reloaded.css" />
+
+<link rel="stylesheet" href="http://www.clearchain.com/blog/wp-content/plugins/wp-syntax/wp-syntax.css" type="text/css" media="screen" />
+	<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+<style type="text/css">.broken_link, a.broken_link {
+	text-decoration: line-through;
+}</style><!-- Google Analytics Tracking by Google Analyticator 6.1.1: http://ronaldheft.com/code/analyticator/ -->
+<script type="text/javascript">window.google_analytics_uacct = "pub-8063328086245449";</script>
+<script type="text/javascript">
+	var analyticsFileTypes = [''];
+	var analyticsEventTracking = 'enabled';
+</script>
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-1924040-1']);
+	_gaq.push(['_trackPageview']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+</script>
+	
+</head>
+
+<body>
+<div id="container">
+<div id="header">
+    <div id="top-links">
+	<ul>
+	    <li><a href="http://www.clearchain.com/blog/">clearchain.com</a></li> 
+	    <li class="page_item page-item-842"><a href="http://www.clearchain.com/blog/cdsa-results" title="CDSA Results">CDSA Results</a></li>
+<li class="page_item page-item-68"><a href="http://www.clearchain.com/blog/people" title="People">People</a></li>
+<li class="page_item page-item-48"><a href="http://www.clearchain.com/blog/services" title="Services">Services</a></li>
+	    <li><a href="http://www.clearchain.com/blog/feed">subscribe</a></li>
+	</ul>
+    </div>
+	<div id="logo">
+	    <a href="http://www.clearchain.com/blog">
+	     <img src="http://www.clearchain.com/images/ClearChainLogoWeb.png">
+	    </a><br>
+	    -=&nbsp;Daily&nbsp;Happening&nbsp;=-
+	</div>
+	<table style="float:right">
+	    <tr>
+		<td>
+		    <br>
+		     <script type="text/javascript"><!--
+google_ad_client = "pub-8063328086245449";
+google_ad_slot = "0839528549";
+google_ad_width = 728;
+google_ad_height = 90;
+//--></script>
+<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+		</td>
+	</tr>
+    </table>
+    <div style="clear:both;"></div>
+    <div class="nav">
+	<ul>
+	    <li><a href="/">Home</a></li>
+	    <li><a href="/blog/categories/computer/freebsd">FreeBSD</a></li>
+	    <li><a href="/blog/categories/computer/freedesktop">FreeDesktop</a></li>
+	    <li><a href="/blog/categories/computers/programming">Programming</a></li>
+	    <li><a href="/blog/categories/projects">Projects</a></li>
+	    <li><a href="/blog/categories/repairs">Repairs</a></li>
+	    <li><a href="/blog/categories/country-living">Country Living</a></li>
+	    	</ul>
+    </div>
+</div><!--/header-->
+
+<div id="navbar">
+    <div class="topics">
+	<div><!-- Breadcrumb NavXT 3.6.0 -->
+<a title="Go to ClearChain." href="http://www.clearchain.com/blog">ClearChain</a> &gt;&gt;<a title="Go to the Computers category archives." href="http://www.clearchain.com/blog/categories/computers">Computers</a> &gt;&gt;<a title="Go to the Programming category archives." href="http://www.clearchain.com/blog/categories/computers/programming">Programming</a> &gt;&gt;gdb</div>    </div>
+    
+    <div class="search">
+        <form method="get" id="searchform" action="http://www.clearchain.com/blog/">
+<input type="text" class="searchform" value="search our site" name="s" id="s"
+class="searchbox" onblur="if (this.value == '') {this.value = 'search our site';}" onfocus="if (this.value == 'search our site') {this.value = '';}" style="width: 180px; background:white; border: 1px soild black;" />
+<input type="submit" id="searchsubmit" style="display:none;" class="button" value="Go!" />
+</form>
+    </div>
+    
+</div>
+<div id="wrapper">
+	    
+    <div id="content" class="float-left two-column">
+    
+		
+                
+        <div class="post">
+        
+        <h1><a href="http://www.clearchain.com/blog/posts/gdb" title="Permanent Link to gdb">gdb</a></h1>
+        <p class="premeta">Posted by admin on November 7, 2008 under <a href="http://www.clearchain.com/blog/categories/computers" title="View all posts in Computers" rel="category tag">Computers</a>, <a href="http://www.clearchain.com/blog/categories/computers/programming" title="View all posts in Programming" rel="category tag">Programming</a> | <img src="http://www.clearchain.com/blog/wp-content/themes/clearchain/images/icon-comment.gif" alt="" /><a href="http://www.clearchain.com/blog/posts/gdb#comments" class="comments-link"  title="Comment on gdb">Read the First Comment</a> </p>        
+        <div class="postmeta"><p>Tags: <span><a href="http://www.clearchain.com/blog/tags/debugging" rel="tag">debugging</a>, <a href="http://www.clearchain.com/blog/tags/gui" rel="tag">gui</a>, <a href="http://www.clearchain.com/blog/tags/tui" rel="tag">tui</a> </span></p></div>        
+        <p>This page documents some tips on how to use GDB for advanced debugging. It was created as all information I could find on the web lacked some useful information.</p>
+<p> </p>
+<p><span id="more-64"></span></p>
+<h1><span class="mw-headline">Assembly Debugging</span></h1>
+<p> </p>
+<h2><span class="mw-headline">Starting Out</span></h2>
+<p>When debugging assembly in gdb, it&#8217;s useful to learn about TUI mode. TUI mode gives gdb text based windows. This allows you to see both the disassembled coded as well as the ability to issue commands at the same time &#8211; a must have for debugging.</p>
+<p>To enter into TUI mode use:</p>
+<pre>CTRL-X CTRL-1</pre>
+<p>This will create a single window. (To get rid of it use</p>
+<pre>CTRL-X a</pre>
+<p>Initially this window will not be in the right <em>layout</em>. (In gdb TUI mode, a <em>layout</em> is like a mode, ie assembler mode, etc).</p>
+<p>You can tell gdb to change to assembly mode using:</p>
+<pre>layout asm</pre>
+<p>Now you should be able to see your program in a disassembled text window.</p>
+<ul>
+<li><strong>Tip</strong>: If you want to see registers as well use: <code>layout regs</code></li>
+</ul>
+<p> </p>
+<h2><span class="mw-headline">Common Tasks</span></h2>
+<p>In assembly debugging, theres a few common tasks that you need to these are listed below:</p>
+<h3><strong>View registers</strong></h3>
+<p>To view registers you can either use:</p>
+<pre>info all-registers     |   info reg     |  i r</pre>
+<p>to view the all/some of the registers. You can use:</p>
+<pre> layout reg</pre>
+<p>to bring up a TUI window with all the registers. This window also shows what changes between instructions when your executing them.</p>
+<p>To examine the current value of a register you can use:</p>
+<pre> info reg es</pre>
+<p>You can examine the memory the register points to using the <strong>x</strong> instruction ie:</p>
+<pre> x/x $esp    # View mem in hex
+ x/b $esp    # View mem in bin
+ x/i $esp    # View instruction at address</pre>
+<p>You can set a register using:</p>
+<pre> set $eip = 0x90   # Set current eip to address 0x90</pre>
+<p> </p>
+<h3><span class="mw-headline">Memory Addresses</span></h3>
+<p>If you recall the early lessons in computing there&#8217;s two main memory regions in a program &#8211; the code segment and the data segment.</p>
+<p>The code segment normally consists of executable instructions and static things like constants and strings. You can view the instructions at a memory address using:</p>
+<pre>disassemble 0x123123</pre>
+<p>where 0&#215;123123 is an address in memory. This will show you a number of instructions at that address and onwards till the end of the function ends.</p>
+<p>You can examine a memory address using</p>
+<pre> x  0x123123</pre>
+<p>The <strong>x</strong> command takes a number of different parameters/options. It can output binary, hex, strings, instructions etc. For more help on how to use it try: <code>help x</code> in gdb.<br />
+You can also print out the value of an address using:</p>
+<pre> p 0x123123</pre>
+<p>like <em>x</em> the <strong>p</strong> (or print) command the p command takes a number of options for displaying hex, binary etc.</p>
+<p> </p>
+<h3><span class="mw-headline">Altering program execution</span></h3>
+<p>Say you&#8217;ve been debugging a program in assembly. You&#8217;ve setup <strong>b</strong>reak points, either to memory or functions. Now you&#8217;ve found the instruction you want to change. There&#8217;s a number of ways you can change it. Chances are the instruction is some type of compare, (cmp, cmpl, jge, jmp, etc). You could possible make the instruction a no instruction (nop) or modify the register the compare relies on to be something else.</p>
+<p>In order to alter the line to be a nop you can do something like:</p>
+<pre> set *0xbxxxx = 0x90</pre>
+<p>In this case the address is 0xbxxxx and the instruction (under x86 arch) is 0&#215;90 (nop). However this could cause an issue if the previous instruction was 2 bytes wide. ie:</p>
+<pre>1&gt; 0x126c :   incl   0xfffff3dc(%ebp)
+2&gt; 0x126d :   testb  %al,%al
+3&gt; 0x126f :   jne    0x125c</pre>
+<p>In the above the instruction at line 1 is a 1 byte instruction. The instruction at line 2 is a two byte instruction. How? Looks at the difference between the addresses:</p>
+<pre> 0x126d - 0x126c = 1 byte
+ 0x126f - 0x126d = 2 byte</pre>
+<p>In x86 arch, 0&#215;90 (nop) is only a 1 byte instruction.</p>
+<p>If you wanted to modify line 2, you&#8217;ld have to set the al register so the test would succeed.</p>
+<p><strong>Managing Signals</strong></p>
+<p>You can enable/disable signals using the &#8216;<strong>handle</strong>&#8216; command. ie:</p>
+<pre style="padding-left: 30px; ">handle SIGALARM stop</pre>
+<p>The options to handle are:</p>
+<p> </p>
+<dl>
+<dt style="padding-left: 30px; "><code>nostop</code> </dt>
+<dd style="padding-left: 30px; "> GDB should not stop your program when this signal happens.  It may still print a message telling you that the signal has come in. </dd>
+<dt style="padding-left: 30px; "><code>stop</code> </dt>
+<dd style="padding-left: 30px; "> GDB should stop your program when this signal happens.  This implies the <code>print</code> keyword as well. </dd>
+<dt style="padding-left: 30px; "><code>print</code> </dt>
+<dd style="padding-left: 30px; "> GDB should print a message when this signal happens. </dd>
+<dt style="padding-left: 30px; "><code>noprint</code> </dt>
+<dd style="padding-left: 30px; "> GDB should not mention the occurrence of the signal at all.  This implies the <code>nostop</code> keyword as well. </dd>
+<dt style="padding-left: 30px; "><code>pass</code> </dt>
+<dd style="padding-left: 30px; "> GDB should allow your program to see this signal; your program can handle the signal, or else it may terminate if the signal is fatal and not handled. </dd>
+<dt style="padding-left: 30px; "><code>nopass</code> </dt>
+<dd style="padding-left: 30px; "> GDB should not allow your program to see this signal. </dd>
+</dl>
+<p>And to see what signals are currently set and their default setup use:</p>
+<pre style="padding-left: 30px; ">info signals </pre>
+<p> </p>
+<h1><span class="mw-headline">Helpful External Links</span></h1>
+<p><a class="external free" title="http://insecure.org/stf/mudge_buffer_overflow_tutorial.html" rel="nofollow" href="http://insecure.org/stf/mudge_buffer_overflow_tutorial.html">http://insecure.org/stf/mudge_buffer_overflow_tutorial.html</a></p>
+ 
+	    <div>
+	    <center>
+	    <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+	    <input type="hidden" name="cmd" value="_s-xclick">
+	    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----"><input type="image"
+
+	    src="https://www.paypal.com/en_US/i/btn/x-click-but04.gif"
+	    border="0" name="submit" alt="PayPal - The safer, easier way to pay
+	    online.">
+	    </form>
+	    <br>
+	    Donations keep this site alive 
+	    <br>
+	    <br>
+	    </center>
+	    </div><!-- Social Bookmarking Reloaded BEGIN --><div class="social_bookmark"><em>bookmark to</em><br /><a class="social_img" onclick="window.open(this.href, '_blank', 'scrollbars=yes,menubar=no,border=0,height=600,width=750,resizable=yes,toolbar=no,location=no,status=no'); return false;" href="http://del.icio.us/post?url=http://www.clearchain.com/blog/posts/gdb&amp;title=gdb" title="Add 'gdb' put to Del.icio.us"><img src="http://www.clearchain.com/blog/wp-content/plugins/social-bookmarking-reloaded/delicious.png" title="Add 'gdb' put to Del.icio.us" alt="Add 'gdb' put to Del.icio.us" /></a><a class="social_img" onclick="window.open(this.href, '_blank', 'scrollbars=yes,menubar=no,border=0,height=600,width=750,resizable=yes,toolbar=no,location=no,status=no'); return false;" href="http://digg.com/submit?phase=2&amp;url=http://www.clearchain.com/blog/posts/gdb&amp;title=gdb" title="Add 'gdb' put to digg"><img src="http://www.clearchain.com/blog/wp-content/plugins/social-bookmarking-reloaded/digg.png" title="Add 'gdb' put to digg" alt="Add 'gdb' put to digg" /></a><a class="social_img" onclick="window.open(this.href, '_blank', 'scrollbars=yes,menubar=no,border=0,height=600,width=750,resizable=yes,toolbar=no,location=no,status=no'); return false;" href="http://furl.net/storeIt.jsp?t=gdb&amp;u=http://www.clearchain.com/blog/posts/gdb" title="Add 'gdb' put to FURL"><img src="http://www.clearchain.com/blog/wp-content/plugins/social-bookmarking-reloaded/furl.png" title="Add 'gdb' put to FURL" alt="Add 'gdb' put to FURL" /></a><a class="social_img" onclick="window.open(this.href, '_blank', 'scrollbars=yes,menubar=no,border=0,height=600,width=750,resizable=yes,toolbar=no,location=no,status=no'); return false;" href="http://reddit.com/submit?url=http://www.clearchain.com/blog/posts/gdb&amp;title=gdb" title="Add 'gdb' put to reddit"><img src="http://www.clearchain.com/blog/wp-content/plugins/social-bookmarking-reloaded/reddit.png" title="Add 'gdb' put to reddit" alt="Add 'gdb' put to reddit" /></a><a class="social_img" onclick="window.open(this.href, '_blank', 'scrollbars=yes,menubar=no,border=0,height=600,width=750,resizable=yes,toolbar=no,location=no,status=no'); return false;" href="http://www.google.com/bookmarks/mark?op=edit&amp;output=popup&amp;bkmk=http://www.clearchain.com/blog/posts/gdb&amp;title=gdb" title="Add 'gdb' put to Google Bookmarks"><img src="http://www.clearchain.com/blog/wp-content/plugins/social-bookmarking-reloaded/google.png" title="Add 'gdb' put to Google Bookmarks" alt="Add 'gdb' put to Google Bookmarks" /></a><a class="social_img" onclick="window.open(this.href, '_blank', 'scrollbars=yes,menubar=no,border=0,height=600,width=750,resizable=yes,toolbar=no,location=no,status=no'); return false;" href="http://slashdot.org/bookmark.pl?title=gdb&amp;url=http://www.clearchain.com/blog/posts/gdb" title="Add 'gdb' put to SlashDot"><img src="http://www.clearchain.com/blog/wp-content/plugins/social-bookmarking-reloaded/slashdot.png" title="Add 'gdb' put to SlashDot" alt="Add 'gdb' put to SlashDot" /></a><a class="social_img" onclick="window.open(this.href, '_blank', 'scrollbars=yes,menubar=no,border=0,height=600,width=750,resizable=yes,toolbar=no,location=no,status=no'); return false;" href="http://www.facebook.com/share.php?u=http://www.clearchain.com/blog/posts/gdb&amp;t=gdb" title="Add 'gdb' put to FaceBook"><img src="http://www.clearchain.com/blog/wp-content/plugins/social-bookmarking-reloaded/facebook.png" title="Add 'gdb' put to FaceBook" alt="Add 'gdb' put to FaceBook" /></a><a class="social_img" onclick="window.open(this.href, '_blank', 'scrollbars=yes,menubar=no,border=0,height=600,width=750,resizable=yes,toolbar=no,location=no,status=no'); return false;" href="http://www.myspace.com/Modules/PostTo/Pages/?t=gdb&amp;c=http://www.clearchain.com/blog/posts/gdb" title="Add 'gdb' put to MySpace"><img src="http://www.clearchain.com/blog/wp-content/plugins/social-bookmarking-reloaded/myspace.png" title="Add 'gdb' put to MySpace" alt="Add 'gdb' put to MySpace" /></a><a class="social_img" onclick="window.open(this.href, '_blank', 'scrollbars=yes,menubar=no,border=0,height=600,width=750,resizable=yes,toolbar=no,location=no,status=no'); return false;" href="http://twitter.com/home?status=http://www.clearchain.com/blog/posts/gdb" title="Add 'gdb' put to Twitter"><img src="http://www.clearchain.com/blog/wp-content/plugins/social-bookmarking-reloaded/twitter.png" title="Add 'gdb' put to Twitter" alt="Add 'gdb' put to Twitter" /></a></div>
+<!-- Social Bookmarking Reloaded END -->       
+        
+        
+<!-- You can start editing here. -->
+
+<div class="comments">
+
+	<ul>
+
+	
+		<li class="alt" id="comment-46">
+        	<img alt='Biswa' src='http://www.gravatar.com/avatar/fb427a2c3d39509ad34d498b837d3116?s=55&amp;d=http://www.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536&amp;r=PG' class='avatar avatar-55 avatar-default' height='55' width='55' />			<p><strong>Biswa</strong> said,</p>
+			
+			<p>HI<br />
+Excellent article, though i found later everything in the GDB official documents, but this gave me a good kick start. cant explain how much this helped.</p>
+<p>Thanks<br />
+Biswa</p>
+
+		</li>
+
+	
+	
+	</ul>
+
+ 
+
+
+<h2 id="respond">Add A Comment</h2>
+
+
+<form action="http://www.clearchain.com/blog/wp-comments-post.php" method="post" id="commentform">
+
+
+<p><input type="text" name="author" id="author" value="" size="22" tabindex="1" /> <label for="author"><small>Name (required)</small></label></p>
+
+<p><input type="text" name="email" id="email" value="" size="22" tabindex="2" /> <label for="email"><small>Mail (will not be published) (required)</small></label></p>
+
+<p><input type="text" name="url" id="url" value="" size="22" tabindex="3" /> <label for="url"><small>Website</small></label></p>
+
+
+<p><textarea name="comment" id="comment" cols="57" rows="8" tabindex="4"></textarea></p>
+
+<p><input name="submit" type="submit" id="submit" tabindex="5" value="Post" />
+<input type="hidden" name="comment_post_ID" value="64" />
+</p>
+
+
+	<p style="clear: both;" class="subscribe-to-comments">
+	<input type="checkbox" name="subscribe" id="subscribe" value="subscribe" style="width: auto;" />
+	<label for="subscribe">Notify me of followup comments via e-mail</label>
+	</p>
+
+
+
+</form>
+
+
+
+
+</div>
+        
+        </div><!--/.post-->
+	<div style="clear:both"></div>
+        
+                        
+        <div class="content-bot">
+
+                <a href="http://www.clearchain.com/blog">home</a> 
+        <a href="#">top</a>
+        </p>
+        
+        </div><!--/.contet-bot-->
+
+	<center><script type="text/javascript"><!--
+google_ad_client = "pub-8063328086245449";
+google_ad_slot = "4748715437";
+google_ad_width = 728;
+google_ad_height = 90;
+//--></script>
+<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</center>    
+    </div><!--/content -->
+
+    <div id="sidebar" class="float-right one-column">
+         
+        
+        <div class="widget">
+        <p><script type="text/javascript"><!--
+google_ad_client = "pub-8063328086245449";
+/* 300x250, created 12/4/08 */
+google_ad_slot = "8396365967";
+google_ad_width = 300;
+google_ad_height = 250;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></p>		<div>		<h2>Recent Posts</h2>		<ul>
+				<li><a href="http://www.clearchain.com/blog/posts/how-to-use-a-belkin-f5u409f5u409-cu-usb-to-pda-serial-converter-in-visawindows-7-64bit-mac-osx-10" title="How to use a Belkin F5U409/F5U409-CU USB To PDA Serial Converter in Visa/Windows 7 64bit &amp; Mac OSX 10">How to use a Belkin F5U409/F5U409-CU USB To PDA Serial Converter in Visa/Windows 7 64bit &#038; Mac OSX 10</a></li>
+				<li><a href="http://www.clearchain.com/blog/posts/replacing-an-oil-pump-in-a-husqvarnapoulancraftsmanjohnsered-chainsaw" title="Replacing an Oil Pump in a Husqvarna/Poulan/Craftsman/Johnsered Chainsaw">Replacing an Oil Pump in a Husqvarna/Poulan/Craftsman/Johnsered Chainsaw</a></li>
+				<li><a href="http://www.clearchain.com/blog/posts/apricus-evacuated-tube-solar-hot-water-system-post-install-review" title="Apricus Evacuated Tube Solar Hot Water System &#8211; Post Install Review">Apricus Evacuated Tube Solar Hot Water System &#8211; Post Install Review</a></li>
+				<li><a href="http://www.clearchain.com/blog/posts/a-passive-income-websites-trying-to-join-the-online-money-revolution" title="A passive income websites, trying to join the online money revolution">A passive income websites, trying to join the online money revolution</a></li>
+				<li><a href="http://www.clearchain.com/blog/posts/improving-3g-mobile-broadband-reception-without-an-antenna" title="Improving 3G Mobile Broadband Reception without an Antenna">Improving 3G Mobile Broadband Reception without an Antenna</a></li>
+				</ul>
+		</div><div><h2>Categories</h2>		<ul>
+	<li class="cat-item cat-item-100"><a href="http://www.clearchain.com/blog/categories/clearchain" title="View all posts filed under ClearChain">ClearChain</a>
+</li>
+	<li class="cat-item cat-item-34"><a href="http://www.clearchain.com/blog/categories/computers" title="View all posts filed under Computers">Computers</a>
+</li>
+	<li class="cat-item cat-item-120"><a href="http://www.clearchain.com/blog/categories/country-living" title="View all posts filed under Country Living">Country Living</a>
+</li>
+	<li class="cat-item cat-item-11"><a href="http://www.clearchain.com/blog/categories/disputes" title="Disputes with major companies and the process used to resolve them.">Disputes</a>
+</li>
+	<li class="cat-item cat-item-4"><a href="http://www.clearchain.com/blog/categories/computers/freebsd" title="Information about my work as a developer and a user using FreeBSD">FreeBSD</a>
+</li>
+	<li class="cat-item cat-item-3"><a href="http://www.clearchain.com/blog/categories/computers/freedesktop" title="Information about my work on FreeDesktop server, projects">FreeDesktop</a>
+</li>
+	<li class="cat-item cat-item-83"><a href="http://www.clearchain.com/blog/categories/life" title="View all posts filed under Life">Life</a>
+</li>
+	<li class="cat-item cat-item-169"><a href="http://www.clearchain.com/blog/categories/life/money" title="View all posts filed under Money">Money</a>
+</li>
+	<li class="cat-item cat-item-170"><a href="http://www.clearchain.com/blog/categories/computers/freebsd/mythtv" title="View all posts filed under Mythtv">Mythtv</a>
+</li>
+	<li class="cat-item cat-item-21"><a href="http://www.clearchain.com/blog/categories/computers/opensource" title="View all posts filed under OpenSource">OpenSource</a>
+</li>
+	<li class="cat-item cat-item-1"><a href="http://www.clearchain.com/blog/categories/other" title="Blog entries that really don&#039;t fall into any category">Other</a>
+</li>
+	<li class="cat-item cat-item-7"><a href="http://www.clearchain.com/blog/categories/computers/programming" title="View all posts filed under Programming">Programming</a>
+</li>
+	<li class="cat-item cat-item-78"><a href="http://www.clearchain.com/blog/categories/projects" title="View all posts filed under Projects">Projects</a>
+</li>
+	<li class="cat-item cat-item-47"><a href="http://www.clearchain.com/blog/categories/repairs" title="View all posts filed under Repairs">Repairs</a>
+</li>
+	<li class="cat-item cat-item-6"><a href="http://www.clearchain.com/blog/categories/work/unisa" title="Things I learn at UniSA">UniSA</a>
+</li>
+	<li class="cat-item cat-item-68"><a href="http://www.clearchain.com/blog/categories/computers/wireless-computers" title="View all posts filed under wireless">wireless</a>
+</li>
+		</ul>
+</div><div><h2>Tags</h2><div><a href='http://www.clearchain.com/blog/tags/80211' class='tag-link-30' title='2 topics' style='font-size: 8pt;'>802.11</a>
+<a href='http://www.clearchain.com/blog/tags/access-track' class='tag-link-145' title='3 topics' style='font-size: 11.230769230769pt;'>access track</a>
+<a href='http://www.clearchain.com/blog/tags/apache' class='tag-link-73' title='3 topics' style='font-size: 11.230769230769pt;'>apache</a>
+<a href='http://www.clearchain.com/blog/tags/baby' class='tag-link-182' title='3 topics' style='font-size: 11.230769230769pt;'>baby</a>
+<a href='http://www.clearchain.com/blog/tags/bub' class='tag-link-183' title='2 topics' style='font-size: 8pt;'>bub</a>
+<a href='http://www.clearchain.com/blog/tags/caldav' class='tag-link-87' title='2 topics' style='font-size: 8pt;'>caldav</a>
+<a href='http://www.clearchain.com/blog/tags/calendar' class='tag-link-86' title='2 topics' style='font-size: 8pt;'>calendar</a>
+<a href='http://www.clearchain.com/blog/tags/cgit' class='tag-link-106' title='3 topics' style='font-size: 11.230769230769pt;'>cgit</a>
+<a href='http://www.clearchain.com/blog/tags/council' class='tag-link-123' title='7 topics' style='font-size: 19.307692307692pt;'>council</a>
+<a href='http://www.clearchain.com/blog/tags/doors' class='tag-link-140' title='2 topics' style='font-size: 8pt;'>doors</a>
+<a href='http://www.clearchain.com/blog/tags/driveway' class='tag-link-203' title='2 topics' style='font-size: 8pt;'>driveway</a>
+<a href='http://www.clearchain.com/blog/tags/dual-boot' class='tag-link-17' title='2 topics' style='font-size: 8pt;'>dual boot</a>
+<a href='http://www.clearchain.com/blog/tags/encryption' class='tag-link-54' title='2 topics' style='font-size: 8pt;'>encryption</a>
+<a href='http://www.clearchain.com/blog/tags/format-homes' class='tag-link-137' title='9 topics' style='font-size: 22pt;'>Format Homes</a>
+<a href='http://www.clearchain.com/blog/tags/freebsd' class='tag-link-4' title='5 topics' style='font-size: 16.076923076923pt;'>FreeBSD</a>
+<a href='http://www.clearchain.com/blog/tags/git' class='tag-link-107' title='2 topics' style='font-size: 8pt;'>git</a>
+<a href='http://www.clearchain.com/blog/tags/google' class='tag-link-80' title='2 topics' style='font-size: 8pt;'>google</a>
+<a href='http://www.clearchain.com/blog/tags/gyprock' class='tag-link-261' title='2 topics' style='font-size: 8pt;'>gyprock</a>
+<a href='http://www.clearchain.com/blog/tags/hot-water' class='tag-link-155' title='3 topics' style='font-size: 11.230769230769pt;'>hot water</a>
+<a href='http://www.clearchain.com/blog/tags/house' class='tag-link-121' title='3 topics' style='font-size: 11.230769230769pt;'>house</a>
+<a href='http://www.clearchain.com/blog/tags/ical' class='tag-link-88' title='2 topics' style='font-size: 8pt;'>ical</a>
+<a href='http://www.clearchain.com/blog/tags/intel' class='tag-link-28' title='2 topics' style='font-size: 8pt;'>intel</a>
+<a href='http://www.clearchain.com/blog/tags/iterator' class='tag-link-99' title='2 topics' style='font-size: 8pt;'>iterator</a>
+<a href='http://www.clearchain.com/blog/tags/jhbuild' class='tag-link-102' title='2 topics' style='font-size: 8pt;'>jhbuild</a>
+<a href='http://www.clearchain.com/blog/tags/keys' class='tag-link-65' title='2 topics' style='font-size: 8pt;'>keys</a>
+<a href='http://www.clearchain.com/blog/tags/laptop' class='tag-link-36' title='2 topics' style='font-size: 8pt;'>laptop</a>
+<a href='http://www.clearchain.com/blog/tags/linux' class='tag-link-177' title='2 topics' style='font-size: 8pt;'>linux</a>
+<a href='http://www.clearchain.com/blog/tags/mbr' class='tag-link-19' title='2 topics' style='font-size: 8pt;'>mbr</a>
+<a href='http://www.clearchain.com/blog/tags/money' class='tag-link-169' title='3 topics' style='font-size: 11.230769230769pt;'>Money</a>
+<a href='http://www.clearchain.com/blog/tags/mpx' class='tag-link-77' title='3 topics' style='font-size: 11.230769230769pt;'>MPX</a>
+<a href='http://www.clearchain.com/blog/tags/mythtv' class='tag-link-170' title='2 topics' style='font-size: 8pt;'>Mythtv</a>
+<a href='http://www.clearchain.com/blog/tags/password' class='tag-link-70' title='2 topics' style='font-size: 8pt;'>password</a>
+<a href='http://www.clearchain.com/blog/tags/plumbing' class='tag-link-148' title='2 topics' style='font-size: 8pt;'>plumbing</a>
+<a href='http://www.clearchain.com/blog/tags/pptp' class='tag-link-52' title='2 topics' style='font-size: 8pt;'>pptp</a>
+<a href='http://www.clearchain.com/blog/tags/proxy' class='tag-link-56' title='2 topics' style='font-size: 8pt;'>proxy</a>
+<a href='http://www.clearchain.com/blog/tags/rubble' class='tag-link-232' title='2 topics' style='font-size: 8pt;'>rubble</a>
+<a href='http://www.clearchain.com/blog/tags/security' class='tag-link-72' title='3 topics' style='font-size: 11.230769230769pt;'>security</a>
+<a href='http://www.clearchain.com/blog/tags/septic' class='tag-link-156' title='2 topics' style='font-size: 8pt;'>septic</a>
+<a href='http://www.clearchain.com/blog/tags/shed' class='tag-link-147' title='3 topics' style='font-size: 11.230769230769pt;'>shed</a>
+<a href='http://www.clearchain.com/blog/tags/stl' class='tag-link-98' title='2 topics' style='font-size: 8pt;'>stl</a>
+<a href='http://www.clearchain.com/blog/tags/toolkit' class='tag-link-110' title='2 topics' style='font-size: 8pt;'>toolkit</a>
+<a href='http://www.clearchain.com/blog/tags/vista' class='tag-link-15' title='2 topics' style='font-size: 8pt;'>vista</a>
+<a href='http://www.clearchain.com/blog/tags/vpn' class='tag-link-51' title='2 topics' style='font-size: 8pt;'>vpn</a>
+<a href='http://www.clearchain.com/blog/tags/website' class='tag-link-101' title='2 topics' style='font-size: 8pt;'>website</a>
+<a href='http://www.clearchain.com/blog/tags/wpa' class='tag-link-31' title='2 topics' style='font-size: 8pt;'>WPA</a></div>
+</div><div><h2>Random Pages</h2>
+<ul>
+<li><a href="http://www.clearchain.com/blog/posts/freebsd-sudo-upgrade-gone-wrong-password-no-longer-working-with-sudo-1-7-2p2-1-7-2p3-sudo-broken">FreeBSD Sudo Upgrade Gone Wrong, Password No longer working with Sudo 1.7.2p2 / 1.7.2p3, Sudo Broken</a></li>
+<li><a href="http://www.clearchain.com/blog/posts/cvs">CVS</a></li>
+<li><a href="http://www.clearchain.com/blog/posts/5-weeks-before-bub-arrives">5 weeks before Bub arrives!</a></li>
+<font size="-5">Created By <a target="_blank" style="text-decoration:none;" href="http://bed-and-bedroom.com/bunk-beds/">Bunk Bed</a></font></ul>
+</div>    
+    </div><!--/sidebar-->
+
+</div><!--/wrapper-->
+
+</div><!--/container-->
+    	
+<div id="footer-wrapper">
+
+<div id="footer">
+
+	<div class="footer-column float-left">
+    
+    	<div><h2>Archives</h2>		<ul>
+			<li><a href='http://www.clearchain.com/blog/posts/2010/12' title='December 2010'>December 2010</a></li>
+	<li><a href='http://www.clearchain.com/blog/posts/2010/10' title='October 2010'>October 2010</a></li>
+	<li><a href='http://www.clearchain.com/blog/posts/2010/08' title='August 2010'>August 2010</a></li>
+	<li><a href='http://www.clearchain.com/blog/posts/2010/07' title='July 2010'>July 2010</a></li>
+	<li><a href='http://www.clearchain.com/blog/posts/2010/04' title='April 2010'>April 2010</a></li>
+	<li><a href='http://www.clearchain.com/blog/posts/2010/01' title='January 2010'>January 2010</a></li>
+	<li><a href='http://www.clearchain.com/blog/posts/2009/12' title='December 2009'>December 2009</a></li>
+	<li><a href='http://www.clearchain.com/blog/posts/2009/11' title='November 2009'>November 2009</a></li>
+	<li><a href='http://www.clearchain.com/blog/posts/2009/10' title='October 2009'>October 2009</a></li>
+	<li><a href='http://www.clearchain.com/blog/posts/2009/09' title='September 2009'>September 2009</a></li>
+	<li><a href='http://www.clearchain.com/blog/posts/2009/08' title='August 2009'>August 2009</a></li>
+	<li><a href='http://www.clearchain.com/blog/posts/2009/07' title='July 2009'>July 2009</a></li>
+	<li><a href='http://www.clearchain.com/blog/posts/2009/06' title='June 2009'>June 2009</a></li>
+	<li><a href='http://www.clearchain.com/blog/posts/2009/05' title='May 2009'>May 2009</a></li>
+	<li><a href='http://www.clearchain.com/blog/posts/2009/04' title='April 2009'>April 2009</a></li>
+	<li><a href='http://www.clearchain.com/blog/posts/2009/03' title='March 2009'>March 2009</a></li>
+	<li><a href='http://www.clearchain.com/blog/posts/2009/02' title='February 2009'>February 2009</a></li>
+	<li><a href='http://www.clearchain.com/blog/posts/2009/01' title='January 2009'>January 2009</a></li>
+	<li><a href='http://www.clearchain.com/blog/posts/2008/12' title='December 2008'>December 2008</a></li>
+	<li><a href='http://www.clearchain.com/blog/posts/2008/11' title='November 2008'>November 2008</a></li>
+	<li><a href='http://www.clearchain.com/blog/posts/2008/10' title='October 2008'>October 2008</a></li>
+	<li><a href='http://www.clearchain.com/blog/posts/2008/09' title='September 2008'>September 2008</a></li>
+		</ul>
+</div>        
+    </div>
+
+	<div class="footer-column float-left">
+    
+    	<div><h2>Blogroll</h2>
+	<ul class='xoxo blogroll'>
+<li><a href="http://www.eagles.asn.au/blog/" rel="me" title="Softball In South Australia">Eagles Softball Club</a></li>
+
+	</ul>
+</div>
+<div><h2>Categories</h2>		<ul>
+	<li class="cat-item cat-item-100"><a href="http://www.clearchain.com/blog/categories/clearchain" title="View all posts filed under ClearChain">ClearChain</a>
+</li>
+	<li class="cat-item cat-item-34"><a href="http://www.clearchain.com/blog/categories/computers" title="View all posts filed under Computers">Computers</a>
+</li>
+	<li class="cat-item cat-item-120"><a href="http://www.clearchain.com/blog/categories/country-living" title="View all posts filed under Country Living">Country Living</a>
+</li>
+	<li class="cat-item cat-item-11"><a href="http://www.clearchain.com/blog/categories/disputes" title="Disputes with major companies and the process used to resolve them.">Disputes</a>
+</li>
+	<li class="cat-item cat-item-4"><a href="http://www.clearchain.com/blog/categories/computers/freebsd" title="Information about my work as a developer and a user using FreeBSD">FreeBSD</a>
+</li>
+	<li class="cat-item cat-item-3"><a href="http://www.clearchain.com/blog/categories/computers/freedesktop" title="Information about my work on FreeDesktop server, projects">FreeDesktop</a>
+</li>
+	<li class="cat-item cat-item-83"><a href="http://www.clearchain.com/blog/categories/life" title="View all posts filed under Life">Life</a>
+</li>
+	<li class="cat-item cat-item-169"><a href="http://www.clearchain.com/blog/categories/life/money" title="View all posts filed under Money">Money</a>
+</li>
+	<li class="cat-item cat-item-170"><a href="http://www.clearchain.com/blog/categories/computers/freebsd/mythtv" title="View all posts filed under Mythtv">Mythtv</a>
+</li>
+	<li class="cat-item cat-item-21"><a href="http://www.clearchain.com/blog/categories/computers/opensource" title="View all posts filed under OpenSource">OpenSource</a>
+</li>
+	<li class="cat-item cat-item-1"><a href="http://www.clearchain.com/blog/categories/other" title="Blog entries that really don&#039;t fall into any category">Other</a>
+</li>
+	<li class="cat-item cat-item-7"><a href="http://www.clearchain.com/blog/categories/computers/programming" title="View all posts filed under Programming">Programming</a>
+</li>
+	<li class="cat-item cat-item-78"><a href="http://www.clearchain.com/blog/categories/projects" title="View all posts filed under Projects">Projects</a>
+</li>
+	<li class="cat-item cat-item-47"><a href="http://www.clearchain.com/blog/categories/repairs" title="View all posts filed under Repairs">Repairs</a>
+</li>
+	<li class="cat-item cat-item-6"><a href="http://www.clearchain.com/blog/categories/work/unisa" title="Things I learn at UniSA">UniSA</a>
+</li>
+	<li class="cat-item cat-item-68"><a href="http://www.clearchain.com/blog/categories/computers/wireless-computers" title="View all posts filed under wireless">wireless</a>
+</li>
+		</ul>
+</div>        
+    </div>
+    
+    <div class="footer-column float-left">
+    
+    	<div><h2>Recent Comments</h2><ul id="recentcomments"><li class="recentcomments">krongle on <a href="http://www.clearchain.com/blog/posts/vnc-connects-then-hangs/comment-page-1#comment-744">VNC Connects Then Hangs</a></li><li class="recentcomments">Greg on <a href="http://www.clearchain.com/blog/posts/how-to-use-a-belkin-f5u409f5u409-cu-usb-to-pda-serial-converter-in-visawindows-7-64bit-mac-osx-10/comment-page-1#comment-743">How to use a Belkin F5U409/F5U409-CU USB To PDA Serial Converter in Visa/Windows 7 64bit &#038; Mac OSX 10</a></li><li class="recentcomments"><a href='http://www.linuxquestions.org/questions/%2Absd-17/wacky-mixed-up-boot-loader-multi-booting-vista-ubuntu-and-pcbsd-849743/#post4188621' rel='external nofollow' class='url'>wacky mixed up boot loader: Multi-booting Vista, Ubuntu and PCBSD</a> on <a href="http://www.clearchain.com/blog/posts/freebsd-windows-vista/comment-page-1#comment-742">FreeBSD &#038; WINDOWS VISTA</a></li><li class="recentcomments">John L on <a href="http://www.clearchain.com/blog/posts/replacing-an-oil-pump-in-a-husqvarnapoulancraftsmanjohnsered-chainsaw/comment-page-1#comment-741">Replacing an Oil Pump in a Husqvarna/Poulan/Craftsman/Johnsered Chainsaw</a></li><li class="recentcomments"><a href='http://mastlight.com' rel='external nofollow' class='url'>Hans Dohm</a> on <a href="http://www.clearchain.com/blog/posts/apricus-evacuated-tube-solar-hot-water-system-post-install-review/comment-page-1#comment-740">Apricus Evacuated Tube Solar Hot Water System &#8211; Post Install Review</a></li></ul></div>    </div>    	
+
+
+        <p>&copy; 2010 ClearChain</p>
+        
+
+</div><!--/footer-->
+
+</div><!--/footer-wrapper-->
+
+		<!-- Advertising Manager v3.4.19 (0.765 seconds.) -->
+
+</body>
+</html>
+
+<!-- Dynamic page generated in 0.764 seconds. -->
+<!-- Cached page generated by WP-Super-Cache on 2010-12-14 14:25:11 -->
+<!-- super cache -->
