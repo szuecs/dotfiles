@@ -1,0 +1,74 @@
+--exclude=*~
+--exclude=\._*
+
+--langmap=Ruby:.rb
+
+--langmap=Perl:.pl.pm.plx.perl.cgi
+
+--langmap=Sh:.csh.zsh.sh.bash
+
+--langmap=C:.c.m
+
+--langmap=Asm:.asm.sx.inc
+
+--langdef=dictionary
+--langmap=dictionary:.dict.cfg
+--regex-dictionary=/^[ \t]*([a-zA-Z0-9_:.]+)[ \t]*=[ \t\(\{]*$/\1/h,Hash,Hash Keys/
+--regex-dictionary=/^[ \t]*[Nn][Aa][Mm][Ee][ \t]*=[ \t]*([a-zA-Z0-9_:.]+)/\1/n,Name,Name/
+--regex-dictionary=/^[ \t]*[Nn][Aa][Mm][Ee][ \t]*=[ \t]*"([^"]+)"/\1/n,Name,Name/
+
+--langdef=ant
+--regex-ant=/<property[ \t]*name[ \t]*=[ \t]*\"([^\"]+)/\1/p,Properties/i
+--regex-ant=/<target[ \t]*name[ \t]*=[ \t]*\"([^\"]+)/\1/t,Targets/i
+--regex-ant=/<path[ \t]*id[ \t]*=[ \t]*\"([^\"]+)/\1/f,Paths/i
+--regex-ant=/<taskdef[ \t]*id[ \t]*=[ \t]*\"([^\"]+)/\1/a,Taskdefs/i
+--regex-ant=/<typedef[ \t]*id[ \t]*=[ \t]*\"([^\"]+)/\1/y,Typedefs/i
+
+--langdef=xml
+--langmap=xml:.xml
+--regex-xml=/<([^ \t]+)[ \t]*(id|name)[ \t]*=[ \t]*\"([^\"]+)/\1 \3/n,Tags,Named Tags/i
+
+--langdef=shellscript
+--langmap=shellscript:.sh(.*)
+--regex-shellscript=/function[ \t]*([^ \t]*)/\1/f,Function/
+--regex-shellscript=/alias[ \t]*([^=]*)/\1/a,Alias/
+
+--langdef=css
+--langmap=css:.css
+--regex-css=/[ \t]*([^ \t\}]+)[ \t]*\{/\1/Selector/i
+
+--langmap=html:.htm.html
+--regex-html=/<a[ \t]+href[ \t]*=[ \t]*\"([^\"]+)/\1/HRefs/i
+--regex-html=/<img[ \t]+src[ \t]*=[ \t]*\"([^\"]+)/\1/Images/i
+--regex-html=/<h([1-6])[^>]*>([^<]*)/\2 (\1)/Headers/i
+--regex-html=/<div[ \t]+class[ \t]*=[ \t]*\"([^\"]+)/\1/Div/i
+
+--langdef=xsb_prolog
+--langmap=xsb_prolog:.P
+--regex-xsb_prolog=/^([A-Za-z][^ \t\(]+)/\1/Predicate/i
+
+--langdef=latex
+--langmap=latex:.tex
+--regex-latex=/\\label\{*([^} \t]+)[ \t]*\}/\1/l,label/
+--regex-latex=/^\\(sub)*section\*?{(.*)}/\2/s,section/
+--regex-latex=/\\begin\{(sub)*section\}[ \t]*(\{(.*)\})*/\1- \3/s,section/
+
+--regex-perl=/^[ \t]*package[ \t]+([^\ \t;]+)\s*;/\1/package/
+--regex-perl=/^[ \t]*sub[ \t]+(\:\:[^\ \t;\(]+)/\1/subroutine/
+
+--langdef=gtdalt
+--langmap=gtdalt:.gtd
+--regex-gtdalt=/^[\t ]*project (.*)$/\1/project/
+
+--langdef=ActionScript
+--langmap=ActionScript:.as
+--regex-ActionScript=/^[ \t]*[(private|public|static)( \t)]*function[ \t]+([A-Za-z0-9_]+)[ \t]*\(/\1/f,function,functions/
+--regex-ActionScript=/^[ \t]*[(public)( \t)]*function[ \t]+(set|get)[ \t]+([A-Za-z0-9_]+)[ \t]*\(/\2/p,property,properties/
+--regex-ActionScript=/.*\.prototype\.([A-Za-z0-9 ]+)=([ \t]?)function([ \t]?)*\(/\1/f,function,functions/
+
+--langdef=Applescript
+--langmap=Applescript:.applescript.script debugger
+--regex-Applescript=/property (.*):*/\1/p,Property/
+--regex-Applescript=/global (.*)/\1/g,Global/
+--regex-Applescript=/^[on|to]+ (run|open|activate|idle).*/\1/h,Handler/
+--regex-Applescript=/^[on|to]+ (.*)\(.*\)/\1/f,Function/
