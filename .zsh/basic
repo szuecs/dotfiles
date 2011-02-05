@@ -17,6 +17,7 @@ if [ "$PS1" ]; then
   alias la='ls -a'
   alias ll='ls -lh'
   alias l='ls -lah'
+  alias e='emacsclient -t'
   # with mmv u can rename multiple files. mmv *.text *.txt
   alias mmv='noglob zmv -W'
   autoload -U zmv
