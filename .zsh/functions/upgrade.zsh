@@ -202,7 +202,7 @@ update_rvm () {
   done;
   if [[ $RVM_UP == "y" ]] ; then
     print "=== rvm update ==="
-    bash -c '$HOME/.rvm/bin/rvm update'
+    bash -c '$HOME/.rvm/bin/rvm get head'
   fi
 }
 
