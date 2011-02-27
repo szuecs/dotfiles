@@ -43,24 +43,11 @@ if [ "$PS1" ]; then
   echo $basehost; ) | sort -u | grep -v \|1\| )) 
   zstyle ':completion:*' hosts $hosts
 
+  zstyle ':completion:*:vi:*' ignored-patterns '*.(o|a|so|dmg|dylib|aux|dvi|log|swp|fig|bbl|blg|bst|idx|ind|out|toc|class|pyc|rbc|dSYM)'
+  zstyle ':completion:*:vim:*' ignored-patterns '*.(o|a|so|dmg|dylib|aux|dvi|log|swp|fig|bbl|blg|bst|idx|ind|out|toc|class|pyc|rbc|dSYM)'
+  zstyle ':completion:*:mate:*' ignored-patterns '*.(o|a|so|dmg|dylib|aux|dvi|log|swp|fig|bbl|blg|bst|idx|ind|out|toc|class|pyc|rbc|dSYM)'
+  zstyle ':completion:*:emacs:*' ignored-patterns '*.(o|a|so|dmg|dylib|aux|dvi|log|swp|fig|bbl|blg|bst|idx|ind|out|toc|class|pyc|rbc|dSYM)'
+  
   # source .zsh/Completion/*
   . ~/.zsh/Completion/git-flow-completion.zsh
-fi
-
-# more completion options, see zsh manpage
-#     zstyle ':completion:*:match:*' original only
-#     zstyle ':completion:*:approximate:*' max-errors 1 numeric
-#     zstyle ':completion:*' format 'Completing %d'
-#     zstyle ':completion:*' verbose true
-#     zstyle ':completion:*:functions' ignored-patterns '_*'
-#     zstyle ':completion:*:*:(^rm):*:*files' ignored-patterns \
-#        '*?.(o|c~|zwc)' '*?~'
-
-# tested but not nice
-  # complete hostnames out of ssh's ~/.ssh/known_hosts
-  #hosts=(${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:#[0-9]*}%%\ *}%%,*})
-  #zstyle ':completion:*:hosts' hosts $hosts
-  #zstyle ':completion:*' auto-description 'Specify: %d'
-  # print message if nothing to complete
-  #zstyle ':completion:*:warnings' format 'Too bad there is nothing'
-
+fi 
