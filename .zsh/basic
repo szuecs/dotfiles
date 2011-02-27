@@ -29,18 +29,6 @@ if [ "$PS1" ]; then
   #  print "$fg[blue]${(q)line}" > /dev/tty; done & )
   #print "$bg[black]$fg[red]${(q)line}" > /dev/tty; done &)
   
-  # complist section
-  zmodload -i zsh/complist 
-  
-  setopt autocd                  # change to dirs without cd
-  setopt extendedglob            # weird & wacky pattern matching - yay zsh!
-  setopt completeinword          # not just at the end
-  setopt alwaystoend             # when complete from middle, move cursor
-  setopt nopromptcr              # don't add \n which overwrites cmds with no \n
-  setopt interactivecomments     # escape commands so i can use them later
-  setopt printexitvalue          # alert me if something's failed
-  setopt noshwordsplit           # use zsh style word splitting
-  
   # history related stuff.
   export HISTSIZE=5000
   export SAVEHIST=5000
@@ -80,135 +68,12 @@ if [ "$PS1" ]; then
   alias -s c="mate"
   # quick edit
   alias z="$EDITOR ~/.zsh"
-
+  
   # history cmd expansion using space, example: !-3␣
   bindkey ' ' magic-space
   
-  #
-  # completion tweaking
-  #
-  autoload -U compinit; compinit
-  zstyle ':completion:*' use-cache on
-  zstyle ':completion:*' users resolve
-  # activate menu selection if >=5 possibilities 
-  zstyle ':completion:*' menu select=5
-  # use dircolours in completion listings
-  zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-  # format all messages not formatted in bold prefixed with ----
-  zstyle ':completion:*' format '%B---- %d%b'
-  # format descriptions (notice the vt100 escapes)
-  zstyle ':completion:*:descriptions'    format $'%{\e[0;31m%}completing %B%d%b%{\e[0m%}'
-  # bold and underline normal messages
-  zstyle ':completion:*:messages' format '%B%U---- %d%u%b'
-  # format in bold red error messages
-  zstyle ':completion:*:warnings' format "%B$fg[red]%}---- no match for: $fg[white]%d%b"
-  # let's use the tag name as group name
-  zstyle ':completion:*' group-name ''
-  # activate approximate completion, but only after regular completion (_complete) 
-  # and matching (_match)
-  zstyle ':completion:*' completer _complete _match _approximate
-  # limit to 2 errors
-  zstyle ':completion:*:approximate:*' max-errors 2
-  # let's complete known hosts and hosts from ssh's known_hosts file
-  #basehost="host1.example.com host2.example.com"
-  hosts=($((
-  ( [ -r .ssh/known_hosts ] && awk '{print $1}' .ssh/known_hosts | tr , '\n');\
-  echo $basehost; ) | sort -u | grep -v \|1\| | grep -v 160\.45\. ) )
-  zstyle ':completion:*' hosts $hosts
-
   # Quote pasted URLs
   autoload url-quote-magic
   zle -N self-insert url-quote-magic
-
 fi
 
-# more completion options, see zsh manpage
-#     zstyle ':completion:*:match:*' original only
-#     zstyle ':completion:*:approximate:*' max-errors 1 numeric
-#     zstyle ':completion:*' format 'Completing %d'
-#     zstyle ':completion:*' verbose true
-#     zstyle ':completion:*:functions' ignored-patterns '_*'
-#     zstyle ':completion:*:*:(^rm):*:*files' ignored-patterns \
-#        '*?.(o|c~|zwc)' '*?~'
-
-# tested but not nice
-  # complete hostnames out of ssh's ~/.ssh/known_hosts
-  #hosts=(${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:#[0-9]*}%%\ *}%%,*})
-  #zstyle ':completion:*:hosts' hosts $hosts
-  #zstyle ':completion:*' auto-description 'Specify: %d'
-  # print message if nothing to complete
-  #zstyle ':completion:*:warnings' format 'Too bad there is nothing'
-
-# functions
-
-#Author: Copyright (c) 2005 Eric Mangold - teratorn (at) world (dash) net (dot) net
-#License: MIT. http://www.opensource.org/licenses/mit-license.html
-extract_archive () {
-  local old_dirs current_dirs lower
-  lower=${(L)1}
-  old_dirs=( *(N/) )
-  if [[ $lower == *.tar.gz || $lower == *.tgz ]]; then
-      tar zxfv $1
-  elif [[ $lower == *.gz ]]; then
-      gunzip $1
-  elif [[ $lower == *.tar.bz2 || $lower == *.tbz ]]; then
-      bunzip2 -c $1 | tar xfv -
-  elif [[ $lower == *.bz2 ]]; then
-      bunzip2 $1
-  elif [[ $lower == *.zip ]]; then
-      unzip $1
-  elif [[ $lower == *.rar ]]; then
-      unrar e $1
-  elif [[ $lower == *.tar ]]; then
-      tar xfv $1
-  elif [[ $lower == *.lha ]]; then
-      lha e $1
-  else
-      print "Unknown archive type: $1"
-      return 1
-  fi
-  # Change in to the newly created directory, and
-  # list the directory contents, if there is one.
-  current_dirs=( *(N/) )
-  for i in {1..${#current_dirs}}; do
-      if [[ $current_dirs[$i] != $old_dirs[$i] ]]; then
-          cd $current_dirs[$i]
-          ls
-          break
-      fi
-  done
-}
-alias ex=extract_archive
-compdef '_files -g "*.gz *.tgz *.bz2 *.tbz *.zip *.rar *.tar *.lha"' extract_archive
-# 
-# Give us a root shell, or run the command with sudo.
-# Expands command aliases first (cool!)
-smart_sudo () {
-  if [[ -n $1 ]]; then
-      #test if the first parameter is a alias
-      if [[ -n $aliases[$1] ]]; then
-          #if so, substitute the real command
-          sudo ${=aliases[$1]} $argv[2,-1]
-      else
-          #else just run sudo as is
-          sudo $argv
-      fi
-  else
-      #if no parameters were given, then assume we want a root shell
-      sudo -s
-  fi
-}
-alias s=smart_sudo
-compdef _sudo smart_sudo
-#
-# big-endian or little-endian ? 
-# Tested on: Mac G4 and macbbook.
-isbig () {
-  isBIG=`/usr/bin/perl -e 'printf(unpack("h*", pack("s", 1)) =~ /01/);'`
-  if [ $isBIG -eq 1 ]; then 
-    print "BIG_ENDIAN"; 
-  #elif [ $isBig -eq 1000 ]; then
-  else
-    print "LITTLE_ENDIAN"
-  fi
-}
