@@ -1,19 +1,17 @@
-; load paths
-(add-to-list 'load-path "~/emacs-libs/org-7.3/lisp")
+(add-to-list 'load-path "~/.emacs.d")
+(load-file "~/.emacs.d/init.el")
 
-; load modes
-(add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
+; org mode dynamic marker handled by emacs
+(custom-set-variables
+  ;; custom-set-variables was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ '(org-agenda-files (quote ("~/org/todo.org"))))
+(custom-set-faces
+  ;; custom-set-faces was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ )
 
-;;;;;;;;;;;;; org mode - ultimate task planer
-;; The following lines are always needed.  Choose your own keys.
-;(add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
-
-(global-set-key "\C-cl" 'org-store-link)
-(global-set-key "\C-ca" 'org-agenda)
-(global-set-key "\C-cb" 'org-iswitchb)
-
-(global-font-lock-mode 1)                     ; for all buffers
-(add-hook 'org-mode-hook 'turn-on-font-lock)  ; Org buffers only
-
-; emacs <= 22.x specific
-(transient-mark-mode 1)
