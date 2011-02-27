@@ -26,7 +26,7 @@ if [ "$PS1" ]; then
   autoload -U colors
   colors
   #exec 2>>(while read line; do
-  #	print "$fg[blue]${(q)line}" > /dev/tty; done & )
+  #  print "$fg[blue]${(q)line}" > /dev/tty; done & )
   #print "$bg[black]$fg[red]${(q)line}" > /dev/tty; done &)
   
   # complist section
@@ -144,39 +144,39 @@ fi
 #Author: Copyright (c) 2005 Eric Mangold - teratorn (at) world (dash) net (dot) net
 #License: MIT. http://www.opensource.org/licenses/mit-license.html
 extract_archive () {
-	local old_dirs current_dirs lower
-	lower=${(L)1}
-	old_dirs=( *(N/) )
-	if [[ $lower == *.tar.gz || $lower == *.tgz ]]; then
-	    tar zxfv $1
-	elif [[ $lower == *.gz ]]; then
-	    gunzip $1
-	elif [[ $lower == *.tar.bz2 || $lower == *.tbz ]]; then
-	    bunzip2 -c $1 | tar xfv -
-	elif [[ $lower == *.bz2 ]]; then
-	    bunzip2 $1
-	elif [[ $lower == *.zip ]]; then
-	    unzip $1
-	elif [[ $lower == *.rar ]]; then
-	    unrar e $1
-	elif [[ $lower == *.tar ]]; then
-	    tar xfv $1
-	elif [[ $lower == *.lha ]]; then
-	    lha e $1
-	else
-	    print "Unknown archive type: $1"
-	    return 1
-	fi
-	# Change in to the newly created directory, and
-	# list the directory contents, if there is one.
-	current_dirs=( *(N/) )
-	for i in {1..${#current_dirs}}; do
-	    if [[ $current_dirs[$i] != $old_dirs[$i] ]]; then
-	        cd $current_dirs[$i]
-	        ls
-	        break
-	    fi
-	done
+  local old_dirs current_dirs lower
+  lower=${(L)1}
+  old_dirs=( *(N/) )
+  if [[ $lower == *.tar.gz || $lower == *.tgz ]]; then
+      tar zxfv $1
+  elif [[ $lower == *.gz ]]; then
+      gunzip $1
+  elif [[ $lower == *.tar.bz2 || $lower == *.tbz ]]; then
+      bunzip2 -c $1 | tar xfv -
+  elif [[ $lower == *.bz2 ]]; then
+      bunzip2 $1
+  elif [[ $lower == *.zip ]]; then
+      unzip $1
+  elif [[ $lower == *.rar ]]; then
+      unrar e $1
+  elif [[ $lower == *.tar ]]; then
+      tar xfv $1
+  elif [[ $lower == *.lha ]]; then
+      lha e $1
+  else
+      print "Unknown archive type: $1"
+      return 1
+  fi
+  # Change in to the newly created directory, and
+  # list the directory contents, if there is one.
+  current_dirs=( *(N/) )
+  for i in {1..${#current_dirs}}; do
+      if [[ $current_dirs[$i] != $old_dirs[$i] ]]; then
+          cd $current_dirs[$i]
+          ls
+          break
+      fi
+  done
 }
 alias ex=extract_archive
 compdef '_files -g "*.gz *.tgz *.bz2 *.tbz *.zip *.rar *.tar *.lha"' extract_archive
@@ -184,19 +184,19 @@ compdef '_files -g "*.gz *.tgz *.bz2 *.tbz *.zip *.rar *.tar *.lha"' extract_arc
 # Give us a root shell, or run the command with sudo.
 # Expands command aliases first (cool!)
 smart_sudo () {
-	if [[ -n $1 ]]; then
-	    #test if the first parameter is a alias
-	    if [[ -n $aliases[$1] ]]; then
-	        #if so, substitute the real command
-	        sudo ${=aliases[$1]} $argv[2,-1]
-	    else
-	        #else just run sudo as is
-	        sudo $argv
-	    fi
-	else
-	    #if no parameters were given, then assume we want a root shell
-	    sudo -s
-	fi
+  if [[ -n $1 ]]; then
+      #test if the first parameter is a alias
+      if [[ -n $aliases[$1] ]]; then
+          #if so, substitute the real command
+          sudo ${=aliases[$1]} $argv[2,-1]
+      else
+          #else just run sudo as is
+          sudo $argv
+      fi
+  else
+      #if no parameters were given, then assume we want a root shell
+      sudo -s
+  fi
 }
 alias s=smart_sudo
 compdef _sudo smart_sudo
@@ -204,11 +204,11 @@ compdef _sudo smart_sudo
 # big-endian or little-endian ? 
 # Tested on: Mac G4 and macbbook.
 isbig () {
-	isBIG=`/usr/bin/perl -e 'printf(unpack("h*", pack("s", 1)) =~ /01/);'`
-	if [ $isBIG -eq 1 ]; then 
-		print "BIG_ENDIAN"; 
-	#elif [ $isBig -eq 1000 ]; then
-	else
-		print "LITTLE_ENDIAN"
-	fi
+  isBIG=`/usr/bin/perl -e 'printf(unpack("h*", pack("s", 1)) =~ /01/);'`
+  if [ $isBIG -eq 1 ]; then 
+    print "BIG_ENDIAN"; 
+  #elif [ $isBig -eq 1000 ]; then
+  else
+    print "LITTLE_ENDIAN"
+  fi
 }
