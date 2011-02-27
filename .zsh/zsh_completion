@@ -43,6 +43,8 @@ if [ "$PS1" ]; then
   echo $basehost; ) | sort -u | grep -v \|1\| )) 
   zstyle ':completion:*' hosts $hosts
 
+  # source .zsh/Completion/*
+  . ~/.zsh/Completion/git-flow-completion.zsh
 fi
 
 # more completion options, see zsh manpage
