@@ -2,7 +2,7 @@
 # 
 
 umask 077
-export PS1='[%n@%m:%~]$ '
+export PS1='[%n@%m:%~]% '
 
 if [ -d ~/.zsh ]; then
   for each in ~/.zsh/*; do
