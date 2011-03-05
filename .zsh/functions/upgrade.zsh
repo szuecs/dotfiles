@@ -75,6 +75,7 @@ update_osx () {
     print "=== update Mac systems ==="
     sudo softwareupdate -i -a
     if [ -x /usr/bin/gem ] ; then
+      sudo /usr/bin/gem update --system 
       sudo env JAVA_HOME=$JAVA_HOME /usr/bin/gem update
     fi
   fi
@@ -105,6 +106,7 @@ update_fink () {
     sudo /sw/bin/fink update-all
     sudo /sw/bin/fink cleanup
     if [ -x /sw/bin/gem ] ; then
+      sudo /sw/bin/gem update --system 
       sudo env JAVA_HOME=$JAVA_HOME /sw/bin/gem update
     fi
   fi
@@ -121,10 +123,12 @@ update_macports () {
     sudo /opt/local/bin/port selfupdate
     sudo /opt/local/bin/port upgrade outdated
     if [ -x /opt/local/bin/gem ] ; then # FIXME: path dependent
+      sudo /opt/local/bin/gem update --system
       # FIXME: fox, fxruby, pg does not compile
       sudo env JAVA_HOME=$JAVA_HOME /opt/local/bin/gem update
     fi
     if [ -x /opt/local/bin/jgem ] ; then # FIXME: path dependent
+      sudo env JAVA_HOME=$JAVA_HOME /opt/local/bin/jgem update --system
       sudo env JAVA_HOME=$JAVA_HOME /opt/local/bin/jgem update
     fi
     
