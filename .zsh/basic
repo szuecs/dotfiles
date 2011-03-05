@@ -37,7 +37,7 @@ if [ "$PS1" ]; then
   setopt appendhistory           # don't overwrite history 
   setopt histignorespace         # remove command lines from the history list when
   setopt histverify              # when using ! cmds, confirm first
-  setopt SHARE_HISTORY
+#  setopt SHARE_HISTORY
   setopt EXTENDED_HISTORY
   setopt hist_ignore_all_dups
   setopt HIST_REDUCE_BLANKS
@@ -59,6 +59,9 @@ if [ "$PS1" ]; then
   export LESS_TERMCAP_so=$'\E[01;44;33m'
   export LESS_TERMCAP_ue=$'\E[0m'
   export LESS_TERMCAP_us=$'\E[01;32m'
+
+  # add -rrubygems to all ruby starts
+  export RUBYOPT="rrubygems" 
   
   # nifty aliases
   alias -g L='2>&1 | less -R'
