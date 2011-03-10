@@ -29,15 +29,9 @@ end
 #------------------------------------------------------------
 # 
 begin
-  require 'looksee/shortcuts' 
+  require 'looksee' 
   # print short help
   # irb> Looksee.help
-  # print methods from class
-  # irb> lp []
-  # print methods from instance
-  # irb> lpi []
-  # print private as well
-  # irb> lp Module, :private
   #
   # Looksee color config
   Looksee::styles[:module]     = "\e[0;47m%s\e[0m" # black on gray
@@ -46,6 +40,7 @@ begin
   Looksee::styles[:private]    = "\e[0;31m%s\e[0m" # red
   Looksee::styles[:undefined]  = "\e[0;34m%s\e[0m" # blue
   Looksee::styles[:overridden] = "\e[0;30m%s\e[0m" # black
+  Looksee.editor = "emacs -nw +%f %l"
 #end unless defined?(Rubinius) || defined?(JRuby)
 rescue Exception 
   puts "no looksee available"
