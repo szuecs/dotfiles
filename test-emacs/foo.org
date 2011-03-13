@@ -1,0 +1,5 @@
+* hello
+** NEXT this
+   - State "SOMEDAY"    from "TODO"       [2011-03-12 Sat 22:08]
+** is
+* world
