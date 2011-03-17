@@ -1,0 +1,33 @@
+EMACS installation:
+- clone dotfiles
+- clone emacs.d
+- in ~/ git submodule init && git submodule update
+- in ~/emacs-libs/rinari auch: git submodule init && git submodule update
+- ELPA:
+  - archives
+  - auctex
+  - auto-dictionary
+  - find-file-in-project
+  - gist
+  - idle-highlight
+  - inf-ruby
+  - inflections
+  - js2-mode
+  - json
+  - magit
+  - org
+  - project-local-variables
+  - ruby-compilation
+  - ruby-mode
+  - yaml-mode
+- src install by ~/emacs-libs
+  - cedet
+  - ecb
+  - ess
+  - haskell
+  - mmm-mode
+  - nxhtml
+  - puppet
+  - rhtml
+  - rinari
+  - svn
