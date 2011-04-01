@@ -1,0 +1,27 @@
+case $(uname) in
+Linux)
+  if [ "$PS1" ]; then
+     if pidof gdm3 >/dev/null && which nautilus >/dev/null ; then
+       #alias open="nautilus"
+
+# A zsh function similar to Mac OSX open(1) command.
+function open() {
+  file_out=$(file $1 | sed -e 's/.*: //')
+  first_word=$(echo $file_out | awk '{print $1}')
+  second_word=$(echo $file_out | awk '{print $2}')
+  
+  for word in $first_word $second_word; do
+    case $word in 
+    directory)     nautilus $1 ;;;
+    text)          emacs $1    ;;;
+    image)         eog $1      ;;;
+    GIMP)          gimp $1     ;;;
+    esac
+  done
+}
+
+     fi
+  fi
+;;
+esac
+
