@@ -90,7 +90,7 @@ update_hombrew () {
   if [[ $HOMEBREW_UP == "y" ]] ; then
     print "=== homebrew ==="
     /usr/local/bin/brew update
-    /usr/local/bin/brew outdated | /usr/bin/awk '{print $1}' | /usr/bin/xargs -n1 /usr/local/bin/brew install
+    /usr/local/bin/brew upgrade
   fi
 }
 # update fink packages
