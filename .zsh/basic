@@ -7,8 +7,6 @@ if [ "$PS1" ]; then
   # clean all aliases
   unhash -am '*'
   
-  # nice prompt
-  export PS1='[%n@%m:%~]$ '
   # nice ri
   export RI="-f ansi"
   #export RI="--no-pager -f ansi"
