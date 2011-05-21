@@ -8,8 +8,7 @@ if [ "$PS1" ]; then
   unhash -am '*'
   
   # nice ri
-  export RI="-f ansi"
-  #export RI="--no-pager -f ansi"
+  export RI="--no-pager -f ansi"
   
   # alias section
   alias la='ls -a'
