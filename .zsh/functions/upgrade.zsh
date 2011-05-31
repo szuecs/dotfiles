@@ -91,6 +91,7 @@ update_hombrew () {
     print "=== homebrew ==="
     /usr/local/bin/brew update
     /usr/local/bin/brew upgrade
+    /usr/local/bin/brew cleanup
   fi
 }
 # update fink packages
@@ -207,6 +208,8 @@ update_rvm () {
   if [[ $RVM_UP == "y" ]] ; then
     print "=== rvm update ==="
     bash -c '$HOME/.rvm/bin/rvm get head'
+    rvm gem --system update
+    rvm gem update
   fi
 }
 
