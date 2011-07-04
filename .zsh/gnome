@@ -16,6 +16,7 @@ function open() {
     text)          emacs $1    ;;;
     image)         eog $1      ;;;
     GIMP)          gimp $1     ;;;
+    PDF)           evince $1   ;;;
     esac
   done
 }
