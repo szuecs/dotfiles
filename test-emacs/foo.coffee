@@ -1,0 +1,1 @@
+/* cofeescript mode */

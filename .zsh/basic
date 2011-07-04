@@ -14,7 +14,6 @@ if [ "$PS1" ]; then
   alias la='ls -a'
   alias ll='ls -lh'
   alias l='ls -lah'
-  alias e='emacsclient -t'
   # with mmv u can rename multiple files. mmv *.text *.txt
   alias mmv='noglob zmv -W'
   autoload -U zmv
@@ -45,8 +44,19 @@ if [ "$PS1" ]; then
   export RSYNC_RSH=ssh
   
   export PAGER=less
-  export VISUAL=emacs
-  export EDITOR=emacs
+  export ALTERNATE_EDITOR=emacs 
+  export EDITOR=emacsclient 
+  export VISUAL=emacsclient
+  # emacs
+  export GDK_NATIVE_WINDOWS=1
+  alias e="$EDITOR -c $@"
+
+  #alias e='exec emacsclient --alternate-editor="" -c "$@"'
+  #tempuid=`id -u`
+  #temphost=`hostname`
+  #if [ ! -e "/tmp/esrv$tempuid-$temphost" ]; then
+  #    emacs --daemon
+  #fi
   
   # support colors in less
   export LESS_TERMCAP_mb=$'\E[01;31m'
