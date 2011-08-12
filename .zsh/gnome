@@ -1,7 +1,7 @@
 case $(uname) in
 Linux)
   if [ "$PS1" ]; then
-     if pidof gdm3 >/dev/null && which nautilus >/dev/null ; then
+     if pgrep gdm>/dev/null && which nautilus >/dev/null ; then
        #alias open="nautilus"
 
 # A zsh function similar to Mac OSX open(1) command.
@@ -16,6 +16,7 @@ function open() {
     text)          emacs $1    ;;;
     image)         eog $1      ;;;
     GIMP)          gimp $1     ;;;
+    PDF)           evince $1   ;;;
     esac
   done
 }
