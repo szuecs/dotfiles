@@ -1,0 +1,33 @@
+== DESCRIPTION
+# FIXME: description
+
+== SYNOPSIS
+
+# FIXME: synopsis
+% example [options]
+
+Specific options:
+
+    -h, --help                       Display this help.
+        --parameter <name>           example parameter.
+
+== REQUIREMENTS
+
+# FIXME: requirements
+
+== INSTALL
+
+# FIXME: install
+% sudo gem install example
+
+== TODO
+
+== Bug reports
+
+== AUTHORS
+
+Sandor Szücs, sandor.szuecs@fu-berlin.de
+  
+== LICENSE
+
+See LICENSE file.
