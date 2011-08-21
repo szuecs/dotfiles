@@ -6,14 +6,20 @@ require 'irb/completion'
 #   > mate 
 #   # edit.. , save, quit
 #   > # use your written class, whatever within irb
-require 'interactive_editor' unless defined?(RUBY_ENGINE) 
+begin
+  require 'interactive_editor'
+rescue Exception 
+  puts "no interactive_editor available"
+end
 #------------------------------------------------------------
 # http://sketches.rubyforge.org/
 # save/reload an editor sketch from irb
 #   > sketch :foo
-unless defined?(RUBY_ENGINE) 
+begin
   require 'sketches'
-  Sketches.config :editor => 'mate'
+  Sketches.config :editor => 'emacs'
+rescue Exception 
+  puts "no sketches available"
 end
 #------------------------------------------------------------
 # hirb - rails nice ascii table formatter
@@ -41,7 +47,6 @@ begin
   Looksee::styles[:undefined]  = "\e[0;34m%s\e[0m" # blue
   Looksee::styles[:overridden] = "\e[0;30m%s\e[0m" # black
   Looksee.editor = "emacs -nw +%f %l"
-#end unless defined?(Rubinius) || defined?(JRuby)
 rescue Exception 
   puts "no looksee available"
 end
@@ -168,16 +173,14 @@ end
 # irb config
 IRB.conf[:USE_READLINE] = true
 IRB.conf[:AUTO_INDENT]  = true
-unless defined?(RUBY_ENGINE) 
-  IRB.conf[:PROMPT][:CUSTOM] = {
-    :PROMPT_N => "%N:%i> ",
-    :PROMPT_S => "%N:%i%l ",
-    :PROMPT_C => "%N:%i* ",
-    :RETURN   =>  "=> %s\n",
-    :PROMPT_I => "%N:%i> "
-  } 
-  IRB.conf[:PROMPT_MODE] = :CUSTOM # set default
-end
+IRB.conf[:PROMPT][:CUSTOM] = {
+  :PROMPT_N => "%N:%i> ",
+  :PROMPT_S => "%N:%i%l ",
+  :PROMPT_C => "%N:%i* ",
+  :RETURN   =>  "=> %s\n",
+  :PROMPT_I => "%N:%i> "
+} 
+IRB.conf[:PROMPT_MODE] = :CUSTOM # set default
 #------------------------------------------------------------
 # history
 require 'irb/ext/save-history' unless defined?(RUBY_ENGINE) 
