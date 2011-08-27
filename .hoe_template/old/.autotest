@@ -1,0 +1,12 @@
+require 'autotest/restart'
+
+Autotest.add_hook :initialize do |at|
+  # ignore these
+  at.add_exception /\.(svn|git)/
+  # add these
+  at.files_matching(/.*\.rb$/)
+end
+
+Autotest.add_hook :run_command do |at|
+  system "rake test"
+end

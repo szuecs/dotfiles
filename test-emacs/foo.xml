@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+
+<meta name="foogenerator" content="aacontent" />
+
+<meta name=foogenerator content="barcontent" />
+
+<meta name="foo" content="" />
+
+<meta name="barfoo" content="ba{bar}" />
+
+<meta name=foo"foo" content="bar2bar" />
+
+<meta name="barfoo" content="baz" />
+<meta name="foo" content="" />
+<meta name="foo1" content="bar2" />
+<meta name="a1" content="a2" />
+<meta name="foo" content="" />
+
+<meta name="fooname" content="barcontent" />
+<div id="foo" class="">
+  <meta name="aname" content="aacontent" /> 
+  
+</div>
+
+<meta name="fooname" content="barcontent" />
+
+<!-- foocomment -->
+<!-- foo"comment" -->
+<!-- foocomment -->
+<!-- foocomment -->
+<!-- a comment -->
+<divfoo id="barsome_id"></div>
+<div id="foosome_id" class="bara_class">baz</div>
+<div id="foo" class="">
+  <div id="foo" class="">
+    
+  </div>
+
+</div>
+
+<h1>foo</h1><h2>bar</h2><h3>foo</h3><a href="http://www.ccc.de/">ccc</a>
+<img src="http://foo.org/img/blah.png" alt="aa" />
+
+<!-- foo -->
+<!-- oo -->
+
+
