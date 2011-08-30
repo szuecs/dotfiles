@@ -1,9 +1,18 @@
 require 'optparse'
-
-module NameSpace
-  VERSION = '10.11.1'
+<% file_name = File.basename(__FILE__).sub(/#{File.extname(__FILE__)}$/ , "")
+class_name = file_name.sub(/#{File.extname(file_name)}$/ , "")
+module_name = File.basename(File.dirname(File.dirname(File.realdirpath(__FILE__))))
+begin
+  require 'facets'
+  class_name = class_name.upper_camelcase
+  module_name = module_name.upper_camelcase
+rescue
+end
+%>
+module <%= module_name %>
+  VERSION = '<%= Time.now.strftime("%y.%m.%d") %>'
   
-  class MainClass
+  class <%= class_name %>
     
     class << self
       def default_options
@@ -19,7 +28,7 @@ module NameSpace
         
         OptionParser.new do |opts|
           opts.banner  = "% #{executable_name} [options]"
-          opts.version = ::NameSpace::VERSION
+          opts.version = ::<%= module_name %>::VERSION
           opts.separator ""
           opts.separator "Specific options:"
           opts.separator ""
@@ -28,7 +37,7 @@ module NameSpace
             abort "#{opts}"
           end
           opts.on('-V', '--version', 'Print version.') do |s|
-            abort("#{executable_name} #{::NameSpace::VERSION}")
+            abort("#{executable_name} #{::<%= module_name %>::VERSION}")
           end
           
           opts.on('--parameter <name>', 'example parameter.') do |s|
@@ -45,7 +54,7 @@ module NameSpace
       end
       
       def main(options)
-        mc = NameSpace::MainClass.new(options)
+        mc = <%= module_name %>::<%= class_name %>.new(options)
         # do sth with mc..
         
         return 0

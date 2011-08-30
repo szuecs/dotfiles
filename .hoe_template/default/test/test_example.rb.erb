@@ -1,0 +1,28 @@
+require "minitest/unit"
+require "mocha"
+<% lib_name = File.basename("../lib/main_class.rb")
+lib_name.sub!(/#{File.extname(lib_name)}$/ , "")
+class_name = lib_name
+module_name = File.basename(File.dirname(File.dirname(File.realdirpath(__FILE__))))
+begin
+  require 'facets'
+  class_name = class_name.upper_camelcase
+  module_name = module_name.upper_camelcase
+rescue
+end
+%>
+require '<%= lib_name %>'
+
+MiniTest::Unit.autorun
+
+class Test<%= class_name %> < MiniTest::Unit::TestCase
+  include <%= module_name %>
+  
+  def test_bar
+    mc = <%= class_name %>.new(:parameter => "foo")
+    mc.expects(:a_mocked_method).returns("return value")
+    
+    assert_equal('TEST', mc.bar_which_use_a_mocked_method)
+  end
+  
+end
