@@ -1,0 +1,18 @@
+#!/usr/bin/env python
+<% file_name = File.basename(__FILE__).sub(/#{File.extname(__FILE__)}$/ , "")
+class_name = file_name.sub(/#{File.extname(file_name)}$/ , "")
+begin
+  require 'facets'
+  class_name = class_name.upper_camelcase
+rescue
+end
+%>
+
+class <%= class_name %>():
+    def main(self):
+        print "<%= class_name %>.main()"
+        return 0
+
+if __name__ == "__main__":
+    mc = <%= class_name %>()
+    exit(mc.main())

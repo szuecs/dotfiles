@@ -4,21 +4,32 @@ require 'rake/testtask'
 require 'rdoc/task'
 
 $:.unshift 'lib'
-require "example"
+<% project_name = "#{File.basename(File.dirname(File.realpath(__FILE__)))}"
+class_name = project_name 
+module_name = project_name
+begin
+  require 'facets'
+  class_name = class_name.upper_camelcase
+  module_name = module_name.upper_camelcase
+rescue
+end
+%>
+
+require '<%= project_name %>'
 
 ##############################################################################
 # OPTIONS
 ##############################################################################
 
-PKG_NAME      = 'example' # FIXME pkg_name
-PKG_VERSION   = NameSpace::VERSION # FIXME Namespace
+PKG_NAME      = '<%= project_name %>'
+PKG_VERSION   = <%= module_name %>::VERSION # FIXME Namespace
 AUTHORS       = ['Sandor Szuecs']
 EMAIL         = "sandor.szuecs@fu-berlin.de"
-HOMEPAGE      = "http://github.com/szuecs/example" # FIXME homepage
+HOMEPAGE      = "http://github.com/szuecs/<%= project_name %>"
 SUMMARY       = "" # FIXME summary
 DESCRIPTION   = "" # FIXME description
 PKG_FILES     = Dir.glob("{bin}/**/*") | Dir.glob("lib/**/*.rb") | ["README.rdoc", "LICENSE", "CHANGELOG.rdoc"]
-EXE           = ["example"] # FIXME executables
+EXE           = ["<%= project_name %>"]
 
 RDOC_OPTIONS  = [
                 "--quiet",

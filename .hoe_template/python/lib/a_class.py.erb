@@ -1,0 +1,13 @@
+<% filename = File.basename(__FILE__).split(".").first
+class_name = "AClass"
+begin
+  require 'facets' 
+  class_name = filename.upper_camelcase
+rescue 
+end
+%>
+# <%= filename %>
+
+class <%= class_name %>():
+    def __init__(self):
+      pass
