@@ -5,6 +5,8 @@ Autotest.add_hook :initialize do |at|
   at.add_exception /\.(svn|git)/
   # add these
   at.files_matching(/.*\.rb$/)
+
+  at.testlib = "minitest/unit"
 end
 
 Autotest.add_hook :run_command do |at|
