@@ -17,7 +17,7 @@ end
 #   > sketch :foo
 begin
   require 'sketches'
-  Sketches.config :editor => 'mate'
+  Sketches.config :editor => 'emacsclient -c'
 rescue Exception 
   puts "no sketches available"
 end
@@ -46,7 +46,39 @@ begin
   Looksee::styles[:private]    = "\e[0;31m%s\e[0m" # red
   Looksee::styles[:undefined]  = "\e[0;34m%s\e[0m" # blue
   Looksee::styles[:overridden] = "\e[0;30m%s\e[0m" # black
-  Looksee.editor = "emacs -nw +%f %l"
+  #Looksee.editor = "emacs -nw +%f %l"
+  # yeah monkey patch for my emacsclient alias :)
+  class InteractiveEditor
+    module Editors
+      {
+        :vi    => nil,
+        :vim   => nil,
+        :emacs => nil,
+        :e     => "emacsclient -c",
+        :nano  => nil,
+        :mate  => 'mate -w',
+        :mvim  => 'mvim -g -f' + case ENV['TERM_PROGRAM']
+          when 'iTerm.app';      ' -c "au VimLeave * !open -a iTerm"'
+          when 'Apple_Terminal'; ' -c "au VimLeave * !open -a Terminal"'
+          else '' #don't do tricky things if we don't know the Term
+        end
+      }.each do |k,v|
+        define_method(k) do |*args|
+          InteractiveEditor.edit(v || k, self, *args)
+        end
+      end
+  
+      def ed(*args)
+        if ENV['EDITOR'].to_s.size > 0
+          InteractiveEditor.edit(ENV['EDITOR'], self, *args)
+        else
+          raise "You need to set the EDITOR environment variable first"
+        end
+      end
+    end
+  end
+
+  Looksee.editor = "e -nw +%f %l"
 rescue Exception 
   puts "no looksee available"
 end

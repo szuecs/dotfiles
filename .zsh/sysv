@@ -11,6 +11,7 @@ Linux)
     alias l='ls -alh'
     alias psg='ps -ef | grep -v grep | grep -v "ps -ef" | grep'
     alias nsg='netstat -tulpen | grep'
+    alias grep="grep --exclude-dir=.svn --color"
   fi
 ;;
 esac
