@@ -1,3 +1,1 @@
-#exec xclock &
-/opt/local/bin/fluxbox
-#/opt/local/bin/ion3
+eval $(gpg-agent --daemon)
