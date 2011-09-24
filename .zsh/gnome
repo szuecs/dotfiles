@@ -1,5 +1,6 @@
 case $(uname) in
 Linux)
+  export JAVA_HOME=/usr/lib/jvm/default-java/
   if [ "$PS1" ]; then
      if pgrep gdm>/dev/null && which nautilus >/dev/null ; then
 
