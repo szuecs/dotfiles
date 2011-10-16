@@ -74,10 +74,6 @@ update_osx () {
   if [[ $OSX_UP == "y" ]] ; then
     print "=== update Mac systems ==="
     sudo softwareupdate -i -a
-    if [ -x /usr/bin/gem ] ; then
-      sudo /usr/bin/gem update --system 
-      sudo env JAVA_HOME=$JAVA_HOME /usr/bin/gem update
-    fi
   fi
 }
 # update homebrew packages
