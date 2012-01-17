@@ -1,6 +1,10 @@
 " We're running Vim, not Vi! This must be first, because of side effects
 set nocompatible
 
+" pathogen bundle manager
+" https://github.com/tpope/vim-pathogen
+call pathogen#infect()
+
 " Display line numbers on the left
 set number
 
@@ -18,6 +22,8 @@ syntax on           " syntax
 filetype on         " Enable filetype detection
 filetype indent on  " Enable filetype-specific indenting
 filetype plugin on  " Enable filetype-specific plugins
+compiler ruby       " Enable compiler support for ruby
+
 
 " One of the most important options to activate. Allows you to switch from an
 " unsaved buffer without saving it first. Also allows you to keep an undo
@@ -56,9 +62,6 @@ set cmdheight=2
 
 " Quickly time out on keycodes, but never time out on mappings
 set notimeout ttimeout ttimeoutlen=200
-
-" Enable compiler support for ruby
-compiler ruby
 
 " toggle paste
 set pastetoggle=<F2>
@@ -165,8 +168,6 @@ highlight link rubyStringDelimiter rubyString
 highlight link rubyInclude Keyword
 highlight link rubyAttribute Keyword
 highlight link rubyInstanceVariable Keyword
-"highlight rubyInstanceVariable ctermfg=Black
-"highlight rubyAttribute ctermfg=DarkGray
 
 "------------------------------------------------------------
 " MISC

@@ -1,4 +1,4 @@
-shell /usr/local/bin/zsh
+shell zsh
 startup_message off
 history 100
 autodetach on
