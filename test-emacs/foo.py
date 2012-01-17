@@ -11,5 +11,27 @@ def foo(bar):
 
 foo("baz")
 
+class Foo():
+    def __init__(self, abc):
+        """
+        Arguments:
+        - `abc`:
+        """
+        self.abc = abc
         
+    def foo23():
+        pass
+    def bar(self, baz):
+        self.foo23()
+        "foo bar".split(" ")
+        "".split
+
+
+
+
         
+
+
+Foo().bar
+
+

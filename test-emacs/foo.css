@@ -1,0 +1,81 @@
+body {
+   color: black;
+   background-color: white;
+}
+header {
+   color: black;
+   background-color: yellow;
+}
+
+/*main menu*/
+.no-js nav li:hover ul { display:block; }  
+nav {
+   display:block; 
+   margin:0 auto 20px; 
+   border:1px solid magenta; 
+   position:relative; 
+   color: red;
+   background-color: black;
+}
+nav ul {
+   padding:0; 
+   margin:0; 
+   height: 30px;
+}
+nav ul:after { 
+   content:"."; 
+   display:block; 
+   height:0; 
+   clear:both; 
+   visibility:hidden; 
+}
+
+nav li { 
+   position:relative; 
+   float:left; 
+   list-style-type:none; 
+   border: 1px solid black;
+   width: 200px;
+   height: 30px;
+}  
+nav li a {
+   display: block;
+   padding: 0.4em 0 0.4em 0.5em; 
+   border-left: 12px solid darkgray; 
+   border-right: 1px solid darkgray; 
+   color: yellow;
+   background-color: gray;
+   text-decoration: none;
+   text-align: center;
+}
+nav li a:focus { outline:none; text-decoration:underline; }  
+nav li:first-child a { border-left:none; }  
+
+/*submenu*/
+nav ul ul {
+   display: none;
+   width:100%; 
+   position:absolute; 
+   left:0;
+   border: none;
+   height: 20px;
+}
+nav ul ul li { 
+   float: none; 
+   line-height: 80%; 
+   height: 20px;
+}
+nav ul ul a {
+   padding: 0.4em 0 0.4em 0.5em; 
+   border-left: 6px solid darkgray; 
+   border-right: 1px solid darkgray; 
+   border: none;
+   color: cyan;
+   text-align: center;
+}
+nav ul ul li a:hover { background-color: darkgray; }
+
+footer {
+   color: cyan;
+   background-color: green;
+}
