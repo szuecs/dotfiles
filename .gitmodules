@@ -4,6 +4,9 @@
 [submodule "emacs-libs/rhtml"]
   path = emacs-libs/rhtml
   url = https://github.com/eschulte/rhtml.git
+[submodule "emacs-libs/coffee-mode"]
+  path = emacs-libs/coffee-mode
+  url = https://github.com/defunkt/coffee-mode.git
 [submodule ".vim/bundle/vim-ruby"]
   path = .vim/bundle/vim-ruby
   url = git://github.com/vim-ruby/vim-ruby.git
