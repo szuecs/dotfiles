@@ -27,10 +27,10 @@ end
 # eliminate the pesky exit message that says program is running
 set confirm off
 set language asm
-# set disassembly-flavor intel
+set disassembly-flavor intel
 # enable the following to work in hex, the default is decimal
-set output-radix 16
-set input-radix 16
+set output-radix 0x10
+set input-radix 0x10
 #
 # disable pesky hook messages?? this may not be necessary in other versions of gdb
 #
