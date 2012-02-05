@@ -1,25 +1,24 @@
+
+case `uname`.chomp
+when /linux/i
+  require 'autotest/timestamp'
+#  require 'autotest/inotify'
+when /darwin/i
+  # Bug sys-uname crashes in rvm installation
+  require 'autotest/fsevent'
+  # growl + growlnotify needed
+  require 'autotest/growl'
+end
+
 # menu bei ctrl-C
 #require 'autotest/menu'
-
-# fseventd change listener
-# Bug sys-uname crashes in rvm installation
-require 'autotest/fsevent'
-
-# growl + growlnotify needed
-require 'autotest/growl'
-
-# shell output is green/red 
-#require 'redgreen'
-
-# print timestamps
-require 'autotest/timestamp'
 
 # rubycocoa needed
 #require 'autotest/pretty'
 
-# html report 
+# html report
 # generates ~/Sites/autotest.html
-# needs a directory: ~/Sites  
+# needs a directory: ~/Sites
 #require 'autotest/html_report'
 
 #require 'autotest_notification'
