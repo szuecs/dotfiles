@@ -22,3 +22,5 @@ fi
 # rvm - needs zsh >= 4.3.5, but there is 4.3.4 installed on osx 10.5
 # use zsh-devel from macports. On OSX 10.6 there is zsh 4.3.9 installed
 [[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
