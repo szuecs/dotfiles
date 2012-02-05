@@ -185,6 +185,14 @@ class String
   def from_base64
     self.unpack('m')
   end
+  def unescape
+    require 'cgi'
+    CGI.unescape self
+  end
+  def escape
+    require 'cgi'
+    CGI.escape self
+  end
 end
 
 #------------------------------------------------------------
