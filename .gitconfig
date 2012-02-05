@@ -20,4 +20,12 @@
 [git-tmbundle "log"]
   context-lines = 5
 [sendemail]
-	smtpencryption = tls
+  smtpencryption = tls
+[alias]
+  st = status
+  ci = commit
+  br = branch
+  co = checkout
+  df = diff
+  lg = log -p
+  cp = cherry-pick
