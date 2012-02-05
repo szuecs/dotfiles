@@ -66,6 +66,9 @@ set notimeout ttimeout ttimeoutlen=200
 " toggle paste
 set pastetoggle=<F2>
 
+" show trailing whitespaces as Todo highlight
+match Todo /\s\+$/
+
 "------------------------------------------------------------
 "
 " autocommands
@@ -80,6 +83,9 @@ if has("autocmd")
     \ if line("'\"") > 1 && line("'\"") <= line("$") |
     \   exe "normal! g`\"" |
     \ endif
+
+  "remove trailing whitespaces"
+  autocmd BufWritePre *.{py,rb,java,c,h,js} :%s/\s\+$//e
 endif
 
 "------------------------------------------------------------
