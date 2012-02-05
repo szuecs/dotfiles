@@ -1,7 +1,7 @@
 # .zshrc includes all different files in .zsh
 # 
 
-umask 077
+umask 022
 export PS1='[%n@%m:%~]%% '
 
 if [ -d ~/.zsh ]; then
