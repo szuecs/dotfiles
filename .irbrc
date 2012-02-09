@@ -178,6 +178,7 @@ class Object
     end
 end
 
+require 'cgi'
 class String
   def to_base64
     [self].pack('m')
@@ -186,11 +187,9 @@ class String
     self.unpack('m')
   end
   def unescape
-    require 'cgi'
     CGI.unescape self
   end
   def escape
-    require 'cgi'
     CGI.escape self
   end
 end
