@@ -85,7 +85,7 @@ if has("autocmd")
     \ endif
 
   "remove trailing whitespaces"
-  autocmd BufWritePre *.{py,rb,java,c,h,js} :%s/\s\+$//e
+  autocmd BufWritePre *.{py,rb,java,c,h,js,plist,r,conf,lisp,hs,rc,sh,zsh,bash} :%s/\s\+$//e
 endif
 
 "------------------------------------------------------------
@@ -102,7 +102,7 @@ map Y y$
 " next search
 nnoremap <C-L> :nohl<CR><C-L>
 
-" faster scrolling (5 times instead of 1 time) 
+" faster scrolling (5 times instead of 1 time)
 nnoremap <C-E> <C-E><C-E><C-E><C-E><C-E>
 nnoremap <C-Y> <C-Y><C-Y><C-Y><C-Y><C-Y>
 
@@ -135,7 +135,7 @@ endif
 
 
 "------------------------------------------------------------
-" encodings: 
+" encodings:
 " latin1 Unicode utf-8
 "set fileencodings=utf-8,big5,gbk,sjis,euc-jp,euc-kr,utf-bom,iso8859-1
 "set fencs=utf-8,big5,euc-jp,utf-bom,iso8859-1,utf-16le
@@ -144,7 +144,7 @@ set fenc=utf-8
 set tenc=utf-8
 
 "------------------------------------------------------------
-" highlight colors for white bg 
+" highlight colors for white bg
 highlight Comment       ctermfg=DarkGreen
 highlight Constant      ctermfg=DarkMagenta
 highlight Character     ctermfg=DarkRed
@@ -158,8 +158,8 @@ highlight Delimiter     ctermfg=Red
 highlight Error         ctermfg=Black
 highlight Todo          ctermfg=Red ctermbg=Black
 highlight FIXME	        ctermfg=Red ctermbg=Black
-highlight WarningMsg    term=NONE   ctermfg=DarkBlue ctermbg=NONE   
-highlight ErrorMsg      term=NONE   ctermfg=DarkRed  ctermbg=NONE 
+highlight WarningMsg    term=NONE   ctermfg=DarkBlue ctermbg=NONE
+highlight ErrorMsg      term=NONE   ctermfg=DarkRed  ctermbg=NONE
 
 " invisible character colors
 highlight NonText ctermfg=gray
