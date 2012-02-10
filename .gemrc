@@ -1,4 +1,5 @@
-gem: --rdoc
+gem: --no-ri --no-rdoc
+#gem: --rdoc
 # --fmt ajax: ajax-searchable RailsBrain formatter
 rdoc: --charset utf8 --exclude .*generator.* --exclude .*test.* --exclude .*spec.*
 
