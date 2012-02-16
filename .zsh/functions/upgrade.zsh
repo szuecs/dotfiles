@@ -1,8 +1,8 @@
 ##############################
 ### by sandor szuecs since Dec 2006
-### 
+###
 ### upgrades local or remote: osx, debian or ubuntu systems
-### usage local: $ upgrade 
+### usage local: $ upgrade
 ### usage remote: $ upgrade $HOST
 ##############################
 upgrade () {
@@ -24,43 +24,43 @@ upgrade () {
   umask $UMASK_RESTORE
 }
 dispatch () {
-  case `uname` in 
-  "Darwin") 
+  case `uname` in
+  "Darwin")
     print "Mac OS X local upgrade"
-    osx_upgrade_local ;; 
-  "Linux")  
+    osx_upgrade_local ;;
+  "Linux")
     case `uname -o` in
     "GNU/Linux")
       print "Debian local upgrade"
       debian_upgrade_local ;;
     *)
-      print "unknown Linux system, please send me a patch" ;; 
+      print "unknown Linux system, please send me a patch" ;;
     esac
   ;;
   "FreeBSD")
     print "FreeBSD local upgrade"
     freebsd_upgrade_local ;;
-  *) 
+  *)
     print "unknown system, please send me a patch" ;;
-  esac 
+  esac
 }
 
 upgrade_remote () {
   print "remote upgrade"
-  
-  case `ssh $each uname 2&>/dev/null` in 
-  "Darwin") 
+
+  case `ssh $each uname 2&>/dev/null` in
+  "Darwin")
     print "osx_upgrade_remote"
     osx_upgrade_remote $1 ;;
-  "Linux")  
+  "Linux")
     case `ssh $each uname -o 2&>/dev/null` in
     "GNU/Linux")
       print "debian_upgrade_remote"
       debian_upgrade_remote $1 ;;
     *)
-      print "unknown Linux system, please send me a patch" ;; 
+      print "unknown Linux system, please send me a patch" ;;
     esac ;;
-  *) 
+  *)
     print "unknown system, please send me a patch" ;;
   esac
 }
@@ -103,7 +103,7 @@ update_fink () {
     sudo /sw/bin/fink update-all
     sudo /sw/bin/fink cleanup
     if [ -x /sw/bin/gem ] ; then
-      sudo /sw/bin/gem update --system 
+      sudo /sw/bin/gem update --system
       sudo env JAVA_HOME=$JAVA_HOME /sw/bin/gem update
     fi
   fi
@@ -128,7 +128,7 @@ update_macports () {
       sudo env JAVA_HOME=$JAVA_HOME /opt/local/bin/jgem update --system
       sudo env JAVA_HOME=$JAVA_HOME /opt/local/bin/jgem update
     fi
-    
+
   fi
 }
 # update textmate bundles
@@ -156,7 +156,7 @@ update_textmate () {
       done
       popd
     fi
-    if [ -d ~/Library/Application\ Support/TextMate/Pristine\ Copy/Bundles ]; 
+    if [ -d ~/Library/Application\ Support/TextMate/Pristine\ Copy/Bundles ];
       then
       pushd ~/Library/Application\ Support/TextMate/Pristine\ Copy/Bundles
       for each in *.tmbundle; do
@@ -164,7 +164,7 @@ update_textmate () {
       done
       popd
     fi
-    reload_textmate 
+    reload_textmate
   fi
 }
 
@@ -191,7 +191,7 @@ update_gpgkeys () {
   done;
   if [[ $GPG_UP == "y" ]] ; then
     print "=== gpg --refresh-keys ==="
-    gpg --refresh-keys  
+    gpg --refresh-keys
   fi
 }
 
@@ -204,8 +204,7 @@ update_rvm () {
   if [[ $RVM_UP == "y" ]] ; then
     print "=== rvm update ==="
     bash -c '$HOME/.rvm/bin/rvm get head'
-    rvm gem --system update
-    rvm gem update
+    rvm all do gem update
   fi
 }
 
@@ -247,7 +246,7 @@ freebsd_upgrade_local () {
 
 freebsd_update () {
   # as crontab daily task
-  # freebsd-update fetch 
+  # freebsd-update fetch
   freebsd-update install
 }
 
@@ -287,13 +286,13 @@ osx_upgrade_remote () {
     fi
     if [[ $FINK_UP == "y" ]] ; then
       print "=== fink upgrade ==="
-      ssh $1 -t /usr/bin/sudo /sw/bin/fink selfupdate 
-      ssh $1 -t /usr/bin/sudo /sw/bin/fink update-all 
+      ssh $1 -t /usr/bin/sudo /sw/bin/fink selfupdate
+      ssh $1 -t /usr/bin/sudo /sw/bin/fink update-all
       ssh $1 -t /usr/bin/sudo /sw/bin/fink cleanup
     fi
     if [[ $MACPORTS_UP == "y" ]] ; then
       print "=== macports ==="
-      ssh $1 -t /usr/bin/sudo /opt/local/bin/port selfupdate 
+      ssh $1 -t /usr/bin/sudo /opt/local/bin/port selfupdate
       #ssh $1 -t /usr/bin/sudo /opt/local/bin/port -uR upgrade outdated
       ssh $1 -t /usr/bin/sudo /opt/local/bin/port upgrade outdated
       ssh $1 -t /usr/bin/sudo /opt/local/bin/port clean installed
