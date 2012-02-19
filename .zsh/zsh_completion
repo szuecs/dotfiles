@@ -51,7 +51,7 @@ if [ "$PS1" ]; then
   zstyle ':completion:*:e:*' ignored-patterns '*.(o|a|so|dmg|dylib|aux|dvi|log|swp|fig|bbl|blg|bst|idx|ind|out|toc|class|pyc|rbc|dSYM)'
   
   # source .zsh/Completion/*
-  . ~/.zsh/Completion/git-flow-completion.zsh
+  . ~/.zsh/Completion/*.zsh
   
   # TODO: add auto git prompt
   # TODO: change colors to be usable on white background
