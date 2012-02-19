@@ -105,6 +105,7 @@ update_fink () {
     if [ -x /sw/bin/gem ] ; then
       sudo /sw/bin/gem update --system
       sudo env JAVA_HOME=$JAVA_HOME /sw/bin/gem update
+      yes n | sudo env JAVA_HOME=$JAVA_HOME /sw/bin/gem cleanup
     fi
   fi
 }
@@ -123,10 +124,12 @@ update_macports () {
       sudo /opt/local/bin/gem update --system
       # FIXME: fox, fxruby, pg does not compile
       sudo env JAVA_HOME=$JAVA_HOME /opt/local/bin/gem update
+      yes n | sudo env JAVA_HOME=$JAVA_HOME /opt/local/bin/gem cleanup
     fi
     if [ -x /opt/local/bin/jgem ] ; then # FIXME: path dependent
       sudo env JAVA_HOME=$JAVA_HOME /opt/local/bin/jgem update --system
       sudo env JAVA_HOME=$JAVA_HOME /opt/local/bin/jgem update
+      yes n | sudo env JAVA_HOME=$JAVA_HOME /opt/local/bin/jgem cleanup
     fi
 
   fi
@@ -205,6 +208,7 @@ update_rvm () {
     print "=== rvm update ==="
     bash -c '$HOME/.rvm/bin/rvm get head'
     rvm all do gem update
+    yes n | rvm all do gem cleanup
   fi
 }
 
@@ -316,7 +320,8 @@ debian_upgrade_remote (){
     if [[ $dummy == "y" ]] ; then
       ssh $1 -t "sudo apt-get -u upgrade --yes && \
                 sudo apt-get clean && \
-                sudo /usr/bin/gem update"
+                sudo /usr/bin/gem update && \
+                yes n | sudo /usr/bin/gem cleanup"
     fi
     print "upgrade on $1 done"
   fi
