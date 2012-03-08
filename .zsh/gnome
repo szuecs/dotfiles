@@ -14,6 +14,16 @@ function open_pdf() {
   fi
 }
 
+function open_browser () {
+  if  which firefox 2>/dev/null; then
+    firefox $1 2>/dev/null &
+  elif which chromium-browser 2>/dev/null; then
+    chromium-browser $1 2>/dev/null &
+  else
+    echo "no browser found to open ${$1}"
+  fi
+}
+
 # A zsh function similar to Mac OSX open(1) command.
 function open() {
   file_path=$1
@@ -31,8 +41,8 @@ function open() {
     text)          emacs $1    ;;
     image)         eog $1      ;;
     gimp)          gimp $1     ;;
-    pdf)           open_pdf $1 ;;
-    PDF)           open_pdf $1 ;;
+    pdf|PDF)       open_pdf $1 ;;
+    html|HTML)     open_browser $1 ;;
     *)
       echo "nothing found to open ${1}, ${target_file},${first_word}, ${second_word}"
       ;;;
