@@ -85,7 +85,7 @@ if has("autocmd")
     \ endif
 
   "remove trailing whitespaces"
-  autocmd BufWritePre *.{py,rb,java,c,h,js,plist,r,pl,el,conf,lisp,hs,rc,sh,zsh,bash} :%s/\s\+$//e
+  autocmd BufWritePre *.{py,rb,java,c,h,js,plist,r,pl,el,conf,lisp,hs,rc,conf,sh,zsh,bash} :%s/\s\+$//e
 endif
 
 "------------------------------------------------------------
