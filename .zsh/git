@@ -1,3 +1,13 @@
+# git shortcuts
+alias gsup="git svn fetch && git svn rebase"
+alias gsd="git svn dcommit"
+alias grevert="git reset --hard HEAD"
+alias gl="git log --oneline"
+
+#
+# zsh - RPROMPT
+#
+
 typeset -ga preexec_functions
 typeset -ga precmd_functions
 typeset -ga chpwd_functions
