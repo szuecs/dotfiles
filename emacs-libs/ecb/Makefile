@@ -51,8 +51,8 @@ EMACS=emacs
 # + If you use Emacs < 23.2 or if you want to use the author version of CEDET:
 #   Set this to the full path of your CEDET-installation.
 
-#CEDET=
-CEDET=c:/Programme/emacs-23.1/site-lisp/package-development/cedet
+CEDET=/usr/share/emacs/23.3/lisp/cedet
+#CEDET=c:/Programme/emacs-23.1/site-lisp/package-development/cedet
 
 # You can set here more load-paths to arbitrary packages if you want. But
 # this is really not necessary!
@@ -131,7 +131,7 @@ ecb: $(ecb_LISP_EL)
 	@$(RM) $(ecb_LISP_ELC) ecb-compile-script
 	@echo "(add-to-list 'load-path nil)" > ecb-compile-script
 	@if test ! -z "${CEDET}"; then\
-	   echo "(load-file \"$(CEDET)/common/cedet.el\")" >> ecb-compile-script; \
+	   echo "(load-file \"$(CEDET)/cedet.el\")" >> ecb-compile-script; \
 	else \
 	   echo "(semantic-mode 1)" >> ecb-compile-script; \
 	   echo "(require 'semantic/bovine/el)" >> ecb-compile-script; \
