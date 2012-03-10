@@ -19,3 +19,9 @@
 [submodule "emacs-libs/r-autoyas"]
 	path = emacs-libs/r-autoyas
 	url = git://github.com/mlf176f2/r-autoyas.el.git
+[submodule "emacs-libs/js2"]
+	path = emacs-libs/js2
+	url = https://github.com/mooz/js2-mode.git
+[submodule "emacs-libs/Pymacs"]
+	path = emacs-libs/Pymacs
+	url = https://github.com/pinard/Pymacs.git
