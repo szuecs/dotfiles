@@ -8,8 +8,8 @@
   path = emacs-libs/twittering-mode
   url = https://github.com/hayamiz/twittering-mode.git
 [submodule "emacs-libs/coffee-mode"]
-  path = emacs-libs/coffee-mode
-  url = https://github.com/defunkt/coffee-mode.git
+   path = emacs-libs/coffee-mode
+   url = https://github.com/mk-fg/coffee-mode.git
 [submodule ".vim/bundle/vim-ruby"]
   path = .vim/bundle/vim-ruby
   url = git://github.com/vim-ruby/vim-ruby.git
