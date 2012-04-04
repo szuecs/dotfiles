@@ -25,3 +25,15 @@
 [submodule "emacs-libs/Pymacs"]
 	path = emacs-libs/Pymacs
 	url = https://github.com/pinard/Pymacs.git
+[submodule "emacs-libs/citrus-mode"]
+	path = emacs-libs/citrus-mode
+	url = https://github.com/rejeep/citrus-mode.git
+[submodule "emacs-libs/js2-refactor"]
+	path = emacs-libs/js2-refactor
+	url = https://github.com/magnars/js2-refactor.el.git
+[submodule "emacs-libs/mark-multiple"]
+	path = emacs-libs/mark-multiple
+	url = https://github.com/magnars/mark-multiple.el.git
+[submodule "emacs-libs/expand-region"]
+	path = emacs-libs/expand-region
+	url = https://github.com/magnars/expand-region.el.git
