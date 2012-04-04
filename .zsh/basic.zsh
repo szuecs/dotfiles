@@ -6,10 +6,10 @@
 if [ "$PS1" ]; then
   # clean all aliases
   unhash -am '*'
-  
+
   # nice ri
   export RI="--no-pager -f ansi"
-  
+
   # alias section
   alias la='ls -a'
   alias ll='ls -lh'
@@ -17,20 +17,20 @@ if [ "$PS1" ]; then
   # with mmv u can rename multiple files. mmv *.text *.txt
   alias mmv='noglob zmv -W'
   autoload -U zmv
-  
+
   # set different colors on STDERR
   autoload -U colors
   colors
   #exec 2>>(while read line; do
   #  print "$fg[blue]${(q)line}" > /dev/tty; done & )
   #print "$bg[black]$fg[red]${(q)line}" > /dev/tty; done &)
-  
+
   # history related stuff.
   export HISTSIZE=10500
   export SAVEHIST=10000
   export HISTFILE=~/.zsh_history
   setopt hist_ignore_dups        # ignore same commands run twice+
-  setopt appendhistory           # don't overwrite history 
+  setopt appendhistory           # don't overwrite history
   setopt histignorespace         # remove command lines from the history list when
   setopt histverify              # when using ! cmds, confirm first
 #  setopt SHARE_HISTORY
@@ -39,13 +39,13 @@ if [ "$PS1" ]; then
   setopt HIST_REDUCE_BLANKS
   # Grep the history with 'h'
   h () { history 0 | grep $1 }
-  
+
   # use ssh for rysnc
   export RSYNC_RSH=ssh
-  
+
   export PAGER=less
-  export ALTERNATE_EDITOR=emacs 
-  export EDITOR=emacsclient 
+  export ALTERNATE_EDITOR=emacs
+  export EDITOR=emacsclient
   export VISUAL=emacsclient
   # emacs
   export GDK_NATIVE_WINDOWS=1
@@ -57,7 +57,7 @@ if [ "$PS1" ]; then
   #if [ ! -e "/tmp/esrv$tempuid-$temphost" ]; then
   #    emacs --daemon
   #fi
-  
+
   # support colors in less
   export LESS_TERMCAP_mb=$'\E[01;31m'
   export LESS_TERMCAP_md=$'\E[01;31m'
@@ -68,11 +68,12 @@ if [ "$PS1" ]; then
   export LESS_TERMCAP_us=$'\E[01;32m'
 
   # add -rrubygems to all ruby starts
-  export RUBYOPT="rrubygems" 
-  
+  export RUBYOPT="rrubygems"
+
   # nifty aliases
   alias -g L='2>&1 | less -R'
   alias -g G='|grep'
+  alias -g H='|head -15'
   alias -g S='|sort'
   alias -g W='|wc -l'
   # file extension aliases (open with)
@@ -83,10 +84,10 @@ if [ "$PS1" ]; then
   alias -s c="emacs"
   # quick edit
   alias z="$EDITOR ~/.zsh"
-  
+
   # history cmd expansion using space, example: !-3␣
   bindkey ' ' magic-space
-  
+
   # Quote pasted URLs
   autoload url-quote-magic
   zle -N self-insert url-quote-magic
