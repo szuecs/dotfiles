@@ -37,3 +37,6 @@
 [submodule "emacs-libs/expand-region"]
 	path = emacs-libs/expand-region
 	url = https://github.com/magnars/expand-region.el.git
+[submodule "emacs-libs/jshint-mode"]
+	path = emacs-libs/jshint-mode
+	url = git://github.com/daleharvey/jshint-mode.git
