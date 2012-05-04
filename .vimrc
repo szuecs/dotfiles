@@ -5,9 +5,9 @@ set nocompatible
 " https://github.com/tpope/vim-pathogen
 call pathogen#infect()
 
-" Display line numbers on the left
+"------------------------------------------------------------
+" Basic {{{1
 set number
-
 set ruler
 set incsearch     " incremenatal search
 set ai
@@ -16,7 +16,6 @@ set paste
 set history=50    " keep 50 lines of command line history
 set showcmd       " display incomplete commands
 "set cursorline
-"set shell=/opt/local/bin/zsh
 
 syntax on           " syntax
 filetype on         " Enable filetype detection
@@ -24,12 +23,14 @@ filetype indent on  " Enable filetype-specific indenting
 filetype plugin on  " Enable filetype-specific plugins
 compiler ruby       " Enable compiler support for ruby
 
-
 " One of the most important options to activate. Allows you to switch from an
 " unsaved buffer without saving it first. Also allows you to keep an undo
 " history for multiple files. Vim will complain if you try to quit without
 " saving, and swap files will keep you safe if your computer crashes.
 set hidden
+
+" enable folding open: zo close: zc
+set foldmethod=marker
 
 " Better command-line completion
 set wildmenu
@@ -56,8 +57,8 @@ set nostartofline
 " Always display the status line, even if only one window is displayed
 set laststatus=2
 
-" Set the command window height to 2 lines, to avoid many cases of having to
-" "press <Enter> to continue"
+" Set the command window height to 2 lines, to avoid many cases of having
+" to press <Enter> to continue
 set cmdheight=2
 
 " Quickly time out on keycodes, but never time out on mappings
@@ -66,14 +67,10 @@ set notimeout ttimeout ttimeoutlen=200
 " toggle paste
 set pastetoggle=<F2>
 
-" show trailing whitespaces as Todo highlight
-match Todo /\s\+$/
-
 "------------------------------------------------------------
 "
-" autocommands
+" Autocommands {{{1
 "
-" use vim within irb
 if has("autocmd")
   " Enable filetype detection
   filetype plugin indent on
@@ -85,7 +82,7 @@ if has("autocmd")
     \ endif
 
   "remove trailing whitespaces"
-  autocmd BufWritePre *.{py,rb,java,c,h,js,plist,r,pl,el,conf,lisp,hs,rc,conf,sh,zsh,bash} :%s/\s\+$//e
+  autocmd BufWritePre *.{py,rb,java,c,h,js,json,plist,r,pl,el,conf,lisp,hs,rc,conf,sh,zsh,bash} :%s/\s\+$//e
 endif
 
 "------------------------------------------------------------
@@ -124,18 +121,19 @@ vmap <C-k> gk
 nmap <C-j> gj
 nmap <C-k> gk
 
+" Plugins {{{1
+" CommandT {{{2
 " :CommandT search plugin (like TextMate command-t)
 " shift-t unless macvim GUI is used
 if has("gui_macvim")
   macmenu &File.New\ Tab key=<nop>
-  map <D-t> :CommandT<CR>
+  map <D-t> :CommandT<CR> 
 else
   map <S-t> :CommandT<CR>
 endif
 
-
 "------------------------------------------------------------
-" encodings:
+" Encodings {{{1
 " latin1 Unicode utf-8
 "set fileencodings=utf-8,big5,gbk,sjis,euc-jp,euc-kr,utf-bom,iso8859-1
 "set fencs=utf-8,big5,euc-jp,utf-bom,iso8859-1,utf-16le
@@ -144,6 +142,7 @@ set fenc=utf-8
 set tenc=utf-8
 
 "------------------------------------------------------------
+" Highlight  {{{1
 " highlight colors for white bg
 highlight Comment       ctermfg=DarkGreen
 highlight Constant      ctermfg=DarkMagenta
@@ -175,8 +174,11 @@ highlight link rubyInclude Keyword
 highlight link rubyAttribute Keyword
 highlight link rubyInstanceVariable Keyword
 
+" show trailing whitespaces as Todo highlight
+match Todo /\s\+$/
+
 "------------------------------------------------------------
-" MISC
+" MISC {{{1
 set tw=72
 " Use visual bell instead of beeping when doing something wrong
 set visualbell
@@ -186,7 +188,6 @@ set mouse=a
 set listchars=tab:▸\ ,eol:¬
 " list invisible chars
 set list
-
 
 "------------------------------------------------------------
 " Indentation options {{{1
@@ -205,6 +206,7 @@ set expandtab
 "set tabstop=2
 
 "------------------------------------------------------------
+" Wrap {{{1
 "" adds a :Wrap command to set the 3 options at once
 command! -nargs=* Wrap set wrap linebreak nolist
 
