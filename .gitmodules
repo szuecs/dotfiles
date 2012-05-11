@@ -40,3 +40,6 @@
 [submodule "emacs-libs/jshint-mode"]
 	path = emacs-libs/jshint-mode
 	url = git://github.com/daleharvey/jshint-mode.git
+[submodule "emacs-libs/textmate"]
+	path = emacs-libs/textmate
+	url = git://github.com/defunkt/textmate.el.git
