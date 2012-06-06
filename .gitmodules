@@ -49,6 +49,6 @@
 [submodule "emacs-libs/popup"]
 	path = emacs-libs/popup
 	url = https://github.com/m2ym/popup-el.git
-[submodule "emacs-libs/predictive"]
-	path = emacs-libs/predictive
-	url = http://www.dr-qubit.org/git/predictive.git
+[submodule "emacs-libs/org-mode"]
+	path = emacs-libs/org-mode
+	url = git://repo.or.cz/org-mode.git
