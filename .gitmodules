@@ -43,3 +43,12 @@
 [submodule "emacs-libs/textmate"]
 	path = emacs-libs/textmate
 	url = git://github.com/defunkt/textmate.el.git
+[submodule "emacs-libs/auto-complete"]
+	path = emacs-libs/auto-complete
+	url = http://cx4a.org/repo/auto-complete.git
+[submodule "emacs-libs/popup"]
+	path = emacs-libs/popup
+	url = https://github.com/m2ym/popup-el.git
+[submodule "emacs-libs/predictive"]
+	path = emacs-libs/predictive
+	url = http://www.dr-qubit.org/git/predictive.git
