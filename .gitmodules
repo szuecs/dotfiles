@@ -52,3 +52,6 @@
 [submodule "emacs-libs/org-mode"]
 	path = emacs-libs/org-mode
 	url = git://repo.or.cz/org-mode.git
+[submodule "emacs-libs/less-css-mode"]
+	path = emacs-libs/less-css-mode
+	url = https://github.com/purcell/less-css-mode.git
