@@ -55,3 +55,9 @@
 [submodule "emacs-libs/less-css-mode"]
 	path = emacs-libs/less-css-mode
 	url = https://github.com/purcell/less-css-mode.git
+[submodule "emacs-libs/clojure-mode"]
+	path = emacs-libs/clojure-mode
+	url = https://github.com/technomancy/clojure-mode.git
+[submodule "emacs-libs/swank-clojure"]
+	path = emacs-libs/swank-clojure
+	url = https://github.com/technomancy/swank-clojure.git
