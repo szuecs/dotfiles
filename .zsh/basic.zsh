@@ -25,12 +25,22 @@ if [ "$PS1" ]; then
   #  print "$fg[blue]${(q)line}" > /dev/tty; done & )
   #print "$bg[black]$fg[red]${(q)line}" > /dev/tty; done &)
 
+  # edit CLI with your favorite Editor
+  autoload edit-command-line
+  zle -N edit-command-line
+  bindkey '^X^e' edit-command-line
+
+  # bind C-s to search forward in history
+  #autoload history-search-forward
+  #zle -N history-search-forward
+  #bindkey '^s' history-search-forward
+
   # history related stuff.
   export HISTSIZE=10500
   export SAVEHIST=10000
   export HISTFILE=~/.zsh_history
   setopt hist_ignore_dups        # ignore same commands run twice+
-  setopt appendhistory           # don't overwrite history
+  setopt appendhistory           # do not overwrite history
   setopt histignorespace         # remove command lines from the history list when
   setopt histverify              # when using ! cmds, confirm first
 #  setopt SHARE_HISTORY
@@ -83,7 +93,7 @@ if [ "$PS1" ]; then
   alias -s tex="emacs"
   alias -s c="emacs"
   # quick edit
-  alias z="$EDITOR ~/.zsh"
+  alias z="$EDITOR -c ~/.zsh"
 
   # history cmd expansion using space, example: !-3␣
   bindkey ' ' magic-space
