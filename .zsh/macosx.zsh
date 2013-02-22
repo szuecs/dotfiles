@@ -1,21 +1,22 @@
 ### ~/.zsh/macosx
 
 case $(uname) in
-"Darwin") 
+"Darwin")
   export LC_CTYPE=en_US.UTF-8
   #export LC_CTYPE=de_DE.UTF-8
-  
+
   # If running interactively, then:
   if [ "$PS1" ]; then
-  
+
     X11="/usr/X11R6/bin"
     DEVTOOLS="/Developer/Tools:/Developer/usr/bin:/Developer/usr/sbin"
     PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$X11:$DEVTOOLS:/usr/libexec"
-    
+    MANPATH="/usr/local/share/man:$MANPATH"
+
     if [ ! $DISPLAY ]; then
       export DISPLAY=:0.0
     fi
-    
+
     alias ls='ls -FGe'
     alias la='ls -a'
     alias ll='ls -lh'
@@ -38,7 +39,7 @@ case $(uname) in
     # set default of srm to overwrite blocks with 0x00
     alias srm="srm -z"
     alias r='/usr/local/bin/r'
-    
+
     # JAVA
     JAVA_HOME='/System/Library/Frameworks/JavaVM.framework/Home'
     JAVA_OPTS='-Xms256m -Xmx1g'
@@ -78,10 +79,10 @@ alias cfp='fp | pbcopy'
 
 function sufinder {
   case $(uname -r) in
-  "10.7.0") 
+  "10.7.0")
     sudo /System/Library/CoreServices/Finder.app/Contents/MacOS/Finder
     ;;
-  "10.8.0") 
+  "10.8.0")
     sudo /System/Library/CoreServices/Finder.app/Contents/MacOS/Finder
     ;;
   esac
