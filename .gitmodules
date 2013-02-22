@@ -1,15 +1,15 @@
 [submodule "emacs-libs/rinari"]
   path = emacs-libs/rinari
-  url = https://github.com/eschulte/rinari.git
+  url = git://github.com/eschulte/rinari.git
 [submodule "emacs-libs/rhtml"]
   path = emacs-libs/rhtml
-  url = https://github.com/eschulte/rhtml.git
+  url = git://github.com/eschulte/rhtml.git
 [submodule "emacs-libs/twittering-mode"]
   path = emacs-libs/twittering-mode
-  url = https://github.com/hayamiz/twittering-mode.git
+  url = git://github.com/hayamiz/twittering-mode.git
 [submodule "emacs-libs/coffee-mode"]
    path = emacs-libs/coffee-mode
-   url = https://github.com/mk-fg/coffee-mode.git
+   url = git://github.com/mk-fg/coffee-mode.git
 [submodule ".vim/bundle/vim-ruby"]
   path = .vim/bundle/vim-ruby
   url = git://github.com/vim-ruby/vim-ruby.git
@@ -21,22 +21,22 @@
 	url = git://github.com/mlf176f2/r-autoyas.el.git
 [submodule "emacs-libs/js2"]
 	path = emacs-libs/js2
-	url = https://github.com/mooz/js2-mode.git
+	url = git://github.com/mooz/js2-mode.git
 [submodule "emacs-libs/Pymacs"]
 	path = emacs-libs/Pymacs
-	url = https://github.com/pinard/Pymacs.git
+	url = git://github.com/pinard/Pymacs.git
 [submodule "emacs-libs/citrus-mode"]
 	path = emacs-libs/citrus-mode
-	url = https://github.com/rejeep/citrus-mode.git
+	url = git://github.com/rejeep/citrus-mode.git
 [submodule "emacs-libs/js2-refactor"]
 	path = emacs-libs/js2-refactor
-	url = https://github.com/magnars/js2-refactor.el.git
+	url = git://github.com/magnars/js2-refactor.el.git
 [submodule "emacs-libs/mark-multiple"]
 	path = emacs-libs/mark-multiple
-	url = https://github.com/magnars/mark-multiple.el.git
+	url = git://github.com/magnars/mark-multiple.el.git
 [submodule "emacs-libs/expand-region"]
 	path = emacs-libs/expand-region
-	url = https://github.com/magnars/expand-region.el.git
+	url = git://github.com/magnars/expand-region.el.git
 [submodule "emacs-libs/jshint-mode"]
 	path = emacs-libs/jshint-mode
 	url = git://github.com/daleharvey/jshint-mode.git
@@ -48,16 +48,22 @@
 	url = http://cx4a.org/repo/auto-complete.git
 [submodule "emacs-libs/popup"]
 	path = emacs-libs/popup
-	url = https://github.com/m2ym/popup-el.git
+	url = git://github.com/m2ym/popup-el.git
 [submodule "emacs-libs/org-mode"]
 	path = emacs-libs/org-mode
 	url = git://repo.or.cz/org-mode.git
 [submodule "emacs-libs/less-css-mode"]
 	path = emacs-libs/less-css-mode
-	url = https://github.com/purcell/less-css-mode.git
+	url = git://github.com/purcell/less-css-mode.git
 [submodule "emacs-libs/clojure-mode"]
 	path = emacs-libs/clojure-mode
-	url = https://github.com/technomancy/clojure-mode.git
+	url = git://github.com/technomancy/clojure-mode.git
 [submodule "emacs-libs/swank-clojure"]
 	path = emacs-libs/swank-clojure
-	url = https://github.com/technomancy/swank-clojure.git
+	url = git://github.com/technomancy/swank-clojure.git
+[submodule "emacs-libs/nrepl"]
+	path = emacs-libs/nrepl
+	url = git://github.com/kingtim/nrepl.el.git
+[submodule "emacs-libs/rainbow-delimiters"]
+	path = emacs-libs/rainbow-delimiters
+	url = git://github.com/jlr/rainbow-delimiters.git
