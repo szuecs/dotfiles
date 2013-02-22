@@ -67,3 +67,7 @@
 [submodule "emacs-libs/rainbow-delimiters"]
 	path = emacs-libs/rainbow-delimiters
 	url = git://github.com/jlr/rainbow-delimiters.git
+	url = https://github.com/technomancy/swank-clojure.git
+[submodule "emacs-libs/idle-highlight-mode"]
+	path = emacs-libs/idle-highlight-mode
+	url = https://github.com/nonsequitur/idle-highlight-mode.git
