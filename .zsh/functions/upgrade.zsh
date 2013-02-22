@@ -79,6 +79,7 @@ update_osx () {
 # update homebrew packages
 update_hombrew () {
   local HOMEBREW_UP
+  local HOMEBREW_UPGRADE
   until [[ $HOMEBREW_UP == 'y' || $HOMEBREW_UP == 'n' ]]; do
     print -n "Process homebrew update (y/n)?"
     read -q HOMEBREW_UP
@@ -86,8 +87,15 @@ update_hombrew () {
   if [[ $HOMEBREW_UP == "y" ]] ; then
     print "=== homebrew ==="
     /usr/local/bin/brew update
-    /usr/local/bin/brew upgrade
-    /usr/local/bin/brew cleanup
+    # really upgrade?
+    until [[ $HOMEBREW_UPGRADE == 'y' || $HOMEBREW_UPGRADE == 'n' ]]; do
+      print -n "Process homebrew upgrade (y/n)?"
+      read -q HOMEBREW_UPGRADE
+    done;
+    if [[ $HOMEBREW_UPGRADE == "y" ]] ; then
+      /usr/local/bin/brew upgrade
+      /usr/local/bin/brew cleanup
+    fi
   fi
 }
 # update fink packages
