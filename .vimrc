@@ -29,6 +29,9 @@ compiler ruby       " Enable compiler support for ruby
 " saving, and swap files will keep you safe if your computer crashes.
 set hidden
 
+" case insensitive search and substitution
+"set ignorecase
+
 " enable folding open: zo close: zc
 set foldmethod=marker
 
@@ -82,7 +85,7 @@ if has("autocmd")
     \ endif
 
   "remove trailing whitespaces"
-  autocmd BufWritePre *.{py,rb,java,c,h,js,json,plist,r,pl,el,conf,lisp,hs,rc,conf,sh,zsh,bash} :%s/\s\+$//e
+  autocmd BufWritePre *.{py,rb,java,c,h,js,json,plist,r,pl,el,cfg,lisp,hs,rc,conf,sh,zsh,bash} :%s/\s\+$//e
 endif
 
 "------------------------------------------------------------
