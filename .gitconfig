@@ -31,3 +31,5 @@
   cp = cherry-pick
 [push]
 	default = matching
+[pull]
+	rebase = true
