@@ -71,3 +71,12 @@
 [submodule "emacs-libs/idle-highlight-mode"]
 	path = emacs-libs/idle-highlight-mode
 	url = https://github.com/nonsequitur/idle-highlight-mode.git
+[submodule "emacs-libs/epresent"]
+	path = emacs-libs/epresent
+	url = git://github.com/eschulte/epresent.git
+[submodule "emacs-libs/ipython"]
+	path = emacs-libs/ipython
+	url = git://github.com/von/ipython.el.git
+[submodule "emacs-libs/pylookup"]
+	path = emacs-libs/pylookup
+	url = git://github.com/tsgates/pylookup.git
