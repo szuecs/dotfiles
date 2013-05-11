@@ -38,7 +38,7 @@ case $(uname) in
     alias emacs='open -a Emacs.app --args'
     # set default of srm to overwrite blocks with 0x00
     alias srm="srm -z"
-    alias r='/usr/local/bin/r'
+    alias r='/usr/bin/r'
 
     # JAVA
     JAVA_HOME='/System/Library/Frameworks/JavaVM.framework/Home'
