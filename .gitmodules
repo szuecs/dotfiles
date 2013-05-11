@@ -80,9 +80,6 @@
 [submodule "emacs-libs/pylookup"]
 	path = emacs-libs/pylookup
 	url = git://github.com/tsgates/pylookup.git
-[submodule "/Users/sszuecs/.vim/plugin/vdebug"]
-	path = /Users/sszuecs/.vim/plugin/vdebug
-	url = git://github.com/joonty/vdebug.git
 [submodule "/Users/sszuecs/.vim/bundle/vdebug"]
 	path = /Users/sszuecs/.vim/bundle/vdebug
 	url = git://github.com/joonty/vdebug.git
