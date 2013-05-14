@@ -1,0 +1,11 @@
+<% require 'etc'
+   login_name = Etc.getlogin %>
+name    '<%= login_name %>-<%= project %>'
+version '0.0.1'
+source 'https://github.com/<%= login_name %>/puppet-module-<%= project %>'
+author 'Sandor Szücs'
+license 'MIT'
+summary '<%= project.capitalize %> Module for Puppet'
+description '<%= project.capitalize %> Module for Puppet'
+project_page 'https://github.com/<%= login_name %>/puppet-module-<%= project %>'
+

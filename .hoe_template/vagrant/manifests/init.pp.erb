@@ -1,0 +1,37 @@
+# -*- mode: puppet-*-
+# vi: set ft=puppet:
+<% main_dir_name = "#{File.basename(File.dirname(File.dirname(File.realpath(__FILE__))))}"
+   classname = main_dir_name.sub("vagrant-","") + "-config"
+%>
+Exec { path => "/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/sbin" }
+stage { 'pre': }
+stage { 'post': }
+Stage['pre'] -> Stage['main'] -> Stage['post']
+
+class <%= classname %> {
+  notice("mainstage - <%= classname %>")
+}
+
+class preinstall {
+  notice("preinstall")
+  case $::osfamily {
+    'Debian': {
+      exec { "apt-get update": }
+    }
+  }
+}
+class postinstall {
+  notice("postinstall")
+}
+
+node default {
+  class { 'preinstall':
+    stage => pre,
+  }
+  class { '<%= classname %>':
+    stage => main,
+  }
+  class { 'postinstall':
+    stage => post,
+  }
+}

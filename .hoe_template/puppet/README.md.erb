@@ -1,0 +1,26 @@
+<% require 'etc'
+   login_name = Etc.getlogin %>
+= <%= project.capitalize %>
+
+* https://github.com/<%= login_name %>/puppet-module-<%= project %>
+
+== DESCRIPTION:
+
+<%= XIF %> (describe your package)
+
+== FEATURES/PROBLEMS:
+
+* <%= XIF %> (list of features or problems)
+
+== Usage:
+
+  <%= XIF %> (code sample of usage)
+
+== REQUIREMENTS:
+
+* <%= XIF %> (list of requirements)
+
+== INSTALL:
+
+* <%= XIF %> (puppet module install <%= login_name %>-<%= project %>)
+
