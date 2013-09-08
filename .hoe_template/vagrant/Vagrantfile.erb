@@ -3,18 +3,25 @@
 <% main_dir_name = "#{File.basename(File.dirname(File.realpath(__FILE__)))}"
    hostname = main_dir_name.sub("vagrant-","")
 %>
-Vagrant::Config.run do |config|
+Vagrant.configure("2") do |config|
   config.vm.define :<%= hostname %> do |config|
     config.vm.box = "ubuntu-precise"
-    config.vm.host_name = "<%= hostname %>.local"
-    config.vm.forward_port 80, 8080
-    config.vm.forward_port 443, 8081
-    config.vm.forward_port 22, 2021
-    config.vm.share_folder "v-data", "/shared-data", "data", :create => true
-    config.vm.provision :puppet, :options => ["--pluginsync", '--graph', '--graphdir /tmp/vagrant-puppet/manifests/graphs'] do |puppet|
+    config.vm.hostname = "<%= hostname %>.local"
+
+    config.vm.network :forwarded_port, auto_correct: true, host: 8080, guest: 80
+    config.vm.network :forwarded_port, auto_correct: true, host: 8081, guest: 443
+    config.vm.network :forwarded_port, auto_correct: true, host: 2021, guest: 22
+    config.vm.network :private_network, ip: "192.168.50.4"
+
+    config.vm.synced_folder "data", "/shared-data"
+    config.vm.provision :puppet do |puppet|
+      puppet.options = "--pluginsync --graph --graphdir /tmp/vagrant-puppet/manifests/graphs"
       puppet.manifests_path = "manifests"
       puppet.manifest_file  = "init.pp"
       puppet.module_path = ["<%= Dir.home %>/.puppet/modules", "<%= Dir.home %>/puppet/modules"]
+      puppet.facter = {
+        "vagrant" => "1"
+      }
     end
   end
 end
