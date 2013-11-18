@@ -4,6 +4,9 @@
 
 # If running interactively, then:
 if [ "$PS1" ]; then
+  # ssl inspect
+  #export SSLKEYLOGFILE=$HOME/ssllog/ssl-log.txt
+
   # clean all aliases
   unhash -am '*'
 
@@ -97,6 +100,9 @@ if [ "$PS1" ]; then
 
   # history cmd expansion using space, example: !-3␣
   bindkey ' ' magic-space
+  # forward / backward word with C-<left> C-<right>
+  bindkey '^[[1;5C' emacs-forward-word
+  bindkey '^[[1;5D' emacs-backward-word
 
   # Quote pasted URLs
   autoload url-quote-magic
