@@ -10,9 +10,6 @@
 [submodule "emacs-libs/coffee-mode"]
    path = emacs-libs/coffee-mode
    url = git://github.com/mk-fg/coffee-mode.git
-[submodule "emacs-libs/ess"]
-	path = emacs-libs/ess
-	url = git://github.com/emacs-ess/ESS-mirror.git
 [submodule "emacs-libs/r-autoyas"]
 	path = emacs-libs/r-autoyas
 	url = git://github.com/mlf176f2/r-autoyas.el.git
