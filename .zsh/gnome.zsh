@@ -54,7 +54,7 @@ function open() {
     gimp)          gimp $1     ;;
     pdf|PDF)       open_pdf $1 ;;
     html|HTML)     open_browser $1 ;;
-    ods|ODS)           open_office $1 ;;
+    ods|ODS|odp)   open_office $1 ;;
     *)
       echo "nothing found to open ${1}, ${target_file},${first_word}, ${second_word}"
       ;;;
