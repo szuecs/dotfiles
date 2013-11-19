@@ -1,0 +1,12 @@
+<% module_name = File.basename(File.dirname(File.dirname(File.realdirpath(__FILE__))))
+begin
+  require 'facets'
+  module_name = module_name.upper_camelcase
+rescue
+end
+%>
+require 'lib/version'
+require 'lib/base'
+
+module <%= module_name %>
+end

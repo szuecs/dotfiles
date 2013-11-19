@@ -1,0 +1,10 @@
+<% module_name = File.basename(File.dirname(File.dirname(File.realdirpath(__FILE__))))
+begin
+  require 'facets'
+  module_name = module_name.upper_camelcase
+rescue
+end
+%>
+module <%= module_name %>
+  VERSION = '<%= Time.now.strftime("%y.%m.%d") %>'
+end

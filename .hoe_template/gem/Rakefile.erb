@@ -1,0 +1,30 @@
+# encoding: UTF-8
+<% project_name = "#{File.basename(File.dirname(File.realpath(__FILE__)))}"
+class_name = project_name 
+module_name = project_name
+begin
+  require 'facets'
+  class_name = class_name.upper_camelcase
+  module_name = module_name.upper_camelcase
+rescue
+end
+%>
+require 'hoe'
+Hoe::add_include_dirs("lib")
+
+Hoe.plugins.delete :rubyforge
+Hoe.plugin :git
+
+Hoe.spec '<%= project_name %>' do
+  developer "Sandor Szücs", 'sandor.szuecs@fu-berlin.de'
+  
+  self.flay_threshold = 100
+  
+  self.history_file = "CHANGELOG.rdoc"
+  self.readme_file = "README.rdoc"
+  self.testlib = :minitest
+  
+  #extra_deps << ['net-ssh', '~> 2.0']
+end
+
+# vim: syntax=ruby

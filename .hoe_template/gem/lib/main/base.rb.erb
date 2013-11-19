@@ -1,0 +1,25 @@
+<% file_name = File.basename(__FILE__).sub(/#{File.extname(__FILE__)}$/ , "")
+class_name = file_name.sub(/#{File.extname(file_name)}$/ , "")
+module_name = File.basename(File.dirname(File.dirname(File.realdirpath(__FILE__))))
+begin
+  require 'facets'
+  class_name = class_name.upper_camelcase
+  module_name = module_name.upper_camelcase
+rescue
+end
+%>
+require 'lib/version'
+module <%= module_name %>
+  class <%= class_name %>
+
+    class << self
+    end # class_methods
+
+    def initialize(options)
+      @parameter = options[:parameter]
+    end
+
+    private
+
+  end
+end
