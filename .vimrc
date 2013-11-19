@@ -4,6 +4,7 @@ set nocompatible
 " pathogen bundle manager
 " https://github.com/tpope/vim-pathogen
 call pathogen#infect()
+"execute pathogen#infect()
 
 "------------------------------------------------------------
 " Basic {{{1
@@ -18,9 +19,9 @@ set showcmd       " display incomplete commands
 "set cursorline
 
 syntax on           " syntax
-filetype on         " Enable filetype detection
-filetype indent on  " Enable filetype-specific indenting
-filetype plugin on  " Enable filetype-specific plugins
+"filetype on         " Enable filetype detection
+"filetype indent on  " Enable filetype-specific indenting
+filetype plugin indent on  " Enable filetype-specific plugins
 compiler ruby       " Enable compiler support for ruby
 
 " One of the most important options to activate. Allows you to switch from an
@@ -106,13 +107,14 @@ nnoremap <C-L> :nohl<CR><C-L>
 nnoremap <C-E> <C-E><C-E><C-E><C-E><C-E>
 nnoremap <C-Y> <C-Y><C-Y><C-Y><C-Y><C-Y>
 
+"" map <leader> key to ,
+let mapleader=','
 " edit mappings from http://vimcasts.org/episodes/the-edit-command/
 " auto complete the path to your currently open file
 " ,ew -> edit mode
 " ,es -> split mode
 " ,ev -> vertical split mode
 " ,et -> tab
-let mapleader=','
 map <leader>ew :e <C-R>=expand("%:p:h") . "/" <CR>
 map <leader>es :sp <C-R>=expand("%:p:h") . "/" <CR>
 map <leader>ev :vsp <C-R>=expand("%:p:h") . "/" <CR>
@@ -135,6 +137,23 @@ else
   map <S-t> :CommandT<CR>
 endif
 
+"------------------------------------------------------------
+" tagbar {{{2
+nmap <F8> :TagbarToggle<CR>
+"------------------------------------------------------------
+" ack.vim {{{2
+let g:ackprg="/usr/local/bin/ack -H --nocolor --nogroup --column"
+"------------------------------------------------------------
+" NerdTree.vim {{{2
+map <S-f> :NERDTreeToggle<CR>
+"------------------------------------------------------------
+" NerdCommenter.vim {{{2
+""if has("gui_macvim")
+""  macmenu &File.New\ Tab key=<nop>
+""  map <D-t> :CommandT<CR> 
+""else
+""  map <S-t> :CommandT<CR>
+""endif
 "------------------------------------------------------------
 " Encodings {{{1
 " latin1 Unicode utf-8
@@ -212,4 +231,5 @@ set expandtab
 " Wrap {{{1
 "" adds a :Wrap command to set the 3 options at once
 command! -nargs=* Wrap set wrap linebreak nolist
+
 
