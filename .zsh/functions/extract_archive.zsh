@@ -24,6 +24,8 @@ extract_archive () {
       lha e $1
   elif [[ $lower == *.xz ]]; then
       xz -d $1
+  elif [[ $lower == *.z || $lower == *.7z ]]; then
+      7z x $1
   else
       print "Unknown archive type: $1"
       return 1
@@ -40,4 +42,4 @@ extract_archive () {
   done
 }
 alias ex=extract_archive
-compdef '_files -g "*.gz *.tgz *.bz2 *.tbz *.zip *.rar *.tar *.lha *.xz *.txz"' extract_archive
+compdef '_files -g "*.gz *.tgz *.bz2 *.tbz *.zip *.rar *.tar *.lha *.xz *.txz *.7z *.z"' extract_archive
