@@ -113,3 +113,12 @@
 [submodule "src/vim/nerdcommenter"]
   path = src/vim/nerdcommenter
   url = https://github.com/ddollar/nerdcommenter.git
+[submodule "emacs-libs/org-jira"]
+	path = emacs-libs/org-jira
+	url = https://github.com/baohaojun/org-jira.git
+[submodule "emacs-libs/nxhtml"]
+	path = emacs-libs/nxhtml
+	url = https://github.com/emacsmirror/nxhtml.git
+[submodule "emacs-libs/go-errcheck"]
+	path = emacs-libs/go-errcheck
+	url = https://github.com/dominikh/go-errcheck.el
