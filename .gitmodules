@@ -113,3 +113,6 @@
 [submodule "src/vim/nerdcommenter"]
   path = src/vim/nerdcommenter
   url = https://github.com/ddollar/nerdcommenter.git
+[submodule "emacs-libs/go-mode"]
+	path = emacs-libs/go-mode
+	url = git@github.com:dominikh/go-mode.el.git
