@@ -98,9 +98,6 @@
 [submodule ".vim/bundle/vim-unimpaired"]
   path = .vim/bundle/vim-unimpaired
   url = git://github.com/tpope/vim-unimpaired.git
-[submodule ".vim/bundle/vdebug"]
-	path = .vim/bundle/vdebug
-	url = git://github.com/joonty/vdebug.git
 [submodule "src/vim/vim-snippets"]
   path = src/vim/vim-snippets
   url = https://github.com/honza/vim-snippets.git
@@ -113,3 +110,12 @@
 [submodule "src/vim/nerdcommenter"]
   path = src/vim/nerdcommenter
   url = https://github.com/ddollar/nerdcommenter.git
+[submodule "emacs-libs/org-jira"]
+	path = emacs-libs/org-jira
+	url = https://github.com/baohaojun/org-jira.git
+[submodule "emacs-libs/nxhtml"]
+	path = emacs-libs/nxhtml
+	url = https://github.com/emacsmirror/nxhtml.git
+[submodule "emacs-libs/go-errcheck"]
+	path = emacs-libs/go-errcheck
+	url = https://github.com/dominikh/go-errcheck.el
