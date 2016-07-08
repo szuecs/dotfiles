@@ -17,6 +17,8 @@ if [ "$PS1" ]; then
   alias la='ls -a'
   alias ll='ls -lh'
   alias l='ls -lah'
+  # return your external visible IP
+  alias myip='curl readmyip.appspot.com'
   # with mmv u can rename multiple files. mmv *.text *.txt
   alias mmv='noglob zmv -W'
   autoload -U zmv
