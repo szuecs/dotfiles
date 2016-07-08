@@ -10,7 +10,7 @@ case $(uname) in
 
     X11="/usr/X11R6/bin"
     DEVTOOLS="/Developer/Tools:/Developer/usr/bin:/Developer/usr/sbin"
-    PATH="$GOROOT/bin:$GOBIN:/usr/local/git/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$X11:$DEVTOOLS:/usr/libexec"
+    PATH="$GOROOT/bin:/usr/local/git/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$X11:$DEVTOOLS:/usr/libexec"
     MANPATH="/usr/local/git/share/man:/usr/local/share/man:/usr/share/man:$MANPATH"
 
     if [ ! $DISPLAY ]; then

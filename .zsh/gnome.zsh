@@ -1,6 +1,7 @@
 case $(uname) in
 Linux)
-  export JAVA_HOME=/usr/lib/jvm/default-java/
+  #export PATH="/server/bin:$PATH"
+  export JAVA_HOME=/usr/lib/jvm/java-jdk7u45-oracle-amd64/
   if [ "$PS1" ]; then
       alias R="R -q"
       if which nautilus >/dev/null && (pgrep gdm >/dev/null || pgrep lightdm >/dev/null); then
