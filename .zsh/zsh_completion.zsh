@@ -57,16 +57,4 @@ if [ "$PS1" ]; then
 
   # source .zsh/Completion/*
   . ~/.zsh/Completion/*.zsh
-
-  # TODO: add auto git prompt
-  # TODO: change colors to be usable on white background
-  # TODO: ignore git repo if it is dotfiles.git
-  #fpath=($fpath $HOME/.zsh/zsh-git/functions)
-  # zsh git completion and prompt
-  #setopt promptsubst
-  # Load the prompt theme system
-  #autoload -U promptinit
-  #promptinit
-  # Use the wunjo prompt theme
-  #prompt wunjo
 fi
