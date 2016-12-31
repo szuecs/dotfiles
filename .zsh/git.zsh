@@ -3,6 +3,8 @@ alias gsup="git svn fetch && git svn rebase"
 alias gsd="git svn dcommit"
 alias grevert="git reset --hard HEAD"
 alias gl="git log --oneline"
+alias gco="git checkout"
+alias gcm="git commit -m"
 
 #
 # zsh - RPROMPT
@@ -37,7 +39,7 @@ zsh_git_chpwd_update_vars() {
 preexec_functions+='zsh_git_preexec_update_vars'
 
 zsh_git_preexec_update_vars() {
-  case "$(history $HISTCMD)" in 
+  case "$(history $HISTCMD)" in
     *git*) zsh_git_invalidate_vars ;;
   esac
 }
