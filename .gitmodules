@@ -122,3 +122,6 @@
 [submodule "emacs-libs/go-mode"]
 	path = emacs-libs/go-mode
 	url = git@github.com:dominikh/go-mode.el.git
+[submodule "dockerfile-mode"]
+	path = emacs-libs/dockerfile-mode
+	url = git@github.com:spotify/dockerfile-mode.git
