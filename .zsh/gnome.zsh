@@ -1,7 +1,7 @@
 case $(uname) in
 Linux)
   #export PATH="/server/bin:$PATH"
-  export JAVA_HOME=/usr/lib/jvm/java-jdk7u45-oracle-amd64/
+  export JAVA_HOME=/usr/lib/jvm/default-java
   if [ "$PS1" ]; then
       alias R="R -q"
       if which nautilus >/dev/null && (pgrep gdm >/dev/null || pgrep lightdm >/dev/null); then
@@ -54,7 +54,8 @@ function open() {
     image)         eog $1      ;;
     gimp)          gimp $1     ;;
     pdf|PDF)       open_pdf $1 ;;
-    html|HTML)     open_browser $1 ;;
+    html|HTML|svg|SVG)
+                   open_browser $1 ;;
     ods|ODS|odp)   open_office $1 ;;
     *)
       echo "nothing found to open ${1}, ${target_file},${first_word}, ${second_word}"

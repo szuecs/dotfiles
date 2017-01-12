@@ -19,6 +19,8 @@ if [ "$PS1" ]; then
   alias l='ls -lah'
   # return your external visible IP
   alias myip='curl readmyip.appspot.com'
+  # fix hyphen sort problem
+  alias sort='LC_ALL=C sort'
   # with mmv u can rename multiple files. mmv *.text *.txt
   alias mmv='noglob zmv -W'
   autoload -U zmv
