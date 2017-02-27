@@ -101,6 +101,3 @@
 [submodule "emacs-libs/flycheck-gometalinter"]
 	path = emacs-libs/flycheck-gometalinter
 	url = git@github.com:favadi/flycheck-gometalinter.git
-[submodule "emacs-libs/dockerfile-mode"]
-	path = emacs-libs/dockerfile-mode
-	url = git@github.com:spotify/dockerfile-mode.git
