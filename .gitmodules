@@ -74,30 +74,6 @@
 [submodule "emacs-libs/pylookup"]
 	path = emacs-libs/pylookup
 	url = git://github.com/tsgates/pylookup.git
-[submodule ".vim/bundle/vim-ruby"]
-  path = .vim/bundle/vim-ruby
-  url = git://github.com/vim-ruby/vim-ruby.git
-[submodule ".vim/bundle/ZoomWin"]
-  path = .vim/bundle/ZoomWin
-  url = https://github.com/vim-scripts/ZoomWin.git
-[submodule ".vim/bundle/syntastic"]
-  path = .vim/bundle/syntastic
-  url = https://github.com/scrooloose/syntastic.git
-[submodule ".vim/bundle/tagbar"]
-  path = .vim/bundle/tagbar
-  url = https://github.com/majutsushi/tagbar.git
-[submodule ".vim/bundle/tlib_vim"]
-  path = .vim/bundle/tlib_vim
-  url = https://github.com/tomtom/tlib_vim.git
-[submodule ".vim/bundle/vim-addon-mw-utils"]
-  path = .vim/bundle/vim-addon-mw-utils
-  url = https://github.com/MarcWeber/vim-addon-mw-utils.git
-[submodule ".vim/bundle/vim-snipmate"]
-  path = .vim/bundle/vim-snipmate
-  url = https://github.com/garbas/vim-snipmate.git
-[submodule ".vim/bundle/vim-unimpaired"]
-  path = .vim/bundle/vim-unimpaired
-  url = git://github.com/tpope/vim-unimpaired.git
 [submodule "src/vim/vim-snippets"]
   path = src/vim/vim-snippets
   url = https://github.com/honza/vim-snippets.git
