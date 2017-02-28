@@ -1,0 +1,7 @@
+.vim/bundle
+.netrwhist
+.pgpass
+*history
+*cache
+emacs-libs/ess
+emacs-libs/org-mode
