@@ -111,5 +111,8 @@ if [ "$PS1" ]; then
   # Quote pasted URLs
   autoload url-quote-magic
   zle -N self-insert url-quote-magic
+
+  #export=WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
+
 fi
 
