@@ -1,0 +1,4 @@
+
+setlocal expandtab
+
+compiler ruby
