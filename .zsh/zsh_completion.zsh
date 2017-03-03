@@ -21,6 +21,7 @@ if [ "$PS1" ]; then
   # completion tweaking
   #
   autoload -U compinit; compinit
+  autoload -U bashcompinit && bashcompinit
   zstyle ':completion:*' use-cache on
   zstyle ':completion:*' cache-path $HOME/.zsh/cache
   zstyle ':completion:*' users resolve
