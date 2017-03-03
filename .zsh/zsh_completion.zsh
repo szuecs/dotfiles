@@ -19,6 +19,7 @@ if [ "$PS1" ]; then
   # completion tweaking
   #
   autoload -U compinit; compinit
+  autoload -U bashcompinit && bashcompinit
   zstyle ':completion:*' use-cache on
   zstyle ':completion:*' users resolve
   # activate menu selection if >=5 possibilities
