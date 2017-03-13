@@ -15,6 +15,9 @@ if [ "$PS1" ]; then
   #cdpath=(. $GOROOT/src $GOPATH/src/golang.org $GOPATH/src/github.com $GOPATH/src/github.com/szuecs)
   cdpath=(. $GOROOT/src $GOPATH/src/golang.org $GOPATH/src/github.com $GOPATH/src/github.com/szuecs $GOPATH/src/github.bus.zalan.do/teapot $GOPATH/src/github.com/zalando $GOPATH/src/github.com/zalando-incubator)
 
+  # custom completions
+  fpath=($HOME/.zsh/Completion $fpath)
+
   #
   # completion tweaking
   #
@@ -56,9 +59,6 @@ if [ "$PS1" ]; then
   zstyle ':completion:*:emacs:*' ignored-patterns '*.(o|a|so|dmg|dylib|aux|dvi|log|swp|fig|bbl|blg|bst|idx|ind|out|toc|class|pyc|rbc|dSYM)'
   zstyle ':completion:*:emacsclient:*' ignored-patterns '*.(o|a|so|dmg|dylib|aux|dvi|log|swp|fig|bbl|blg|bst|idx|ind|out|toc|class|pyc|rbc|dSYM)'
   zstyle ':completion:*:e:*' ignored-patterns '*.(o|a|so|dmg|dylib|aux|dvi|log|swp|fig|bbl|blg|bst|idx|ind|out|toc|class|pyc|rbc|dSYM)'
-
-  # source .zsh/Completion/*
-  . ~/.zsh/Completion/*.zsh
 
   # TODO: add auto git prompt
   # TODO: change colors to be usable on white background
