@@ -1,4 +1,6 @@
 if [ "$PS1" ]; then
+  test -d $HOME/.zsh/cache || mkdir $HOME/.zsh/cache
+
   # complist section
   zmodload -i zsh/complist
 
@@ -20,6 +22,7 @@ if [ "$PS1" ]; then
   #
   autoload -U compinit; compinit
   zstyle ':completion:*' use-cache on
+  zstyle ':completion:*' cache-path $HOME/.zsh/cache
   zstyle ':completion:*' users resolve
   # activate menu selection if >=5 possibilities
   zstyle ':completion:*' menu select=5
@@ -56,8 +59,7 @@ if [ "$PS1" ]; then
   zstyle ':completion:*:emacsclient:*' ignored-patterns '*.(o|a|so|dmg|dylib|aux|dvi|log|swp|fig|bbl|blg|bst|idx|ind|out|toc|class|pyc|rbc|dSYM)'
   zstyle ':completion:*:e:*' ignored-patterns '*.(o|a|so|dmg|dylib|aux|dvi|log|swp|fig|bbl|blg|bst|idx|ind|out|toc|class|pyc|rbc|dSYM)'
 
-  # source .zsh/Completion/*
-  . ~/.zsh/Completion/*.zsh
+  fpath=($fpath $HOME/.zsh/Completion)
 
   # TODO: add auto git prompt
   # TODO: change colors to be usable on white background
