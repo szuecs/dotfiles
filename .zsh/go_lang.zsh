@@ -10,7 +10,7 @@ case $(uname) in
     export GOARCH=amd64
     PATH=${PATH}:${GOROOT}/bin:${GOBIN}
   else
-    export GOROOT=/usr/share/go
+    export GOROOT=/usr/local/go
     export GOPATH=$HOME/go
     export GOBIN=$GOPATH/bin
     export GOOS=darwin
