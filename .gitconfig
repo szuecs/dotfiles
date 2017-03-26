@@ -34,3 +34,7 @@
 	default = matching
 [pull]
 	rebase = true
+[commit]
+	gpgsign = true
+[hub]
+	host = github.bus.zalan.do
