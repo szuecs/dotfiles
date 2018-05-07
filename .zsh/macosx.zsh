@@ -5,6 +5,8 @@ case $(uname) in
   export LC_CTYPE=en_US.UTF-8
   #export LC_CTYPE=de_DE.UTF-8
 
+  git config --global user.signingkey 28BECE6B
+
   # If running interactively, then:
   if [ "$PS1" ]; then
 
@@ -36,6 +38,13 @@ case $(uname) in
     alias flush="dscacheutil -flushcache" # Flush DNS cache
 
     alias emacs='open -a Emacs.app --args'
+    if [ -f  $HOME/Applications/Emacs.app/Contents/MacOS/bin/emacsclient ]
+    then
+    	alias e='$HOME/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -c'
+    elif [ -f  /Applications/Emacs.app/Contents/MacOS/bin/emacsclient ]
+    then
+    	alias e='$HOME/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -c'
+    fi
     # set default of srm to overwrite blocks with 0x00
     alias srm="srm -z"
     alias r='/usr/bin/r'
