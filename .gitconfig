@@ -30,6 +30,15 @@
   lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
   cp = cherry-pick
   brl = for-each-ref --sort='-authordate:iso8601' --format=' %(color:green)%(authordate:iso8601)%09%(color:white)%(refname:short)' refs/heads
+	s = status --short --branch --ignore-submodules=untracked
+	find = log --pretty=\"format:%Cgreen%H\n%s\n\n%b\" --name-status --grep
+	amend = commit --amend --no-edit
+	undo = reset HEAD~
+	upload = "!git push szuecs $(git rev-parse --abbrev-ref HEAD)"
+	prune = "!git co master && git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+	delete = branch -D
+	pr = "!git fetch origin pull/$1/head:pr$1"
+	sync = "!git pull -q -r origin master"
 [push]
 	default = matching
 [pull]
