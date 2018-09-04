@@ -21,6 +21,8 @@ if [ "$PS1" ]; then
   alias myip='curl readmyip.appspot.com'
   # fix hyphen sort problem
   alias sort='LC_ALL=C sort'
+  # vim restore session
+  alias vimo="vim -S ~/.vim/sessions/last.vim"
   # with mmv u can rename multiple files. mmv *.text *.txt
   alias mmv='noglob zmv -W'
   autoload -U zmv
@@ -89,7 +91,7 @@ if [ "$PS1" ]; then
 
   # nifty aliases
   alias -g L='2>&1 | less -R'
-  alias -g G='|grep'
+  alias -g G='2>&1 |grep'
   alias -g H='|head -15'
   alias -g S='|sort'
   alias -g W='|wc -l'

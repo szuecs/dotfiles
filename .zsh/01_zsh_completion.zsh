@@ -19,6 +19,8 @@ if [ "$PS1" ]; then
 
   # custom completions
   fpath=($HOME/.zsh/Completion $fpath)
+  # https://github.com/zsh-users/zsh-completions
+  fpath=($HOME/.zsh/zsh-completions/src $fpath)
 
   #
   # completion tweaking
@@ -63,15 +65,4 @@ if [ "$PS1" ]; then
   zstyle ':completion:*:emacsclient:*' ignored-patterns '*.(o|a|so|dmg|dylib|aux|dvi|log|swp|fig|bbl|blg|bst|idx|ind|out|toc|class|pyc|rbc|dSYM)'
   zstyle ':completion:*:e:*' ignored-patterns '*.(o|a|so|dmg|dylib|aux|dvi|log|swp|fig|bbl|blg|bst|idx|ind|out|toc|class|pyc|rbc|dSYM)'
 
-  # TODO: add auto git prompt
-  # TODO: change colors to be usable on white background
-  # TODO: ignore git repo if it is dotfiles.git
-  #fpath=($fpath $HOME/.zsh/zsh-git/functions)
-  # zsh git completion and prompt
-  #setopt promptsubst
-  # Load the prompt theme system
-  #autoload -U promptinit
-  #promptinit
-  # Use the wunjo prompt theme
-  #prompt wunjo
 fi

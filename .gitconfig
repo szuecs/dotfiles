@@ -1,5 +1,5 @@
 [user]
-  name = Sandor Szuecs
+  name = Sandor Szücs
   email = sandor.szuecs@zalando.de
 [color]
   status = auto
@@ -39,6 +39,12 @@
 	delete = branch -D
 	pr = "!git fetch origin pull/$1/head:pr$1"
 	sync = "!git pull -q -r origin master"
+	change = codereview change
+	gofmt = codereview gofmt
+	mail = codereview mail
+	pending = codereview pending
+	submit = codereview submit
+	sync = codereview sync
 [push]
 	default = matching
 [pull]
@@ -47,3 +53,7 @@
 	gpgsign = true
 [hub]
 	host = github.bus.zalan.do
+#[url "git@github.bus.zalan.do:"]
+#	 insteadOf = https://github.bus.zalan.do/
+[http]
+	cookiefile = /home/sszuecs/.gitcookies

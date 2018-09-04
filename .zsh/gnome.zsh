@@ -2,6 +2,13 @@ case $(uname) in
 Linux)
   #export PATH="/server/bin:$PATH"
   export JAVA_HOME=/usr/lib/jvm/default-java
+
+  pidof syndaemon &>/dev/null
+  if [ ! $? -eq 0 ]
+  then
+      bash -c 'syndaemon -i 0.25 -R &' # disable trackpad while typing
+  fi
+
   if [ "$PS1" ]; then
       alias R="R -q"
       if which nautilus >/dev/null && (pgrep gdm >/dev/null || pgrep lightdm >/dev/null); then

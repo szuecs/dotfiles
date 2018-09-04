@@ -57,23 +57,23 @@ if has("lua")
 	inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 	" Close popup by <Space>.
 	"inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
-	
+
 	" AutoComplPop like behavior.
 	"let g:neocomplete#enable_auto_select = 1
-	
+
 	" Shell like behavior(not recommended).
 	"set completeopt+=longest
 	"let g:neocomplete#enable_auto_select = 1
 	"let g:neocomplete#disable_auto_complete = 1
 	"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
-	
+
 	" Enable omni completion.
 	autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 	autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 	autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 	autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 	autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-	
+
 	" Enable heavy omni completion.
 	if !exists('g:neocomplete#sources#omni#input_patterns')
 	  let g:neocomplete#sources#omni#input_patterns = {}
@@ -81,7 +81,7 @@ if has("lua")
 	"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 	"let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
 	"let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-	
+
 	" For perlomni.vim setting.
 	" https://github.com/c9s/perlomni.vim
 	let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
@@ -179,7 +179,11 @@ if has("autocmd")
     \ endif
 
   "remove trailing whitespaces"
-  autocmd BufWritePre *{Makefile,go,org,rc,tmpl,py,rb,java,c,h,cpp,js,json,yaml,plist,r,pl,pp,el,xml,cfg,lisp,hs,rc,conf,sh,zsh,bash} :%s/\s\+$//e
+  autocmd BufWritePre *{Makefile,go,org,eskip,rc,tmpl,py,rb,java,c,h,cpp,js,json,yaml,plist,r,pl,pp,el,xml,cfg,lisp,hs,rc,conf,sh,zsh,bash} :%s/\s\+$//e
+
+  " safe sessions use vimo to restore
+  " alias vimo="vim -S ~/.vim/sessions/last.vim"
+  autocmd VimLeave * :mksession! ~/.vim/sessions/last.vim
 endif
 
 "------------------------------------------------------------
@@ -229,7 +233,7 @@ map <S-f> :NERDTreeToggle<CR>
 " NerdCommenter.vim {{{2
 ""if has("gui_macvim")
 ""  macmenu &File.New\ Tab key=<nop>
-""  map <D-t> :CommandT<CR> 
+""  map <D-t> :CommandT<CR>
 ""else
 ""  map <S-t> :CommandT<CR>
 ""endif
