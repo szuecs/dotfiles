@@ -108,3 +108,7 @@ function k8s_node_internal_ip () {
 		kubectl get nodes -o jsonpath='{range .items[*]}{.metadata.name} {.status.addresses[?(@.type=="InternalIP")].address}{"\n"}{end}'
 	fi
 }
+
+function k8s_deployment_resource_req() {
+	kubectl -n kube-system get deployment $1 -o yaml | grep resources: -A 6
+}

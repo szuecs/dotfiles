@@ -86,19 +86,21 @@ function fp { osascript 2>/dev/null -e 'tell application "Finder"'\
 ## alias to copy it to the clipboard
 alias cfp='fp | pbcopy'
 
-function sufinder {
-  case $(uname -r) in
-  "10.7.0")
-    sudo /System/Library/CoreServices/Finder.app/Contents/MacOS/Finder
-    ;;
-  "10.8.0")
-    sudo /System/Library/CoreServices/Finder.app/Contents/MacOS/Finder
-    ;;
-  esac
+function changeMac() {
+  local mac=$(openssl rand -hex 6 | sed 's/\(..\)/\1:/g; s/.$//')
+  sudo ifconfig en0 ether $mac
+  sudo ifconfig en0 down
+  sudo ifconfig en0 up
+  echo "Your new physical address is $mac"
 }
+
+function sufinder {
+    sudo /System/Library/CoreServices/Finder.app/Contents/MacOS/Finder
+}
+
 # Change directory to the directory shown in the top-most Finder window:
 cdf () {
-   currFolderPath=$( /usr/bin/osascript 2>/dev/null <<"         EOT"
+   currFolderPath=$( /usr/bin/osascript 2>/dev/null <<"EOT"
        tell application "Finder"
            try
                set currFolder to (folder of the front window as alias)
@@ -107,7 +109,7 @@ cdf () {
            end try
            POSIX path of currFolder
        end tell
-         EOT
+EOT
    )
    echo "cd to \"$currFolderPath\""
    cd "$currFolderPath"
@@ -118,3 +120,4 @@ cdf () {
   fi
   ;; # close case
 esac
+
