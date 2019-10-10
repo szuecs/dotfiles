@@ -53,7 +53,9 @@
 	gpgsign = true
 [hub]
 	host = github.bus.zalan.do
-#[url "git@github.bus.zalan.do:"]
-#	 insteadOf = https://github.bus.zalan.do/
+[url "git@github.bus.zalan.do:"]
+	 insteadOf = https://github.bus.zalan.do/
 [http]
 	cookiefile = /home/sszuecs/.gitcookies
+[diff]
+	noprefix = true
