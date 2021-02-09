@@ -103,6 +103,8 @@ if [ "$PS1" ]; then
   alias -s c="emacs"
   # quick edit
   alias z="$EDITOR -c ~/.zsh"
+  # docker clean
+  alias dclean="docker container prune; docker image prune -a; docker system prune -a -f --volumes"
 
   # history cmd expansion using space, example: !-3␣
   bindkey ' ' magic-space

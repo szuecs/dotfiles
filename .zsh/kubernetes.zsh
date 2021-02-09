@@ -2,8 +2,33 @@
 source <(kubectl completion zsh )
 
 alias kubectl_s='kubectl -n kube-system'
-alias slog='kubectl -n kube-system log'
 alias sexec='kubectl -n kube-system exec -it'
+
+function k8s_logs_by_application_label() {
+	if [ $2 ]
+	then
+		kubectl -n $1 logs -l application=$2
+	elif [ $1 ]
+	then
+		kubectl -n kube-system logs -l application=$1
+	else
+		kubectl -n kube-system logs
+	fi
+}
+alias slog="k8s_logs_by_application_label"
+
+function k8s_logs_by_application_label_f() {
+	if [ $2 ]
+	then
+		kubectl -n $1 logs -f -l application=$2
+	elif [ $1 ]
+	then
+		kubectl -n kube-system logs -f -l application=$1
+	else
+		kubectl -n kube-system logs -f
+	fi
+}
+alias slogf="k8s_logs_by_application_label_f"
 
 # get all pods filtered by application label, defaults to kube-system namespace
 function k8s_pods_by_application_label() {
@@ -106,6 +131,24 @@ function k8s_node_internal_ip () {
 		kubectl get nodes -l ${1} -o jsonpath='{range .items[*]}{.metadata.name} {.status.addresses[?(@.type=="InternalIP")].address}{"\n"}{end}'
 	else
 		kubectl get nodes -o jsonpath='{range .items[*]}{.metadata.name} {.status.addresses[?(@.type=="InternalIP")].address}{"\n"}{end}'
+	fi
+}
+
+function k8s_node_az () {
+	if [ $1 ]
+	then
+		kubectl get nodes -l failure-domain.beta.kubernetes.io/zone=eu-central-1$1 -L failure-domain.beta.kubernetes.io/zone -o wide
+	else
+		kubectl get nodes -L failure-domain.beta.kubernetes.io/zone -o wide
+	fi
+}
+
+function k8s_node_type () {
+	if [ $1 ]
+	then
+		kubectl get nodes -l beta.kubernetes.io/instance-type=$1 -L beta.kubernetes.io/instance-type -o wide
+	else
+		kubectl get nodes -L beta.kubernetes.io/instance-type -o wide
 	fi
 }
 
