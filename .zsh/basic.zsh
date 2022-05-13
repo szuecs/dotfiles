@@ -18,7 +18,7 @@ if [ "$PS1" ]; then
   alias ll='ls -lh'
   alias l='ls -lah'
   # return your external visible IP
-  alias myip='curl readmyip.appspot.com'
+  alias myip='curl http://szuecs.net:9001 --dump-header - G Your-Ip'
   # fix hyphen sort problem
   alias sort='LC_ALL=C sort'
   # vim restore session
@@ -104,7 +104,9 @@ if [ "$PS1" ]; then
   # quick edit
   alias z="$EDITOR -c ~/.zsh"
   # docker clean
-  alias dclean="docker container prune; docker image prune -a; docker system prune -a -f --volumes"
+  alias docker_clean="docker container prune; docker image prune -a; docker system prune -a -f --volumes"
+  # yaml2json foo.yaml
+  alias yaml2json='ruby -ryaml -rjson -e "puts JSON.dump(YAML.load(ARGF))"'
 
   # history cmd expansion using space, example: !-3␣
   bindkey ' ' magic-space
