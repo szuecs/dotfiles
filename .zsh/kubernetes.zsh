@@ -45,6 +45,24 @@ function k8s_pods_by_application_label() {
 alias sapps="k8s_pods_by_application_label"
 alias apps="k8s_pods_by_application_label default"
 
+function k8s_pod_states_by_application_label() {
+	k8s_pods_by_application_label $1 | awk '
+	BEGIN{
+		run=0; term=0;pend=0;other=0
+	}
+	$1 != "NAME"
+	{
+		if ($3 == "Running") {run=run+1}
+		else if ($3 == "Terminating") {term=term+1}
+		else if ($3 == "Pending") {pend=pend+1}
+		else {other=other+1}
+	}
+	END{
+		print "running: "run"\nterminating: "term"\npending: "pend"\nother: "other
+	}'
+}
+alias states="k8s_pod_states_by_application_label"
+
 function k8s_delete_pods_by_application_label() {
 	PODS=$(k8s_pods_by_application_label $* | awk '$1 != "NAME" {print $1}' | xargs echo -n "$1")
 	NS=kube-system
