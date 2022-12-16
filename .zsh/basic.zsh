@@ -107,6 +107,8 @@ if [ "$PS1" ]; then
   alias docker_clean="docker container prune; docker image prune -a; docker system prune -a -f --volumes"
   # yaml2json foo.yaml
   alias yaml2json='ruby -ryaml -rjson -e "puts JSON.dump(YAML.load(ARGF))"'
+  # json2yaml foo.json
+  alias json2yaml='ruby -ryaml -rjson -e "puts YAML.dump(JSON.load(ARGF))"'
 
   # history cmd expansion using space, example: !-3␣
   bindkey ' ' magic-space
@@ -121,4 +123,3 @@ if [ "$PS1" ]; then
   #export=WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 
 fi
-

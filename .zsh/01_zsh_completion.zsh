@@ -15,7 +15,7 @@ if [ "$PS1" ]; then
 
   # autocd expanding
   #cdpath=(. $GOROOT/src $GOPATH/src/golang.org $GOPATH/src/github.com $GOPATH/src/github.com/szuecs)
-  cdpath=(. $GOROOT/src $GOPATH/src/golang.org $GOPATH/src/github.com $GOPATH/src/github.com/szuecs $GOPATH/src/github.bus.zalan.do/teapot $GOPATH/src/github.com/zalando $GOPATH/src/github.com/zalando-incubator)
+  cdpath=(. $GOROOT/src $GOPATH/src/golang.org $GOPATH/src/github.com $GOPATH/src/github.com/szuecs $GOPATH/src/github.bus.zalan.do/pg9 $GOPATH/src/github.bus.zalan.do/teapot $GOPATH/src/github.com/zalando $GOPATH/src/github.com/zalando-incubator)
 
   # custom completions
   fpath=($HOME/.zsh/Completion $fpath)
