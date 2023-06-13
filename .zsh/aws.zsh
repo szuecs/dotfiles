@@ -1,5 +1,5 @@
 ec2_instance_connect () {
-	tf=$(tempfile)
+	tf=$(mktemp)
 	aws ec2 describe-instances --instance-ids $@ > $tf
 
 	for inst AZ in $(jq -r '.Reservations[].Instances[] | "\(.InstanceId) \(.Placement.AvailabilityZone)"' $tf)
@@ -17,7 +17,7 @@ ec2_instance_connect () {
 ec2_node_connect () {
 	if [ ${#@} -gt 1 ]
 	then
-	  tf=$(tempfile)
+	  tf=$(mktemp)
 	  kubectl get nodes $@ -o json > $tf
 
 	  for AZ_INSTANCE in $(jq -r '.items[].spec.providerID' $tf | cut -d "/" -f4-5)
@@ -35,7 +35,7 @@ ec2_node_connect () {
 
         elif [ ${#@} -eq 1 ]
         then
-	  tf=$(tempfile)
+	  tf=$(mktemp)
 	  kubectl get nodes $@ -o json > $tf
           AZ_INSTANCE=$(jq -r '.spec.providerID' $tf | cut -d "/" -f4-5)
 	  AZ=$(echo $AZ_INSTANCE | cut -d "/" -f1)
@@ -53,7 +53,7 @@ ec2_node_connect () {
 }
 
 ec2_label_connect () {
-	tf=$(tempfile)
+	tf=$(mktemp)
 	kubectl get nodes -l $1 -o json > $tf
 
 	for AZ_INSTANCE in $(jq -r '.items[].spec.providerID' $tf | cut -d "/" -f4-5)
@@ -70,7 +70,7 @@ ec2_label_connect () {
 	cssh -l ubuntu $(jq -r '.items[].status.addresses[] | select(.type=="ExternalIP") | .address' $tf)
 }
 ec2_label_ssh () {
-	tf=$(tempfile)
+	tf=$(mktemp)
 	kubectl get nodes -l $1 -o json > $tf
 
 	cssh -l ubuntu $(jq -r '.items[].status.addresses[] | select(.type=="ExternalIP") | .address' $tf)
