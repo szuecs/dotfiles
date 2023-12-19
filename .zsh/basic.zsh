@@ -92,6 +92,7 @@ if [ "$PS1" ]; then
   # nifty aliases
   alias -g L='2>&1 | less -R'
   alias -g G='2>&1 |grep'
+  alias -g T='2>&1 |tee'
   alias -g H='|head -15'
   alias -g S='|sort'
   alias -g W='|wc -l'

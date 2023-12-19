@@ -32,9 +32,12 @@ alias slogf="k8s_logs_by_application_label_f"
 
 # get all pods filtered by application label, defaults to kube-system namespace
 function k8s_pods_by_application_label() {
-	if [ $2 ]
+	if [ $3 ]
 	then
-		kubectl -n $1 get pods -o wide -l application=$2
+		kubectl -n $1 get pods -o wide -l application=$2,component=$3
+	elif [ $2 ]
+	then
+		kubectl -n kube-system get pods -o wide -l application=$1,component=$2
 	elif [ $1 ]
 	then
 		kubectl -n kube-system get pods -o wide -l application=$1
@@ -42,8 +45,9 @@ function k8s_pods_by_application_label() {
 		kubectl -n kube-system get pods -o wide
 	fi
 }
-alias sapps="k8s_pods_by_application_label"
-alias apps="k8s_pods_by_application_label default"
+alias sapps="k8s_pods_by_application_label kube-system"
+alias apps="k8s_pods_by_application_label"
+alias skipper_ingress_pods="kubectl -n kube-system get pods -l application=skipper-ingress,component=ingress -o wide -L metrics/version"
 
 function k8s_pod_states_by_application_label() {
 	k8s_pods_by_application_label $1 | awk '
