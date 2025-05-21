@@ -1,4 +1,11 @@
 ec2_instance_connect () {
+	if [ ${#@} -gt 1 ]
+	then
+          echo "FAIL: you can not use cssh so use single node only for now"
+          echo "ec2_instance_connect <k8s-node>"
+          return
+        fi
+
 	tf=$(mktemp)
 	aws ec2 describe-instances --instance-ids $@ > $tf
 
@@ -11,12 +18,18 @@ ec2_instance_connect () {
 			--ssh-public-key file://$HOME/.ssh/suess_rsa.pub
 	done
 
-	cssh -l ubuntu $(jq -r '.Reservations[].Instances[].PublicIpAddress' $tf)
+	ssh -l ubuntu $(jq -r '.Reservations[].Instances[].PublicIpAddress' $tf)
+        # BUG: replace ssh by cssh fails the command
+	#cssh -l ubuntu $(jq -r '.Reservations[].Instances[].PublicIpAddress' $tf)
 }
 
 ec2_node_connect () {
 	if [ ${#@} -gt 1 ]
 	then
+          echo "FAIL: you can not use cssh so use single node only for now"
+          echo "ec2_node_connect <k8s-node>"
+          return
+
 	  tf=$(mktemp)
 	  kubectl get nodes $@ -o json > $tf
 
@@ -29,9 +42,8 @@ ec2_node_connect () {
 		--availability-zone $AZ \
 		--instance-os-user ubuntu \
 		--ssh-public-key file://$HOME/.ssh/suess_rsa.pub
-	    #--ssh-public-key file://$HOME/.ssh/sandor-lab_ed25519.pub
 	  done
-	  cssh -l ubuntu $(jq -r '.items[].status.addresses[] | select(.type=="ExternalIP") | .address' $tf)
+          # TODO: cssh
 
         elif [ ${#@} -eq 1 ]
         then
@@ -45,7 +57,13 @@ ec2_node_connect () {
 	      --availability-zone $AZ \
 	      --instance-os-user ubuntu \
 	      --ssh-public-key file://$HOME/.ssh/suess_rsa.pub
-	  cssh -l ubuntu $(jq -r '.status.addresses[] | select(.type=="ExternalIP") | .address' $tf)
+          cssh --debug 2 -l ubuntu -o '-o ProxyCommand="sh -c \"aws ssm start-session --target $INSTANCE_ID --document-name AWS-StartSSHSession --parameters portNumber=22\""' $(jq -r '.status.addresses[] | select(.type=="InternalIP") | .address' $tf)
+          #ssh -l ubuntu -o ProxyCommand="sh -c \"aws ssm start-session --target $INSTANCE_ID --document-name AWS-StartSSHSession --parameters portNumber=22\"" $(jq -r '.status.addresses[] | select(.type=="InternalIP") | .address' $tf)
+          # BUG: replace ssh by cssh fails the command
+          #cssh -l ubuntu -o ProxyCommand="sh -c \"aws ssm start-session --target $INSTANCE_ID --document-name AWS-StartSSHSession --parameters portNumber=22\"" "$(jq -r '.status.addresses[] | select(.type=="InternalIP") | .address' $tf)"
+
+	  #cssh -l ubuntu $(jq -r '.status.addresses[] | select(.type=="InternalIP") | .address' $tf)
+          #$(jq -r '.status.addresses[] | select(.type=="ExternalIP") | .address' $tf)
 
         else
           echo "ec2_node_connect <k8s-node> [<k8s-node>..]"
@@ -53,6 +71,10 @@ ec2_node_connect () {
 }
 
 ec2_label_connect () {
+        echo "FAIL: you can not use cssh so use single node only for now"
+        echo "ec2_node_connect <k8s-node>"
+        return
+
 	tf=$(mktemp)
 	kubectl get nodes -l $1 -o json > $tf
 

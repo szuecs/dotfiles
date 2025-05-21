@@ -177,3 +177,13 @@ function k8s_node_type () {
 function k8s_deployment_resource_req() {
 	kubectl -n kube-system get deployment $1 -o yaml | grep resources: -A 6
 }
+
+function debug() {
+  # kubectl_s debug -it "$1" --image=busybox:1.28 --target="$2"
+  kubectl_s debug -it "$1" --image=container-registry.zalando.net/library/alpine-3:3-20240219 --target="$2"
+}
+
+function debug_skipper_ingress() {
+  # kubectl_s debug -it "$1" --image=busybox:1.28 --target="skipper-ingress"
+  kubectl_s debug -it "$1" --image=container-registry.zalando.net/library/alpine-3:3-20240219 --target="skipper-ingress"
+}

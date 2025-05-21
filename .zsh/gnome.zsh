@@ -1,6 +1,7 @@
 case $(uname) in
 Linux)
   #export PATH="/server/bin:$PATH"
+  export PATH="$PATH:/home/sszuecs/.local/bin"
   export JAVA_HOME=/usr/lib/jvm/default-java
 
   pidof syndaemon &>/dev/null
@@ -75,4 +76,3 @@ function open() {
   fi
 ;;
 esac
-

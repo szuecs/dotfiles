@@ -106,6 +106,8 @@ if [ "$PS1" ]; then
   alias z="$EDITOR -c ~/.zsh"
   # docker clean
   alias docker_clean="docker container prune; docker image prune -a; docker system prune -a -f --volumes"
+  # go clean
+  alias go_clean="go clean -cache -modcache -fuzzcache"
   # yaml2json foo.yaml
   alias yaml2json='ruby -ryaml -rjson -e "puts JSON.dump(YAML.load(ARGF))"'
   # json2yaml foo.json
