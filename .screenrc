@@ -1,10 +1,10 @@
 shell zsh
 startup_message off
-history 100
+history 100000
 autodetach on
 defutf8 on # utf8
 # scrollback lines
-defscrollback 4096
+defscrollback 100000
 nonblock on
 
 vbell on
@@ -18,10 +18,10 @@ hardstatus string "%{.bW}%-w%{.rW}%n %t%{-}%+w %=%{..G} %H %{..Y} %D %y/%m/%d %c
 # copy mode: C-a C-[ oder C-a <ESC>
 # markieren funktioniert über Marken setzen mit <space>  w=word,y=lineend,Y=line
 # paste: C-a C-]  or here C-a P
-bind P paste . 
+bind P paste .
 
-# toggle focus in split screen mode like C-a <TAB> 
-bind o focus 
+# toggle focus in split screen mode like C-a <TAB>
+bind o focus
 # jump to other focus in split screen mode
 bind j focus down
 bind k focus up
@@ -41,8 +41,18 @@ defflow off
 #######################
 ### Default Windows ###
 #######################
-# screen -t shell 0 zsh
-# screen -t test 1 zsh
-# screen -t server 2 zsh
-# select 0
- 
+screen -t root 0 zsh
+chdir $GOPATH/src/github.com/zalando-incubator/kubernetes-on-aws
+screen -t kube 1 zsh
+screen -t kube 2 zsh
+chdir $GOPATH/src/github.com/zalando/skipper
+screen -t skipper 3 zsh
+screen -t skipper 4 zsh
+chdir $HOME/src/oss/xdp-tutorial/basic01-xdp-pass
+screen -t xdp 5 zsh
+chdir $GOPATH/src/github.com/zalando-build/pod-deletion-cost-controller
+screen -t pod-del-cost 6 zsh
+screen -t pod-del-cost 7 zsh
+chdir $HOME
+select 0
+
