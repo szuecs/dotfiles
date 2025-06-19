@@ -55,8 +55,71 @@
 	host = github.bus.zalan.do
 [url "git@github.bus.zalan.do:"]
 	 insteadOf = https://github.bus.zalan.do/
-#[url "ssh://git@github.bus.zalan.do/"]
-#	 insteadOf = https://github.bus.zalan.do/
+[url "git@github-zse:zalando-archive/"]
+    insteadOf = https://github.com/zalando-archive/
+    insteadOf = git@github.com:zalando-archive/
+[url "git@github-zse:zalando-build/"]
+    insteadOf = https://github.com/zalando-build/
+    insteadOf = git@github.com:zalando-build/
+[url "git@github-zse:zalando-engineering-community/"]
+    insteadOf = https://github.com/zalando-engineering-community/
+    insteadOf = git@github.com:zalando-engineering-community/
+[url "git@github-zse:zalando-partner-tech/"]
+    insteadOf = https://github.com/zalando-partner-tech/
+    insteadOf = git@github.com:zalando-partner-tech/
+[url "git@github-zse:zalando-payments/"]
+    insteadOf = https://github.com/zalando-payments/
+    insteadOf = git@github.com:zalando-payments/
+[url "git@github-zse:zalando-payments-archive/"]
+    insteadOf = https://github.com/zalando-payments-archive/
+    insteadOf = git@github.com:zalando-payments-archive/
+[url "git@github-zse:zalando-playground/"]
+    insteadOf = https://github.com/zalando-playground/
+    insteadOf = git@github.com:zalando-playground/
+[url "git@github-zse:zalando-science-community/"]
+    insteadOf = https://github.com/zalando-science-community/
+    insteadOf = git@github.com:zalando-science-community/
+[url "git@github-zse:zalando-infosec/"]
+    insteadOf = https://github.com/zalando-infosec/
+    insteadOf = git@github.com:zalando-infosec/
+[url "git@github-zse:zalando-logistics/"]
+    insteadOf = https://github.com/zalando-logistics/
+    insteadOf = git@github.com:zalando-logistics/
+[url "git@github-zse:zalando-Lounge/"]
+    insteadOf = https://github.com/zalando-Lounge/
+    insteadOf = git@github.com:zalando-Lounge/
+[url "git@github-zse:zalando-workplace/"]
+    insteadOf = https://github.com/zalando-workplace/
+    insteadOf = git@github.com:zalando-workplace/
+[url "git@github-zse:zalando-zcp/"]
+    insteadOf = https://github.com/zalando-zcp/
+    insteadOf = git@github.com:zalando-zcp/
+[url "git@github-zse:zalando-zms/"]
+    insteadOf = https://github.com/zalando-zms/
+    insteadOf = git@github.com:zalando-zms/
+[url "git@github-zse:zalando-dmc/"]
+    insteadOf = https://github.com/zalando-dmc/
+    insteadOf = git@github.com:zalando-dmc/
+[url "git@github-zse:zalando-eaa/"]
+    insteadOf = https://github.com/zalando-eaa/
+    insteadOf = git@github.com:zalando-eaa/
+[url "git@github-zse:zalando-emerging-propositions/"]
+    insteadOf = https://github.com/zalando-emerging-propositions/
+    insteadOf = git@github.com:zalando-emerging-propositions/
+[url "git@github-zse:zalando-fashion/"]
+    insteadOf = https://github.com/zalando-fashion/
+    insteadOf = git@github.com:zalando-fashion/
+[url "git@github-zse:zalando-fulfillment/"]
+    insteadOf = https://github.com/zalando-fulfillment/
+    insteadOf = git@github.com:zalando-fulfillment/
+[url "git@github-zse:zalando-markets/"]
+    insteadOf = https://github.com/zalando-markets/
+    insteadOf = git@github.com:zalando-markets/
+[url "git@github-zse:zalando-offprice/"]
+    insteadOf = https://github.com/zalando-offprice/
+    insteadOf = git@github.com:zalando-offprice/
+[url "ssh://git@github.com/"]
+	insteadOf = https://github.com/
 [http]
 	cookiefile = /home/sszuecs/.gitcookies
 [diff]
