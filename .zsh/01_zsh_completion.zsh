@@ -14,7 +14,7 @@ if [ "$PS1" ]; then
   setopt noshwordsplit           # use zsh style word splitting
 
   # autocd expanding
-  cdpath=(. $GOROOT/src $GOPATH/src/golang.org $GOPATH/src/github.com $GOPATH/src/github.com/szuecs $GOPATH/src/github.com/zalando-build $GOPATH/src/github.com/zalando $GOPATH/src/github.com/zalando-incubator)
+  cdpath=(. $GOROOT/src $GOPATH/src/golang.org $GOPATH/src/github.com $GOPATH/src/github.com/szuecs $GOPATH/src/github.com/zalando-build $GOPATH/src/github.com/zalando $GOPATH/src/github.com/zalando-incubator $GOPATH/src/sigs.k8s.io $GOPATH/src/k8s.io)
 
   # custom completions
   fpath=($HOME/.zsh/Completion $fpath)

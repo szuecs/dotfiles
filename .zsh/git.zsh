@@ -6,6 +6,9 @@ alias gl="git log --oneline"
 alias gco="git checkout"
 alias gcm="git commit -m"
 
+# gpg sign
+export GPG_TTY=$(tty)
+
 #
 # zsh - RPROMPT
 #

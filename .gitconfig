@@ -1,6 +1,7 @@
 [user]
   name = Sandor Szücs
   email = sandor.szuecs@zalando.de
+	signingkey = 9FE627279356D9A6955F316F2D7B996673E41107
 [color]
   status = auto
   branch = auto
@@ -126,3 +127,5 @@
 	noprefix = true
 [branch]
 	sort = -committerdate
+[tag]
+	gpgSign = true
